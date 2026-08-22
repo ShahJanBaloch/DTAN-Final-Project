@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact & Inquiries — BalochHunar</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- FontAwesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="icon" type="image/x-icon" href="./Balochhunar logo1.png">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            terracotta: { DEFAULT: '#B85042', dark: '#963B2F', light: '#F7EDE2' },
+            sandstone: { DEFAULT: '#E7AA58', light: '#FBF6EF', dark: '#C68837' },
+            indigo: { DEFAULT: '#1E293B', dark: '#0F172A' }
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-[#FAF8F5] text-gray-800 flex flex-col min-h-screen">
+
+  <!-- Navigation Bar -->
+  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-[#E8E2D9] shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        <a href="index.html" class="flex items-center gap-3">
+          <img src="./Balochhunar logo1.png" alt="balochhunar logo" height="50px" width="70px" class="rounded-2xl shadow-md group-hover:scale-105 transition">
+          <span class="font-serif font-bold text-2xl text-gray-900 tracking-tight block leading-none">Baloch <span class="text-terracotta">Hunar</span></span>
+        </a>
+
+        <nav class="hidden md:flex items-center space-x-8">
+          <a href="index.html" class="nav-link text-sm font-medium text-gray-700 hover:text-terracotta transition">Home</a>
+          <a href="about.html" class="nav-link text-sm font-medium text-gray-700 hover:text-terracotta transition">About Us</a>
+          <a href="products.html" class="nav-link text-sm font-medium text-gray-700 hover:text-terracotta transition">Handicrafts</a>
+          <a href="services.html" class="nav-link text-sm font-medium text-gray-700 hover:text-terracotta transition">Bespoke Services</a>
+          <a href="contact.html" class="nav-link text-sm font-semibold text-terracotta transition">Contact</a>
+        </nav>
+
+        <div class="hidden md:flex items-center gap-4">
+          <a href="products.html" class="px-5 py-2.5 bg-terracotta hover:bg-terracotta-dark text-white text-xs font-bold rounded-xl shadow transition">
+            Browse Catalog
+          </a>
+          <a href="../admin/login.html" class="px-3.5 py-2 border border-gray-200 text-gray-600 hover:text-terracotta rounded-xl text-xs font-semibold transition flex items-center gap-1.5">
+            <i class="fas fa-user-shield"></i> Admin
+          </a>
+        </div>
+
+        <button id="mobile-menu-toggle" class="md:hidden p-2 text-gray-600 focus:outline-none">
+          <i class="fas fa-bars text-xl"></i>
+        </button>
+      </div>
+    </div>
+
+    <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-gray-200 px-6 py-4 space-y-3">
+      <a href="index.html" class="block text-sm font-medium text-gray-700">Home</a>
+      <a href="about.html" class="block text-sm font-medium text-gray-700">About Us</a>
+      <a href="products.html" class="block text-sm font-medium text-gray-700">Handicrafts</a>
+      <a href="services.html" class="block text-sm font-medium text-gray-700">Bespoke Services</a>
+      <a href="contact.html" class="block text-sm font-bold text-terracotta">Contact</a>
+    </div>
+  </header>
+
+  <!-- Hero Header -->
+  <section class="bg-gradient-to-b from-sandstone-light/70 to-[#FAF8F5] py-14 border-b border-[#E8E2D9]">
+    <div class="max-w-4xl mx-auto px-4 text-center space-y-3">
+      <span class="px-3.5 py-1.5 rounded-full bg-terracotta-light text-terracotta text-xs font-bold uppercase tracking-wider">
+        Get In Touch
+      </span>
+      <h1 class="font-serif text-3xl sm:text-5xl font-bold text-gray-900 leading-tight">
+        Connect with the BalochHunar Collective
+      </h1>
+      <p class="text-gray-600 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed">
+        Whether you are commissioning a bespoke bridal piece, inquiring about bulk corporate gifting, or wish to collaborate with master artisans, our team is at your service.
+      </p>
+    </div>
+  </section>
+
+  <!-- Main Content Grid -->
+  <section class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex-1">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+      
+      <!-- Contact Info Sidebar -->
+      <div class="lg:col-span-5 space-y-8">
+        <div class="bg-white rounded-3xl p-8 border border-[#E8E2D9] shadow-sm space-y-6">
+          <h3 class="font-serif text-2xl font-bold text-gray-900">Direct Contact Details</h3>
+          
+          <div class="space-y-4 text-sm text-gray-600">
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-xl bg-terracotta/10 text-terracotta flex items-center justify-center text-lg flex-shrink-0">
+                <i class="fas fa-map-marker-alt"></i>
+              </div>
+              <div>
+                <strong class="text-gray-900 block text-xs uppercase tracking-wider">Craft Centers & Hub</strong>
+                <p class="text-xs text-gray-500 mt-0.5">Heritage Artisan Center, Turbat & Quetta, Balochistan, Pakistan</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-xl bg-terracotta/10 text-terracotta flex items-center justify-center text-lg flex-shrink-0">
+                <i class="fas fa-envelope"></i>
+              </div>
+              <div>
+                <strong class="text-gray-900 block text-xs uppercase tracking-wider">Email Inquiry</strong>
+                <a href="mailto:inquiry@balochhunar.com" class="text-xs text-terracotta font-semibold hover:underline">inquiry@balochhunar.com</a>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-xl bg-terracotta/10 text-terracotta flex items-center justify-center text-lg flex-shrink-0">
+                <i class="fab fa-whatsapp"></i>
+              </div>
+              <div>
+                <strong class="text-gray-900 block text-xs uppercase tracking-wider">WhatsApp Concierge</strong>
+                <p class="text-xs text-gray-500 mt-0.5">+92 300 1234567 (Mon-Sat, 9am-6pm PKT)</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-indigo-dark text-white rounded-3xl p-8 shadow-xl space-y-3">
+          <span class="text-sandstone text-xs font-bold uppercase tracking-widest">Fair Trade Promise</span>
+          <h4 class="font-serif font-bold text-lg">100% Transparent Compensation</h4>
+          <p class="text-xs text-gray-300 leading-relaxed">
+            Every direct inquiry and commission directly empowers generational artisans and supports rural women cooperatives across Makran, Sibi, and Panjgur.
+          </p>
+        </div>
+      </div>
+
+      <!-- Contact Inquiry Form -->
+      <div class="lg:col-span-7">
+        <div class="bg-white rounded-3xl p-8 sm:p-10 border border-[#E8E2D9] shadow-xl">
+          <h3 class="font-serif text-2xl font-bold text-gray-900 mb-2">Send an Inquiry</h3>
+          <p class="text-xs text-gray-500 mb-6">Fill out the form below and we will get back to you within 24 business hours.</p>
+
+          <!-- Success Banner -->
+          <div id="form-success" class="hidden mb-6 p-4 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs flex items-center gap-3">
+            <i class="fas fa-check-circle text-lg text-emerald-600"></i>
+            <span id="form-success-text">Thank you! Your inquiry has been saved successfully in our system.</span>
+          </div>
+
+          <form id="public-contact-form" class="space-y-5">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              <div>
+                <label for="contact-name" class="block text-xs font-bold uppercase tracking-wider text-gray-700 mb-2">Your Full Name *</label>
+                <input type="text" id="contact-name" required placeholder="e.g. Fatima Ali" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-terracotta">
+              </div>
+              <div>
+                <label for="contact-email" class="block text-xs font-bold uppercase tracking-wider text-gray-700 mb-2">Email Address *</label>
+                <input type="email" id="contact-email" required placeholder="e.g. fatima@example.com" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-terracotta">
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              <div>
+                <label for="contact-phone" class="block text-xs font-bold uppercase tracking-wider text-gray-700 mb-2">Phone / WhatsApp (Optional)</label>
+                <input type="text" id="contact-phone" placeholder="+92 300 0000000" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-terracotta">
+              </div>
+              <div>
+                <label for="contact-subject" class="block text-xs font-bold uppercase tracking-wider text-gray-700 mb-2">Inquiry Subject *</label>
+                <input type="text" id="contact-subject" required placeholder="e.g. Custom Bridal Embroidery Order" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-terracotta">
+              </div>
+            </div>
+
+            <div>
+              <label for="contact-message" class="block text-xs font-bold uppercase tracking-wider text-gray-700 mb-2">Message & Specifications *</label>
+              <textarea id="contact-message" required rows="5" placeholder="Please describe your requirements, preferred colors, dimensions, timeline, or quantity..." class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-terracotta"></textarea>
+            </div>
+
+            <button 
+              type="submit" 
+              id="contact-submit-btn" 
+              class="w-full py-4 bg-terracotta hover:bg-terracotta-dark text-white font-bold text-sm rounded-xl shadow-md transition flex items-center justify-center gap-2 cursor-pointer"
+            >
+              <span id="contact-btn-text">Submit Inquiry</span>
+              <i id="contact-btn-spinner" class="fas fa-spinner fa-spin hidden"></i>
+            </button>
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-indigo-dark text-gray-300 pt-16 pb-8 border-t border-indigo-900/50 mt-auto">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col sm:flex-row items-center justify-between text-xs text-gray-500 gap-4">
+        <p>&copy; 2026 BalochHunar — Digital Artisan Platform. All rights reserved.</p>
+        <a href="../admin/login.html" class="hover:text-sandstone transition">Admin Sign In</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/api.js"></script>
+  <script src="../js/main.js"></script>
+  <script src="../js/contact.js"></script>
+</body>
+</html>

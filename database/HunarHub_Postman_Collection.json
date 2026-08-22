@@ -1,0 +1,302 @@
+{
+  "info": {
+    "_postman_id": "balochhunar-api-collection-2026",
+    "name": "BalochHunar — Digital Artisan & Handicraft Business Platform API",
+    "description": "Comprehensive Postman collection for testing BalochHunar REST APIs (Authentication, Artisans, Categories, Products, Services, Gallery, Messages, and AI Intelligence).",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:5000/api",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "1. Authentication",
+      "item": [
+        {
+          "name": "POST Admin Login",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"admin@balochhunar.com\",\n  \"password\": \"admin123\"\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/auth/login", "host": ["{{baseUrl}}"], "path": ["auth", "login"] }
+          }
+        },
+        {
+          "name": "GET Current User (Me)",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{baseUrl}}/auth/me", "host": ["{{baseUrl}}"], "path": ["auth", "me"] }
+          }
+        },
+        {
+          "name": "GET Dashboard Statistics",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{baseUrl}}/auth/stats", "host": ["{{baseUrl}}"], "path": ["auth", "stats"] }
+          }
+        },
+        {
+          "name": "POST Admin Logout",
+          "request": {
+            "method": "POST",
+            "url": { "raw": "{{baseUrl}}/auth/logout", "host": ["{{baseUrl}}"], "path": ["auth", "logout"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "2. Categories CRUD",
+      "item": [
+        {
+          "name": "GET All Categories",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{baseUrl}}/categories", "host": ["{{baseUrl}}"], "path": ["categories"] }
+          }
+        },
+        {
+          "name": "POST Create Category (Admin)",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Handcarved Wooden Crafts\",\n  \"description\": \"Heritage rosewood and walnut carvings from regional artisans.\"\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/categories", "host": ["{{baseUrl}}"], "path": ["categories"] }
+          }
+        },
+        {
+          "name": "PUT Update Category (Admin)",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Handcarved Wooden Crafts & Decor\",\n  \"description\": \"Updated description for wood carvings.\"\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/categories/1", "host": ["{{baseUrl}}"], "path": ["categories", "1"] }
+          }
+        },
+        {
+          "name": "DELETE Category (Admin)",
+          "request": {
+            "method": "DELETE",
+            "url": { "raw": "{{baseUrl}}/categories/5", "host": ["{{baseUrl}}"], "path": ["categories", "5"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "3. Master Artisans CRUD",
+      "item": [
+        {
+          "name": "GET All Artisans",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{baseUrl}}/artisans", "host": ["{{baseUrl}}"], "path": ["artisans"] }
+          }
+        },
+        {
+          "name": "GET Single Artisan Details",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{baseUrl}}/artisans/1", "host": ["{{baseUrl}}"], "path": ["artisans", "1"] }
+          }
+        },
+        {
+          "name": "POST Create Artisan (Admin)",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Bibi Shahnaz\",\n  \"location\": \"Turbat, Balochistan\",\n  \"experience_years\": 18,\n  \"craft_type\": \"Balochi Hand Embroidery\",\n  \"bio\": \"Specializes in microscopic Kaputuk stitch patterns.\",\n  \"image_url\": \"https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=600\"\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/artisans", "host": ["{{baseUrl}}"], "path": ["artisans"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "4. Products Catalog & Multi-Search",
+      "item": [
+        {
+          "name": "GET All Products",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{baseUrl}}/products", "host": ["{{baseUrl}}"], "path": ["products"] }
+          }
+        },
+        {
+          "name": "GET Products Multi-Search & Filter",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/products?search=doch&category=1&min_price=5000&sort=price_desc",
+              "host": ["{{baseUrl}}"],
+              "path": ["products"],
+              "query": [
+                { "key": "search", "value": "doch" },
+                { "key": "category", "value": "1" },
+                { "key": "min_price", "value": "5000" },
+                { "key": "sort", "value": "price_desc" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "GET Single Product",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{baseUrl}}/products/1", "host": ["{{baseUrl}}"], "path": ["products", "1"] }
+          }
+        },
+        {
+          "name": "POST Create Product (Admin)",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Embroidered Velvet Bridal Shawl\",\n  \"category_id\": 1,\n  \"artisan_id\": 1,\n  \"price\": 22500,\n  \"tags\": \"Balochi, Doch, Velvet, Bridal, Heirloom\",\n  \"description\": \"A masterpiece of traditional silk needlework on pure velvet.\",\n  \"is_featured\": true,\n  \"image_url\": \"https://images.unsplash.com/photo-1606760227091-3dd870d97f1d?w=800\"\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/products", "host": ["{{baseUrl}}"], "path": ["products"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "5. Bespoke Services",
+      "item": [
+        {
+          "name": "GET All Services",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{baseUrl}}/services", "host": ["{{baseUrl}}"], "path": ["services"] }
+          }
+        },
+        {
+          "name": "POST Create Service (Admin)",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Custom Corporate Gifting Hamper\",\n  \"description\": \"Curated heritage items with corporate embossing.\",\n  \"starting_price\": 18000,\n  \"estimated_days\": \"10-14 days\",\n  \"icon\": \"fas fa-gift\"\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/services", "host": ["{{baseUrl}}"], "path": ["services"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "6. Heritage Gallery",
+      "item": [
+        {
+          "name": "GET All Gallery Items",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{baseUrl}}/gallery", "host": ["{{baseUrl}}"], "path": ["gallery"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "7. Customer Inquiries",
+      "item": [
+        {
+          "name": "POST Submit Public Inquiry",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Tariq Mehmood\",\n  \"email\": \"tariq@example.com\",\n  \"phone\": \"+92 300 1122334\",\n  \"subject\": \"Custom Bridal Shawl Order Inquiry\",\n  \"message\": \"I would like to order a custom embroidered Doch shawl for an upcoming family wedding.\"\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/messages", "host": ["{{baseUrl}}"], "path": ["messages"] }
+          }
+        },
+        {
+          "name": "GET All Messages (Admin)",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{baseUrl}}/messages", "host": ["{{baseUrl}}"], "path": ["messages"] }
+          }
+        },
+        {
+          "name": "PUT Mark Message Read (Admin)",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"is_read\": true\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/messages/1/read", "host": ["{{baseUrl}}"], "path": ["messages", "1", "read"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "8. AI Business Features",
+      "item": [
+        {
+          "name": "POST AI Product Description Generator",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Royal Doch Silk Shawl\",\n  \"craft_type\": \"Balochi Doch Embroidery\",\n  \"material\": \"Pure Silk Chiffon\",\n  \"color\": \"Crimson Red & Antique Gold\",\n  \"characteristics\": \"Micro mirror-work borders and hand-twisted silk fringe\"\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/ai/product-description", "host": ["{{baseUrl}}"], "path": ["ai", "product-description"] }
+          }
+        },
+        {
+          "name": "POST AI Smart Tags Suggester",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Hand-carved Leather Chappal\",\n  \"description\": \"Vegetable-tanned leather footwear with geometric patterns\",\n  \"craft_type\": \"Handcrafted Leatherwork\"\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/ai/suggest-tags", "host": ["{{baseUrl}}"], "path": ["ai", "suggest-tags"] }
+          }
+        },
+        {
+          "name": "POST AI Cultural Story Generator",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Mehrab Khan\",\n  \"location\": \"Sibi, Balochistan\",\n  \"experience_years\": 32,\n  \"craft_type\": \"Handcrafted Leatherwork\",\n  \"background\": \"Learned vegetable tanning from his great-grandfather in Sibi\",\n  \"materials\": \"Indigenous tree bark extracts and full-grain hides\"\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/ai/artisan-story", "host": ["{{baseUrl}}"], "path": ["ai", "artisan-story"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "9. System Health",
+      "item": [
+        {
+          "name": "GET API Health Check",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{baseUrl}}/health", "host": ["{{baseUrl}}"], "path": ["health"] }
+          }
+        }
+      ]
+    }
+  ]
+}

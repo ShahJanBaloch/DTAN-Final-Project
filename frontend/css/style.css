@@ -1,0 +1,141 @@
+/* ======================================================================
+   BalochHunar — Design System & Custom Stylesheet
+   Cultural Heritage × Modern Digital Commerce
+   Attractive Theme: Royal Indigo + Amber Gold + Emerald Accents
+   ====================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&display=swap');
+
+:root {
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-serif: 'Playfair Display', Georgia, serif;
+
+  /* ── Primary: Royal Indigo ── */
+  --color-primary:       #4F46E5;
+  --color-primary-dark:  #3730A3;
+  --color-primary-light: #EEF2FF;
+  --color-primary-glow:  rgba(79, 70, 229, 0.18);
+
+  /* ── Accent: Amber Gold ── */
+  --color-accent:        #F59E0B;
+  --color-accent-dark:   #B45309;
+  --color-accent-light:  #FFFBEB;
+
+  /* ── Success: Emerald ── */
+  --color-emerald:       #059669;
+  --color-emerald-dark:  #065F46;
+  --color-emerald-light: #ECFDF5;
+
+  /* ── Neutrals ── */
+  --color-bg-light:  #F8F7FF;
+  --color-card-bg:   #FFFFFF;
+  --color-border:    #E0DCFF;
+  --color-text:      #1E1B4B;
+  --color-text-muted:#64748B;
+
+  /* ── Legacy aliases kept for backward-compat ── */
+  --color-terracotta:       var(--color-primary);
+  --color-terracotta-dark:  var(--color-primary-dark);
+  --color-terracotta-light: var(--color-primary-light);
+  --color-sandstone:        var(--color-accent);
+  --color-sandstone-light:  var(--color-accent-light);
+  --color-sandstone-dark:   var(--color-accent-dark);
+  --color-indigo:           #1E1B4B;
+  --color-indigo-dark:      #0D0B2F;
+  --color-indigo-light:     #312E81;
+}
+
+* {
+  font-family: var(--font-sans);
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--color-bg-light);
+  color: var(--color-text);
+  overflow-x: hidden;
+}
+
+.font-serif {
+  font-family: var(--font-serif);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #EEF2FF;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #A5B4FC;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #6366F1;
+}
+
+/* Traditional Pattern Accents */
+.pattern-border {
+  border-image: linear-gradient(to right, #4F46E5, #F59E0B, #4F46E5) 1;
+}
+
+.bg-pattern {
+  background-color: var(--color-bg-light);
+  background-image: radial-gradient(#C7D2FE 0.75px, transparent 0.75px), radial-gradient(#FCD34D 0.75px, var(--color-bg-light) 0.75px);
+  background-size: 30px 30px;
+  background-position: 0 0, 15px 15px;
+}
+
+/* Transitions & Shadows */
+.card-hover {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px -10px rgba(79, 70, 229, 0.25), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+/* Toast Notifications */
+#toast-container {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.toast {
+  padding: 14px 20px;
+  border-radius: 10px;
+  color: white;
+  font-size: 14px;
+  font-weight: 500;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  animation: slideInRight 0.3s ease-out forwards;
+}
+
+.toast.success { background-color: #059669; }
+.toast.error { background-color: #DC2626; }
+.toast.info { background-color: #2563EB; }
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}

@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BalochHunar — Digital Artisan & Handicraft Business Platform</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- FontAwesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <!-- Custom Design System Styles -->
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="icon" href="./Balochhunar logo1.png">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            terracotta: { DEFAULT: '#B85042', dark: '#963B2F', light: '#F7EDE2' },
+            sandstone: { DEFAULT: '#E7AA58', light: '#FBF6EF', dark: '#C68837' },
+            indigo: { DEFAULT: '#1E293B', dark: '#0F172A' }
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-[#FAF8F5] text-gray-800 flex flex-col min-h-screen">
+
+  <!-- ======================================================================
+       1. NAVIGATION BAR
+       ====================================================================== -->
+  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-[#E8E2D9] shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        
+        <!-- Logo -->
+        <a href="index.html" class="flex items-center gap-3 group">
+            <img src="./Balochhunar logo1.png" alt="balochhunar logo" height="50px" width="70px" class="rounded-2xl shadow-md group-hover:scale-105 transition">
+            <span class="font-serif font-bold text-2xl text-gray-900 tracking-tight block leading-none">Baloch <span class="text-terracotta">Hunar</span></span>
+        </a>
+
+        <!-- Desktop Navigation Links -->
+        <nav class="hidden md:flex items-center space-x-8">
+          <a href="index.html" class="nav-link text-sm font-semibold text-terracotta transition">Home</a>
+          <a href="about.html" class="nav-link text-sm font-medium text-gray-700 hover:text-terracotta transition">About Us</a>
+          <a href="products.html" class="nav-link text-sm font-medium text-gray-700 hover:text-terracotta transition">Handicrafts</a>
+          <a href="services.html" class="nav-link text-sm font-medium text-gray-700 hover:text-terracotta transition">Bespoke Services</a>
+          <a href="contact.html" class="nav-link text-sm font-medium text-gray-700 hover:text-terracotta transition">Contact</a>
+        </nav>
+
+        <!-- Header Actions -->
+        <div class="hidden md:flex items-center gap-4">
+          <a href="products.html" class="px-5 py-2.5 bg-terracotta hover:bg-terracotta-dark text-white text-xs font-bold rounded-xl shadow transition">
+            Browse Catalog
+          </a>
+          <a href="../admin/login.html" class="px-3.5 py-2 border border-gray-200 hover:border-terracotta text-gray-600 hover:text-terracotta rounded-xl text-xs font-semibold transition flex items-center gap-1.5" title="Admin Portal">
+            <i class="fas fa-user-shield"></i> Admin
+          </a>
+        </div>
+
+        <!-- Mobile Menu Toggle Button -->
+        <div class="md:hidden flex items-center">
+          <button id="mobile-menu-toggle" class="p-2 text-gray-600 hover:text-gray-900 focus:outline-none">
+            <i class="fas fa-bars text-xl"></i>
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Mobile Drawer Navigation -->
+    <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-gray-200 px-6 py-4 space-y-3">
+      <a href="index.html" class="block text-sm font-bold text-terracotta">Home</a>
+      <a href="about.html" class="block text-sm font-medium text-gray-700 hover:text-terracotta">About Us</a>
+      <a href="products.html" class="block text-sm font-medium text-gray-700 hover:text-terracotta">Handicrafts</a>
+      <a href="services.html" class="block text-sm font-medium text-gray-700 hover:text-terracotta">Bespoke Services</a>
+      <a href="contact.html" class="block text-sm font-medium text-gray-700 hover:text-terracotta">Contact</a>
+      <div class="pt-3 border-t border-gray-100 flex gap-2">
+        <a href="products.html" class="flex-1 text-center py-2 bg-terracotta text-white rounded-lg text-xs font-bold">Catalog</a>
+        <a href="../admin/login.html" class="flex-1 text-center py-2 border border-gray-200 text-gray-700 rounded-lg text-xs font-bold">Admin</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ======================================================================
+       2. HERO SECTION
+       ====================================================================== -->
+  <section class="relative bg-gradient-to-b from-sandstone-light/60 to-[#FAF8F5] pt-12 pb-20 overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        <!-- Hero Text -->
+        <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-terracotta-light text-terracotta text-xs font-bold uppercase tracking-wider">
+            <i class="fas fa-sparkles text-sandstone"></i> Traditional Craftsmanship × Modern Digital Commerce
+          </div>
+          
+          <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 leading-[1.15]">
+            Crafted by Heritage.<br>
+            <span class="text-terracotta italic">Connected to the World.</span>
+          </h1>
+
+          <p class="text-gray-600 text-base sm:text-lg max-w-2xl leading-relaxed">
+            BalochHunar bridges generational master artisans from across Balochistan with a global audience. Discover authentic Balochi Doch hand-embroidery, vegetable-tanned leather goods, terracotta pottery, and natural-dye wool kilims.
+          </p>
+
+          <!-- Action Buttons -->
+          <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-2">
+            <a href="products.html" class="px-8 py-4 bg-terracotta hover:bg-terracotta-dark text-white font-bold text-sm rounded-xl shadow-lg hover:shadow-xl transition transform hover:-translate-y-0.5 flex items-center gap-2">
+              <i class="fas fa-store"></i> Explore Handicrafts
+            </a>
+            <a href="#artisans-section" class="px-8 py-4 bg-white hover:bg-gray-50 border border-gray-200 text-gray-800 font-bold text-sm rounded-xl shadow-sm hover:shadow transition flex items-center gap-2">
+              <i class="fas fa-users text-sandstone-dark"></i> Meet Master Artisans
+            </a>
+          </div>
+
+          <!-- Trust Badges -->
+          <div class="pt-6 border-t border-[#E8E2D9] grid grid-cols-3 gap-4 text-center lg:text-left">
+            <div>
+              <span class="block font-bold text-lg text-gray-900 font-serif">100%</span>
+              <span class="text-xs text-gray-500">Handmade & Authentic</span>
+            </div>
+            <div>
+              <span class="block font-bold text-lg text-gray-900 font-serif">Direct</span>
+              <span class="text-xs text-gray-500">Artisan Fair Trade</span>
+            </div>
+            <div>
+              <span class="block font-bold text-lg text-gray-900 font-serif">Generations</span>
+              <span class="text-xs text-gray-500">Heritage Craft Legacy</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hero Image Showcase Collage -->
+        <div class="lg:col-span-5 relative">
+          <div class="relative mx-auto max-w-md">
+            <div class="rounded-3xl overflow-hidden shadow-2xl border-4 border-white">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8F2AP1zaccCqMTdjoubHQAvXh3a4IC9hVmGjnjk6t7tNDUYDbxO8Mk00&s=10" alt="Balochi Silk Embroidery" class="w-full h-96 object-cover">
+            </div>
+            <!-- Floating Cultural Story Pill -->
+            <div class="absolute -bottom-6 -left-6 bg-white rounded-2xl p-4 shadow-xl border border-gray-100 max-w-xs hidden sm:flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl bg-sandstone text-white flex items-center justify-center text-lg flex-shrink-0">
+                <i class="fas fa-award"></i>
+              </div>
+              <div>
+                <span class="font-bold text-gray-900 text-xs block">Balochi Doch Stitching</span>
+                <span class="text-[11px] text-gray-500">Over 300 micro-stitches per square inch</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       3. FEATURED PRODUCTS CATALOG SECTION
+       ====================================================================== -->
+  <section class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+      <div>
+        <span class="text-xs text-terracotta font-bold uppercase tracking-widest">Handmade Masterpieces</span>
+        <h2 class="font-serif text-3xl sm:text-4xl font-bold text-gray-900 mt-1">Featured Handicrafts</h2>
+        <p class="text-sm text-gray-500 mt-1 max-w-xl">Curated authentic pieces handcrafted by our celebrated master craftswomen and craftsmen.</p>
+      </div>
+      <a href="products.html" class="inline-flex items-center text-xs font-bold text-terracotta hover:underline gap-1">
+        View Complete Catalog <i class="fas fa-arrow-right"></i>
+      </a>
+    </div>
+
+    <!-- Products Grid -->
+    <div id="featured-products-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div class="col-span-full py-12 text-center text-gray-400">
+        <i class="fas fa-spinner fa-spin mr-2"></i> Loading featured handicrafts from database...
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       4. THE SOUL OF BALOCH CRAFTSMANSHIP (CULTURAL STORY SECTION)
+       ====================================================================== -->
+  <section class="bg-indigo-dark text-white py-20 relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <span class="text-sandstone text-xs font-bold uppercase tracking-widest">Cultural Heritage Story</span>
+          <h2 class="font-serif text-3xl sm:text-4xl font-bold mt-2 leading-tight">The Soul of Traditional Baloch Craftsmanship</h2>
+          <div class="space-y-4 text-gray-300 text-sm mt-6 leading-relaxed">
+            <p>
+              In the rugged valleys and historic oases of Turbat, Sibi, Panjgur, and Dera Bugti, craftsmanship is not merely an occupation — it is an ancestral language spoken through needles, clay, leather, and loom.
+            </p>
+            <p>
+              Every motif in <em>Balochi Doch</em> embroidery tells a story of the landscape: the flight of the desert falcon (<em>Kaputuk</em>), river silt waves, and geometric solar constellations. It takes weeks of microscopic hand-eye precision to create a single heirloom garment.
+            </p>
+            <p>
+              BalochHunar preserves this invaluable intangible cultural heritage by giving master artisans digital visibility, fair compensation, and direct access to global patrons.
+            </p>
+          </div>
+          <div class="mt-8">
+            <a href="about.html" class="px-6 py-3 bg-sandstone hover:bg-sandstone-dark text-white text-xs font-bold rounded-xl shadow transition inline-flex items-center gap-2">
+              Learn More About Our Mission <i class="fas fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-4">
+          <img src="https://www.carolefabrics.com/wp-content/uploads/2022/02/all-about-embroidery-0222.jpg" alt="Embroidery detail" class="rounded-2xl shadow-lg object-cover h-64 w-full">
+          <img src="https://i.ytimg.com/vi/TLKyolNrRIQ/maxresdefault.jpg" alt="Pottery crafting" class="rounded-2xl shadow-lg object-cover h-64 w-full mt-6">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       5. MASTER ARTISANS SPOTLIGHT
+       ====================================================================== -->
+  <section id="artisans-section" class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+    <div class="text-center max-w-2xl mx-auto mb-12">
+      <span class="text-xs text-terracotta font-bold uppercase tracking-widest">Generational Mastery</span>
+      <h2 class="font-serif text-3xl sm:text-4xl font-bold text-gray-900 mt-1">Meet the Master Artisans</h2>
+      <p class="text-sm text-gray-500 mt-2">The skilled hands, minds, and cultural keepers behind every BalochHunar creation.</p>
+    </div>
+
+    <div id="artisans-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="col-span-full py-12 text-center text-gray-400">
+        <i class="fas fa-spinner fa-spin mr-2"></i> Loading master artisan profiles...
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       6. BESPOKE SERVICES SECTION
+       ====================================================================== -->
+  <section class="bg-sandstone-light/50 py-16 border-y border-[#E8E2D9]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+        <div>
+          <span class="text-xs text-terracotta font-bold uppercase tracking-widest">Custom Craft Commissions</span>
+          <h2 class="font-serif text-3xl sm:text-4xl font-bold text-gray-900 mt-1">Bespoke Artisan Services</h2>
+          <p class="text-sm text-gray-500 mt-1">From heirloom bridal couture to corporate gifting and master workshops.</p>
+        </div>
+        <a href="services.html" class="inline-flex items-center text-xs font-bold text-terracotta hover:underline gap-1">
+          Explore All Services <i class="fas fa-arrow-right"></i>
+        </a>
+      </div>
+
+      <div id="services-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="col-span-full py-8 text-center text-gray-400">
+          <i class="fas fa-spinner fa-spin mr-2"></i> Loading services...
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       7. HERITAGE GALLERY SHOWCASE
+       ====================================================================== -->
+  <section class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+    <div class="text-center max-w-2xl mx-auto mb-12">
+      <span class="text-xs text-terracotta font-bold uppercase tracking-widest">Visual Archive</span>
+      <h2 class="font-serif text-3xl sm:text-4xl font-bold text-gray-900 mt-1">Heritage in Motion</h2>
+      <p class="text-sm text-gray-500 mt-2">Moments from artisan workshops, dye-vats, pit-looms, and potter wheels.</p>
+    </div>
+
+    <div id="home-gallery-grid" class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div class="col-span-full py-8 text-center text-gray-400">
+        <i class="fas fa-spinner fa-spin mr-2"></i> Loading gallery...
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       8. CALL TO ACTION & INQUIRY BANNER
+       ====================================================================== -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 w-full">
+    <div class="bg-gradient-to-r from-terracotta to-terracotta-dark rounded-3xl p-8 sm:p-12 text-white shadow-xl flex flex-col md:flex-row items-center justify-between gap-8">
+      <div class="space-y-2 text-center md:text-left">
+        <h3 class="font-serif text-2xl sm:text-3xl font-bold">Have a Custom Project or Bulk Order?</h3>
+        <p class="text-terracotta-light text-sm max-w-xl">
+          Connect directly with our artisan network for bespoke orders, corporate gifting, or wedding collections.
+        </p>
+      </div>
+      <a href="contact.html" class="px-8 py-4 bg-white hover:bg-gray-100 text-terracotta font-bold text-sm rounded-xl shadow-md transition whitespace-nowrap">
+        Submit An Inquiry
+      </a>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       9. FOOTER
+       ====================================================================== -->
+  <footer class="bg-indigo-dark text-gray-300 pt-16 pb-8 border-t border-indigo-900/50 mt-auto">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-10 pb-12 border-b border-white/10">
+        
+        <!-- Brand Summary -->
+        <div class="space-y-4 md:col-span-1">
+          <div class="flex items-center gap-3">
+            <img src="./Balochhunar logo1.png" alt="balochhunar logo" height="50px" width="70px" class="rounded-2xl shadow-md">
+            <span class="font-serif font-bold text-lg text-white tracking-tight block leading-none">Baloch <span class="text-terracotta">Hunar</span></span>
+          </div>
+          <p class="text-xs text-gray-400 leading-relaxed">
+            Digital Artisan & Handicraft Business Platform empowering local artisans with digital presence, professional catalogs, and AI storytelling.
+          </p>
+          <div class="flex space-x-3 text-sm">
+            <a href="#" class="w-8 h-8 rounded-lg bg-white/10 hover:bg-terracotta flex items-center justify-center text-white transition"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="w-8 h-8 rounded-lg bg-white/10 hover:bg-terracotta flex items-center justify-center text-white transition"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="w-8 h-8 rounded-lg bg-white/10 hover:bg-terracotta flex items-center justify-center text-white transition"><i class="fab fa-whatsapp"></i></a>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div>
+          <h4 class="font-serif font-bold text-sm text-white mb-4">Quick Navigation</h4>
+          <ul class="space-y-2 text-xs">
+            <li><a href="index.html" class="hover:text-sandstone transition">Home Page</a></li>
+            <li><a href="about.html" class="hover:text-sandstone transition">About Our Mission</a></li>
+            <li><a href="products.html" class="hover:text-sandstone transition">Handicrafts Catalog</a></li>
+            <li><a href="services.html" class="hover:text-sandstone transition">Bespoke Services</a></li>
+            <li><a href="contact.html" class="hover:text-sandstone transition">Contact & Inquiries</a></li>
+          </ul>
+        </div>
+
+        <!-- Craft Specialties -->
+        <div>
+          <h4 class="font-serif font-bold text-sm text-white mb-4">Craft Specialties</h4>
+          <ul class="space-y-2 text-xs">
+            <li>Balochi Hand Embroidery (Doch)</li>
+            <li>Handcrafted Vegetable-Tanned Leather</li>
+            <li>Terracotta & Clay River Earthenware</li>
+            <li>Handwoven Tribal Wool Kilims</li>
+            <li>Bespoke Bridal Couture Services</li>
+          </ul>
+        </div>
+
+        <!-- Contact & Admin -->
+        <div>
+          <h4 class="font-serif font-bold text-sm text-white mb-4">Platform Administration</h4>
+          <p class="text-xs text-gray-400 mb-4">
+            Course Project for DTAN AI Web Development.
+          </p>
+          <a href="../admin/login.html" class="inline-flex items-center gap-2 px-4 py-2 bg-white/10 hover:bg-terracotta text-white rounded-lg text-xs font-semibold transition">
+            <i class="fas fa-lock"></i> Access Admin Portal
+          </a>
+        </div>
+
+      </div>
+
+      <!-- Copyright -->
+      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-500 gap-4">
+        <p>&copy; 2026 BalochHunar — Digital Artisan Platform. All rights reserved.</p>
+        <p>Built with Node.js, Express, MySQL & Tailwind CSS</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="../js/api.js"></script>
+  <script src="../js/main.js"></script>
+  <script>
+    // Load Dynamic Content on Homepage
+    document.addEventListener('DOMContentLoaded', async () => {
+      loadFeaturedProducts();
+      loadArtisans();
+      loadServices();
+      loadGallery();
+    });
+
+    async function loadFeaturedProducts() {
+      try {
+        const res = await API.get('/products?featured=true');
+        const container = document.getElementById('featured-products-grid');
+        if (!res.success || res.data.length === 0) {
+          container.innerHTML = `<div class="col-span-full py-8 text-center text-gray-400 text-sm">No featured products available at this time.</div>`;
+          return;
+        }
+
+        container.innerHTML = res.data.slice(0, 6).map(p => `
+          <div class="bg-white rounded-2xl border border-[#E8E2D9] overflow-hidden shadow-sm card-hover flex flex-col justify-between">
+            <div class="relative h-64 bg-gray-100 overflow-hidden">
+              <img src="${p.image}" alt="${escapeHtml(p.name)}" class="w-full h-full object-cover group-hover:scale-105 transition duration-300" onerror="this.src='https://images.unsplash.com/photo-1606760227091-3dd870d97f1d?w=600'">
+              <span class="absolute top-3 left-3 px-3 py-1 rounded-full text-xs font-bold bg-white/90 text-gray-800 backdrop-blur-sm shadow-sm">
+                ${escapeHtml(p.category_name)}
+              </span>
+            </div>
+            <div class="p-6 flex-1 flex flex-col justify-between">
+              <div>
+                <div class="flex items-center gap-1.5 text-xs text-gray-500 mb-1">
+                  <i class="fas fa-user-circle text-sandstone-dark"></i>
+                  <span>${escapeHtml(p.artisan_name)}</span>
+                  <span>&bull;</span>
+                  <span>${escapeHtml(p.artisan_location)}</span>
+                </div>
+                <h3 class="font-serif font-bold text-lg text-gray-900 line-clamp-1">${escapeHtml(p.name)}</h3>
+                <p class="text-xs text-gray-600 mt-2 line-clamp-2">${escapeHtml(p.description)}</p>
+              </div>
+
+              <div class="mt-6 pt-4 border-t border-gray-100 flex items-center justify-between">
+                <div>
+                  <span class="text-[10px] text-gray-400 uppercase font-semibold block">Price</span>
+                  <span class="font-bold text-gray-900 text-base">${API.formatCurrency(p.price)}</span>
+                </div>
+                <a href="products.html" class="px-4 py-2 bg-sandstone-light hover:bg-sandstone text-sandstone-dark hover:text-white rounded-xl text-xs font-bold transition">
+                  Details
+                </a>
+              </div>
+            </div>
+          </div>
+        `).join('');
+      } catch (e) {
+        console.error('Failed to load featured products', e);
+      }
+    }
+
+    async function loadArtisans() {
+      try {
+        const res = await API.get('/artisans');
+        const container = document.getElementById('artisans-grid');
+        if (!res.success || res.data.length === 0) return;
+
+        container.innerHTML = res.data.slice(0, 6).map(a => `
+          <div class="bg-white rounded-2xl p-5 border border-[#E8E2D9] shadow-sm card-hover text-center flex flex-col items-center">
+            <img src="${a.image}" alt="${escapeHtml(a.name)}" class="w-24 h-24 rounded-full object-cover border-2 border-sandstone shadow-md mb-4" onerror="this.src='https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=200'">
+            <h4 class="font-serif font-bold text-base text-gray-900">${escapeHtml(a.name)}</h4>
+            <span class="text-xs text-terracotta font-semibold mt-0.5">${escapeHtml(a.craft_type)}</span>
+            <span class="text-[11px] text-gray-400 mt-1 flex items-center gap-1">
+              <i class="fas fa-map-marker-alt text-xs"></i> ${escapeHtml(a.location)}
+            </span>
+            <p class="text-xs text-gray-600 mt-3 line-clamp-3 leading-relaxed">${escapeHtml(a.bio)}</p>
+          </div>
+        `).join('');
+      } catch (e) {
+        console.error('Failed to load artisans', e);
+      }
+    }
+
+    async function loadServices() {
+      try {
+        const res = await API.get('/services');
+        const container = document.getElementById('services-grid');
+        if (!res.success || res.data.length === 0) return;
+
+        container.innerHTML = res.data.slice(0, 4).map(s => `
+          <div class="bg-white rounded-2xl p-6 border border-[#E8E2D9] shadow-sm card-hover flex flex-col justify-between">
+            <div>
+              <div class="w-12 h-12 rounded-xl bg-terracotta/10 text-terracotta flex items-center justify-center text-xl mb-4">
+                <i class="${escapeHtml(s.icon || 'fas fa-palette')}"></i>
+              </div>
+              <h4 class="font-serif font-bold text-base text-gray-900 mb-2">${escapeHtml(s.title)}</h4>
+              <p class="text-xs text-gray-600 leading-relaxed line-clamp-3">${escapeHtml(s.description)}</p>
+            </div>
+            <div class="mt-6 pt-4 border-t border-gray-100 flex items-center justify-between text-xs">
+              <span class="font-bold text-gray-900">Starts: ${API.formatCurrency(s.starting_price)}</span>
+              <a href="services.html" class="text-terracotta font-bold hover:underline">Commission <i class="fas fa-chevron-right text-[10px]"></i></a>
+            </div>
+          </div>
+        `).join('');
+      } catch (e) {
+        console.error('Failed to load services', e);
+      }
+    }
+
+    async function loadGallery() {
+      try {
+        const res = await API.get('/gallery');
+        const container = document.getElementById('home-gallery-grid');
+        if (!res.success || res.data.length === 0) return;
+
+        container.innerHTML = res.data.slice(0, 4).map(g => `
+          <div class="rounded-2xl overflow-hidden shadow-sm h-44 bg-gray-100 relative group">
+            <img src="${g.image}" alt="${escapeHtml(g.title)}" class="w-full h-full object-cover group-hover:scale-110 transition duration-300" onerror="this.src='https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?w=400'">
+            <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex items-end p-3">
+              <span class="text-white text-xs font-semibold line-clamp-1">${escapeHtml(g.title)}</span>
+            </div>
+          </div>
+        `).join('');
+      } catch (e) {
+        console.error('Failed to load gallery', e);
+      }
+    }
+
+    function escapeHtml(str) {
+      if (!str) return '';
+      return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#039;');
+    }
+  </script>
+</body>
+</html>

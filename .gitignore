@@ -1,0 +1,26 @@
+# Node modules
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment Variables
+.env
+.env.local
+.env.*.local
+
+# Uploaded Media (ignore user uploaded files but keep directory)
+backend/uploads/*
+!backend/uploads/.gitkeep
+
+# Logs
+logs/
+*.log
+
+# OS Metadata
+.DS_Store
+Thumbs.db
+
+# IDE configuration
+.vscode/
+.idea/

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bespoke Artisan Services — BalochHunar</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- FontAwesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="../css/style.css">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            terracotta: { DEFAULT: '#B85042', dark: '#963B2F', light: '#F7EDE2' },
+            sandstone: { DEFAULT: '#E7AA58', light: '#FBF6EF', dark: '#C68837' },
+            indigo: { DEFAULT: '#1E293B', dark: '#0F172A' }
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-[#FAF8F5] text-gray-800 flex flex-col min-h-screen">
+
+  <!-- Navigation Bar -->
+  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-[#E8E2D9] shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        <a href="index.html" class="flex items-center gap-3">
+          <img src="./Balochhunar logo1.png" alt="balochhunar logo" height="50px" width="70px" class="rounded-2xl shadow-md group-hover:scale-105 transition">
+          <span class="font-serif font-bold text-2xl text-gray-900 tracking-tight block leading-none">Baloch <span class="text-terracotta">Hunar</span></span>
+        </a>
+
+        <nav class="hidden md:flex items-center space-x-8">
+          <a href="index.html" class="nav-link text-sm font-medium text-gray-700 hover:text-terracotta transition">Home</a>
+          <a href="about.html" class="nav-link text-sm font-medium text-gray-700 hover:text-terracotta transition">About Us</a>
+          <a href="products.html" class="nav-link text-sm font-medium text-gray-700 hover:text-terracotta transition">Handicrafts</a>
+          <a href="services.html" class="nav-link text-sm font-semibold text-terracotta transition">Bespoke Services</a>
+          <a href="contact.html" class="nav-link text-sm font-medium text-gray-700 hover:text-terracotta transition">Contact</a>
+        </nav>
+
+        <div class="hidden md:flex items-center gap-4">
+          <a href="products.html" class="px-5 py-2.5 bg-terracotta hover:bg-terracotta-dark text-white text-xs font-bold rounded-xl shadow transition">
+            Browse Catalog
+          </a>
+          <a href="../admin/login.html" class="px-3.5 py-2 border border-gray-200 text-gray-600 hover:text-terracotta rounded-xl text-xs font-semibold transition flex items-center gap-1.5">
+            <i class="fas fa-user-shield"></i> Admin
+          </a>
+        </div>
+
+        <button id="mobile-menu-toggle" class="md:hidden p-2 text-gray-600 focus:outline-none">
+          <i class="fas fa-bars text-xl"></i>
+        </button>
+      </div>
+    </div>
+
+    <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-gray-200 px-6 py-4 space-y-3">
+      <a href="index.html" class="block text-sm font-medium text-gray-700">Home</a>
+      <a href="about.html" class="block text-sm font-medium text-gray-700">About Us</a>
+      <a href="products.html" class="block text-sm font-medium text-gray-700">Handicrafts</a>
+      <a href="services.html" class="block text-sm font-bold text-terracotta">Bespoke Services</a>
+      <a href="contact.html" class="block text-sm font-medium text-gray-700">Contact</a>
+    </div>
+  </header>
+
+  <!-- Hero Header -->
+  <section class="bg-gradient-to-b from-sandstone-light/70 to-[#FAF8F5] py-14 border-b border-[#E8E2D9]">
+    <div class="max-w-4xl mx-auto px-4 text-center space-y-3">
+      <span class="px-3.5 py-1.5 rounded-full bg-terracotta-light text-terracotta text-xs font-bold uppercase tracking-wider">
+        Tailored Craftsmanship
+      </span>
+      <h1 class="font-serif text-3xl sm:text-5xl font-bold text-gray-900 leading-tight">
+        Bespoke Artisan Commissions & Services
+      </h1>
+      <p class="text-gray-600 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed">
+        Commission custom heirloom bridal attire, handcrafted bespoke leather accessories, corporate gift hampers, or learn the art directly in masterclass workshops.
+      </p>
+    </div>
+  </section>
+
+  <!-- Dynamic Services Grid -->
+  <section class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+    <div id="services-page-grid" class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div class="col-span-full py-16 text-center text-gray-400">
+        <i class="fas fa-spinner fa-spin text-2xl mr-2 text-terracotta"></i> Loading bespoke services from database...
+      </div>
+    </div>
+  </section>
+
+  <!-- 4-Step Process Section -->
+  <section class="bg-sandstone-light/50 py-16 border-y border-[#E8E2D9]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <span class="text-xs text-terracotta font-bold uppercase tracking-widest">How It Works</span>
+        <h2 class="font-serif text-3xl font-bold text-gray-900 mt-1">The Bespoke Commission Journey</h2>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-center">
+        <div class="bg-white rounded-2xl p-6 border border-[#E8E2D9] shadow-sm">
+          <div class="w-12 h-12 rounded-full bg-terracotta text-white font-bold font-serif text-lg flex items-center justify-center mx-auto mb-4">1</div>
+          <h4 class="font-serif font-bold text-base text-gray-900 mb-2">Initial Consultation</h4>
+          <p class="text-xs text-gray-600 leading-relaxed">Share your dimensions, preferred silk colors, motifs, or corporate branding requirements.</p>
+        </div>
+
+        <div class="bg-white rounded-2xl p-6 border border-[#E8E2D9] shadow-sm">
+          <div class="w-12 h-12 rounded-full bg-terracotta text-white font-bold font-serif text-lg flex items-center justify-center mx-auto mb-4">2</div>
+          <h4 class="font-serif font-bold text-base text-gray-900 mb-2">Artisan Assignment</h4>
+          <p class="text-xs text-gray-600 leading-relaxed">We assign the commission directly to a verified master craftsperson specialized in that technique.</p>
+        </div>
+
+        <div class="bg-white rounded-2xl p-6 border border-[#E8E2D9] shadow-sm">
+          <div class="w-12 h-12 rounded-full bg-terracotta text-white font-bold font-serif text-lg flex items-center justify-center mx-auto mb-4">3</div>
+          <h4 class="font-serif font-bold text-base text-gray-900 mb-2">Handmade Crafting</h4>
+          <p class="text-xs text-gray-600 leading-relaxed">The piece is hand-stitched, carved, or loomed with periodic photo progress updates.</p>
+        </div>
+
+        <div class="bg-white rounded-2xl p-6 border border-[#E8E2D9] shadow-sm">
+          <div class="w-12 h-12 rounded-full bg-terracotta text-white font-bold font-serif text-lg flex items-center justify-center mx-auto mb-4">4</div>
+          <h4 class="font-serif font-bold text-base text-gray-900 mb-2">Insured Delivery</h4>
+          <p class="text-xs text-gray-600 leading-relaxed">Securely packaged with a signed certificate of artisan authenticity delivered directly to you.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-indigo-dark text-gray-300 pt-16 pb-8 border-t border-indigo-900/50 mt-auto">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col sm:flex-row items-center justify-between text-xs text-gray-500 gap-4">
+        <p>&copy; 2026 BalochHunar — Digital Artisan Platform. All rights reserved.</p>
+        <a href="../admin/login.html" class="hover:text-sandstone transition">Admin Sign In</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/api.js"></script>
+  <script src="../js/main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      try {
+        const res = await API.get('/services');
+        const container = document.getElementById('services-page-grid');
+        if (!res.success || res.data.length === 0) {
+          container.innerHTML = `<div class="col-span-full py-12 text-center text-gray-400 text-sm">No bespoke services available at this time.</div>`;
+          return;
+        }
+
+        container.innerHTML = res.data.map(s => `
+          <div class="bg-white rounded-3xl p-8 border border-[#E8E2D9] shadow-sm card-hover flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <div class="w-14 h-14 rounded-2xl bg-terracotta/10 text-terracotta flex items-center justify-center text-2xl">
+                  <i class="${escapeHtml(s.icon || 'fas fa-palette')}"></i>
+                </div>
+                <span class="px-3 py-1 bg-sandstone-light text-sandstone-dark rounded-full text-xs font-semibold">
+                  <i class="far fa-clock mr-1"></i> ${escapeHtml(s.estimated_days)}
+                </span>
+              </div>
+              <h3 class="font-serif font-bold text-2xl text-gray-900 mb-3">${escapeHtml(s.title)}</h3>
+              <p class="text-sm text-gray-600 leading-relaxed mb-6">${escapeHtml(s.description)}</p>
+            </div>
+
+            <div class="pt-6 border-t border-gray-100 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <div>
+                <span class="text-[10px] text-gray-400 uppercase font-semibold block">Starting Investment</span>
+                <span class="text-xl font-bold text-gray-900 font-serif">${API.formatCurrency(s.starting_price)}</span>
+              </div>
+              <a href="contact.html?subject=${encodeURIComponent(`Inquiry for Custom Service: ${s.title}`)}" class="px-6 py-3 bg-terracotta hover:bg-terracotta-dark text-white rounded-xl text-xs font-bold shadow transition text-center">
+                Commission Service
+              </a>
+            </div>
+          </div>
+        `).join('');
+      } catch (e) {
+        console.error('Failed to load services', e);
+      }
+    });
+
+    function escapeHtml(str) {
+      if (!str) return '';
+      return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#039;');
+    }
+  </script>
+</body>
+</html>

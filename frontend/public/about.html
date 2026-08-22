@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us — BalochHunar Digital Artisan Platform</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- FontAwesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="../css/style.css">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            terracotta: { DEFAULT: '#B85042', dark: '#963B2F', light: '#F7EDE2' },
+            sandstone: { DEFAULT: '#E7AA58', light: '#FBF6EF', dark: '#C68837' },
+            indigo: { DEFAULT: '#1E293B', dark: '#0F172A' }
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-[#FAF8F5] text-gray-800 flex flex-col min-h-screen">
+
+  <!-- Navigation Bar -->
+  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-[#E8E2D9] shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        <a href="index.html" class="flex items-center gap-3">
+          <img src="./Balochhunar logo1.png" alt="balochhunar logo" height="50px" width="70px" class="rounded-2xl shadow-md group-hover:scale-105 transition">
+          <span class="font-serif font-bold text-2xl text-gray-900 tracking-tight block leading-none">Baloch <span class="text-terracotta">Hunar</span></span>
+        </a>
+
+        <nav class="hidden md:flex items-center space-x-8">
+          <a href="index.html" class="nav-link text-sm font-medium text-gray-700 hover:text-terracotta transition">Home</a>
+          <a href="about.html" class="nav-link text-sm font-semibold text-terracotta transition">About Us</a>
+          <a href="products.html" class="nav-link text-sm font-medium text-gray-700 hover:text-terracotta transition">Handicrafts</a>
+          <a href="services.html" class="nav-link text-sm font-medium text-gray-700 hover:text-terracotta transition">Bespoke Services</a>
+          <a href="contact.html" class="nav-link text-sm font-medium text-gray-700 hover:text-terracotta transition">Contact</a>
+        </nav>
+
+        <div class="hidden md:flex items-center gap-4">
+          <a href="products.html" class="px-5 py-2.5 bg-terracotta hover:bg-terracotta-dark text-white text-xs font-bold rounded-xl shadow transition">
+            Browse Catalog
+          </a>
+          <a href="../admin/login.html" class="px-3.5 py-2 border border-gray-200 text-gray-600 hover:text-terracotta rounded-xl text-xs font-semibold transition flex items-center gap-1.5">
+            <i class="fas fa-user-shield"></i> Admin
+          </a>
+        </div>
+
+        <button id="mobile-menu-toggle" class="md:hidden p-2 text-gray-600 focus:outline-none">
+          <i class="fas fa-bars text-xl"></i>
+        </button>
+      </div>
+    </div>
+
+    <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-gray-200 px-6 py-4 space-y-3">
+      <a href="index.html" class="block text-sm font-medium text-gray-700">Home</a>
+      <a href="about.html" class="block text-sm font-bold text-terracotta">About Us</a>
+      <a href="products.html" class="block text-sm font-medium text-gray-700">Handicrafts</a>
+      <a href="services.html" class="block text-sm font-medium text-gray-700">Bespoke Services</a>
+      <a href="contact.html" class="block text-sm font-medium text-gray-700">Contact</a>
+    </div>
+  </header>
+
+  <!-- Hero Header -->
+  <section class="bg-gradient-to-b from-sandstone-light/80 to-[#FAF8F5] py-16 border-b border-[#E8E2D9]">
+    <div class="max-w-4xl mx-auto px-4 text-center space-y-4">
+      <span class="px-3.5 py-1.5 rounded-full bg-terracotta-light text-terracotta text-xs font-bold uppercase tracking-wider">
+        Our Purpose & Heritage
+      </span>
+      <h1 class="font-serif text-4xl sm:text-5xl font-bold text-gray-900 leading-tight">
+        Bridging Ancestral Artistry with Digital Possibility
+      </h1>
+      <p class="text-gray-600 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto">
+        BalochHunar was founded on a singular realization: traditional artisans create world-class masterpieces, but remain invisible to the global economy due to a lack of professional digital presence.
+      </p>
+    </div>
+  </section>
+
+  <!-- Problem vs Solution Section -->
+  <section class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      
+      <!-- The Problem Card -->
+      <div class="bg-white rounded-3xl p-8 border border-red-100 shadow-sm space-y-4 relative overflow-hidden">
+        <div class="w-12 h-12 rounded-2xl bg-red-50 text-red-600 flex items-center justify-center text-xl">
+          <i class="fas fa-exclamation-triangle"></i>
+        </div>
+        <h3 class="font-serif text-2xl font-bold text-gray-900">The Problem We Are Solving</h3>
+        <ul class="space-y-3 text-sm text-gray-600">
+          <li class="flex items-start gap-2.5">
+            <i class="fas fa-times text-red-500 mt-1"></i>
+            <span>Master artisans rely on informal channels (WhatsApp, word-of-mouth, middlemen) that capture most of the profit margin.</span>
+          </li>
+          <li class="flex items-start gap-2.5">
+            <i class="fas fa-times text-red-500 mt-1"></i>
+            <span>Lack of organized, high-resolution product catalogs and structured pricing.</span>
+          </li>
+          <li class="flex items-start gap-2.5">
+            <i class="fas fa-times text-red-500 mt-1"></i>
+            <span>Untold cultural stories — consumers buy generic souvenirs without knowing the generational legacy behind each piece.</span>
+          </li>
+          <li class="flex items-start gap-2.5">
+            <i class="fas fa-times text-red-500 mt-1"></i>
+            <span>Economic vulnerability among rural craftswomen and indigenous makers.</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- The Solution Card -->
+      <div class="bg-white rounded-3xl p-8 border border-emerald-100 shadow-sm space-y-4 relative overflow-hidden">
+        <div class="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-xl">
+          <i class="fas fa-check-circle"></i>
+        </div>
+        <h3 class="font-serif text-2xl font-bold text-gray-900">The BalochHunar Solution</h3>
+        <ul class="space-y-3 text-sm text-gray-600">
+          <li class="flex items-start gap-2.5">
+            <i class="fas fa-check text-emerald-600 mt-1"></i>
+            <span><strong>Digital Storefront & Showcase:</strong> Professional, responsive catalog with live search, categorization, and inquiry channels.</span>
+          </li>
+          <li class="flex items-start gap-2.5">
+            <i class="fas fa-check text-emerald-600 mt-1"></i>
+            <span><strong>Artisan Profile Pages:</strong> Elevating the maker, their location, experience, and craft lineage.</span>
+          </li>
+          <li class="flex items-start gap-2.5">
+            <i class="fas fa-check text-emerald-600 mt-1"></i>
+            <span><strong>AI-Assisted Storytelling:</strong> Automated generation of compelling product descriptions and cultural narratives in the administrative panel.</span>
+          </li>
+          <li class="flex items-start gap-2.5">
+            <i class="fas fa-check text-emerald-600 mt-1"></i>
+            <span><strong>Direct Custom Commissions:</strong> Structured booking for bespoke bridal embroidery, bulk corporate orders, and workshops.</span>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- The 4 Craft Traditions We Champion -->
+  <section class="bg-sandstone-light/50 py-16 border-y border-[#E8E2D9]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <span class="text-xs text-terracotta font-bold uppercase tracking-widest">Preserving Intangible Heritage</span>
+        <h2 class="font-serif text-3xl sm:text-4xl font-bold text-gray-900 mt-1">The Four Pillars of Baloch Craftsmanship</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        
+        <!-- Pillar 1 -->
+        <div class="bg-white rounded-2xl p-6 border border-[#E8E2D9] shadow-sm">
+          <div class="h-36 rounded-xl overflow-hidden mb-4">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZ-7jOyYmqqTDxPjMPKxUeBYWnpKqP8m5ubV14i5auqf77KGtkzlgEjfsu&s=10" alt="Balochi Embroidery" class="w-full h-full object-cover">
+          </div>
+          <h4 class="font-serif font-bold text-base text-gray-900 mb-1">Balochi Doch Embroidery</h4>
+          <p class="text-xs text-gray-600 leading-relaxed">
+            Geometric micro-needlework with silk threads and embedded mirrors (Sheesha) created primarily in Turbat and Makran.
+          </p>
+        </div>
+
+        <!-- Pillar 2 -->
+        <div class="bg-white rounded-2xl p-6 border border-[#E8E2D9] shadow-sm">
+          <div class="h-36 rounded-xl overflow-hidden mb-4">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS95spHJcrj98NI1jIRSs76XmY12duo8P0_ed2Pb5XoUgH0-1FX0HzOQW0&s=10" alt="Leatherwork" class="w-full h-full object-cover">
+          </div>
+          <h4 class="font-serif font-bold text-base text-gray-900 mb-1">Vegetable-Tanned Leather</h4>
+          <p class="text-xs text-gray-600 leading-relaxed">
+            Generational leather carving and brass-studded chappals tanned with indigenous tree barks in Sibi.
+          </p>
+        </div>
+
+        <!-- Pillar 3 -->
+        <div class="bg-white rounded-2xl p-6 border border-[#E8E2D9] shadow-sm">
+          <div class="h-36 rounded-xl overflow-hidden mb-4">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS4qKKOUC3evt1gIj8LFNpyo9pjjMcnlmJwTXplLdpVQg&s=10" alt="Clay Pottery" class="w-full h-full object-cover">
+          </div>
+          <h4 class="font-serif font-bold text-base text-gray-900 mb-1">Terracotta & River Clay</h4>
+          <p class="text-xs text-gray-600 leading-relaxed">
+            Porous earthenware jugs and glazed decorative pottery hand-thrown using alluvial riverbed silt from Panjgur.
+          </p>
+        </div>
+
+        <!-- Pillar 4 -->
+        <div class="bg-white rounded-2xl p-6 border border-[#E8E2D9] shadow-sm">
+          <div class="h-36 rounded-xl overflow-hidden mb-4">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0y02GhFuGMs1VRJRUdWn08kbVva9VTspYK2_5W6ScH_vHhGDIVYfMeGU&s=10" alt="Wool Kilim" class="w-full h-full object-cover">
+          </div>
+          <h4 class="font-serif font-bold text-base text-gray-900 mb-1">Tribal Mountain Kilims</h4>
+          <p class="text-xs text-gray-600 leading-relaxed">
+            Flatweave geometric rugs hand-loomed from high-altitude mountain sheep wool with walnut and madder plant dyes.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Technology & Social Impact Section -->
+  <section class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="bg-indigo-dark rounded-3xl p-8 sm:p-12 text-white shadow-xl grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+      <div class="space-y-4">
+        <span class="text-sandstone text-xs font-bold uppercase tracking-widest">DTAN AI Web Development Project</span>
+        <h3 class="font-serif text-3xl font-bold">Built for Real-World Scalability</h3>
+        <p class="text-gray-300 text-sm leading-relaxed">
+          BalochHunar combines a high-performance <strong>Node.js + Express + MySQL</strong> relational architecture with modern frontend design and backend-secured AI pipelines. It serves as both a functional digital business hub and a demonstration of how modern technology empowers heritage communities.
+        </p>
+        <div class="pt-2 flex flex-wrap gap-3">
+          <span class="px-3 py-1 bg-white/10 rounded-lg text-xs font-mono">Node.js</span>
+          <span class="px-3 py-1 bg-white/10 rounded-lg text-xs font-mono">Express.js</span>
+          <span class="px-3 py-1 bg-white/10 rounded-lg text-xs font-mono">MySQL (Normalized)</span>
+          <span class="px-3 py-1 bg-white/10 rounded-lg text-xs font-mono">Tailwind CSS</span>
+          <span class="px-3 py-1 bg-white/10 rounded-lg text-xs font-mono">AI Storytelling</span>
+        </div>
+      </div>
+      <div class="bg-white/5 border border-white/10 rounded-2xl p-6 space-y-3">
+        <h4 class="font-serif font-bold text-lg text-sandstone">Social & Economic Vision</h4>
+        <p class="text-xs text-gray-300 leading-relaxed">
+          By eliminating the middleman markup and presenting traditional handicrafts in high definition with rich storytelling, BalochHunar aims to increase artisan income by up to <strong>70%</strong>, ensuring the continuation of rare handicraft techniques for future generations.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-indigo-dark text-gray-300 pt-16 pb-8 border-t border-indigo-900/50 mt-auto">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col sm:flex-row items-center justify-between text-xs text-gray-500 gap-4">
+        <p>&copy; 2026 BalochHunar — Digital Artisan Platform. All rights reserved.</p>
+        <a href="../admin/login.html" class="hover:text-sandstone transition">Admin Sign In</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/api.js"></script>
+  <script src="../js/main.js"></script>
+</body>
+</html>

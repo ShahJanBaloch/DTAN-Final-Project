@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Order Management — BalochHunar</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+        <link rel="stylesheet" href="../css/style.css">
+        <script>tailwind.config={
+            theme:
+            {extend:{
+                colors:{
+                    terracotta:{DEFAULT:'#B85042',dark:'#963B2F'},
+                    sandstone:{DEFAULT:'#E7AA58',light:'#FBF6EF'},
+                    indigo:{dark:'#0F172A'}
+                    }
+                    }
+                    }}
+        </script>
+    </head>
+<body class="bg-[#F8F7FF] text-gray-800 min-h-screen">
+    <div class="flex min-h-screen">
+        <aside class="w-64 bg-indigo-dark text-white hidden md:flex flex-col">
+            <!-- logo  -->
+            <div class="p-6 border-b border-white/10 flex items-center gap-3">
+                <a href="index.html" class="flex items-center gap-3 group">
+                    <img src="./Balochhunar logo1.png" alt="balochhunar logo" height="50px" width="70px" class="rounded-2xl shadow-md group-hover:scale-105 transition">
+                </a>
+                <div>
+                    <h2 class="font-serif font-bold text-lg leading-none">Baloch <span class="text-terracotta">Hunar</span></h2>
+                    <span class="text-[11px] text-sandstone font-medium uppercase tracking-wider">Admin Console</span>
+                </div>
+            </div>
+
+            <nav class="p-4 space-y-1 text-sm">
+                <a href="dashboard.html" class="nav"><i class="fas fa-chart-pie w-5"></i> Dashboard</a>
+                <a href="orders.html" class="nav active"><i class="fas fa-box w-5"></i> Orders</a>
+                <a href="products.html" class="nav"><i class="fas fa-box-open w-5"></i> Products</a>
+                <a href="artisans.html" class="nav"><i class="fas fa-users w-5"></i> Artisans</a>
+                <a href="messages.html" class="nav"><i class="fas fa-envelope w-5"></i> Messages</a>
+            </nav>
+        </aside>
+        <main class="flex-1 min-w-0">
+            <header class="bg-white border-b border-[#E8E2D9] px-6 py-5">
+                <h1 class="font-serif text-2xl font-bold text-gray-900">Order Management</h1>
+                <p class="text-xs text-gray-500 mt-1">BalochHunar controls payment verification, artisan production, and delivery.</p>
+            </header>
+            <section class="p-6 max-w-7xl mx-auto">
+                <div class="bg-white rounded-2xl border border-[#E8E2D9] shadow-sm p-4 flex flex-col md:flex-row gap-3">
+                    <input id="order-search" placeholder="Search order number, customer, email" class="field flex-1">
+                    <select id="status-filter" class="field md:w-56">
+                        <option value="">All order statuses</option></select>
+                        <select id="payment-filter" class="field md:w-48"><option value="">All payment statuses</option></select>
+                        <button id="refresh-orders" class="px-4 py-2 bg-terracotta text-white rounded-lg text-xs font-bold"><i class="fas fa-sync mr-1"></i>Refresh</button>
+                    </div>
+                    <div class="mt-5 bg-white rounded-2xl border border-[#E8E2D9] shadow-sm overflow-x-auto">
+                        <table class="w-full text-left text-sm">
+                            <thead class="bg-[#FAF8F5] text-[11px] uppercase text-gray-500">
+                                <tr>
+                                    <th class="p-4">Order</th>
+                                    <th class="p-4">Customer</th>
+                                    <th class="p-4">Amount</th>
+                                    <th class="p-4">Payment</th>
+                                    <th class="p-4">Status</th>
+                                    <th class="p-4">Artisan</th><th class="p-4"></th>
+                                </tr>
+                            </thead>
+                            <tbody id="orders-body"><tr>
+                                <td colspan="7" class="p-8 text-center text-gray-400">Loading orders...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+    <div id="detail-modal" class="hidden fixed inset-0 z-50 bg-black/50 p-4 flex items-center justify-center">
+        <div class="bg-white rounded-2xl max-w-4xl w-full max-h-[92vh] overflow-y-auto p-6">
+            <div class="flex justify-between">
+                <h2 id="detail-title" class="font-serif text-2xl font-bold"></h2>
+                <button id="close-detail" class="text-gray-500 text-xl"><i class="fas fa-times"></i></button>
+            </div>
+            <div id="detail-content" class="mt-5"></div>
+        </div>
+    </div>
+    <style>.nav{
+        display:flex;gap:.75rem;padding:.75rem;border-radius:.7rem;color:#d1d5db}.nav:hover,.nav.active{background:#B85042;color:white}.field{padding:.65rem .75rem;background:#fafafa;border:1px solid #e5e7eb;border-radius:.6rem;font-size:.8rem;outline:none}.field:focus{box-shadow:0 0 0 2px #B85042}</style>
+        <script src="../js/api.js"></script>
+        <script src="../js/admin/orders.js"></script>
+    </body>
+    </html>
