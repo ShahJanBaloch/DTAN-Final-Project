@@ -47,3 +47,14 @@ app.use('/css', express.static(cssPath));
 app.use('/js', express.static(jsPath));
 app.use('/public', express.static(publicPath));
 app.use('/admin', express.static(adminPath));
+
+// ====================================================
+// ERROR HANDLERS
+// ====================================================
+app.use(notFound);
+app.use(errorHandler);
+
+// ====================================================
+// EXPORT FOR VERCEL
+// ====================================================
+module.exports = app;
