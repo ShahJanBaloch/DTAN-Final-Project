@@ -252,14 +252,14 @@ app.get('/about', (req, res) => {
 });
 
 // Products page
-app.get('/products-page', (req, res) => {
+app.get('/products', (req, res) => {
   return res.sendFile(
     path.join(publicPath, 'products.html')
   );
 });
 
 // Services page
-app.get('/services-page', (req, res) => {
+app.get('/services', (req, res) => {
   return res.sendFile(
     path.join(publicPath, 'services.html')
   );
