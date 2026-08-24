@@ -107,3 +107,5 @@ app.get('/', (req, res) => {
     path.join(__dirname, '../frontend/public/index.html')
   );
 });
+
+app.set('trust proxy', 1);
