@@ -1,11 +1,11 @@
 const dotenv = require('dotenv');
+
+dotenv.config();
+
 const app = require('./app');
 const { testConnection } = require('./config/db');
 
-// Load environment variables from .env file
-dotenv.config();
-
-const PORT = process.env.PORT || 5500;
+const PORT = process.env.PORT || 5000;
 
 // Start Express Server
 const server = app.listen(PORT, async () => {

@@ -18,6 +18,8 @@ const aiRoutes = require('./routes/aiRoutes');
 const orderRoutes = require('./routes/orderRoutes');
 
 const app = express();
+// Trust Vercel's HTTPS proxy
+app.set('trust proxy', 1);
 
 // 1. Security HTTP Headers
 app.use(
@@ -43,13 +45,18 @@ app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 app.use(
   session({
     name: 'balochhunar.sid',
-    secret: process.env.SESSION_SECRET || 'balochhunar_secure_session_secret_dtan_2024',
+    secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
+
     cookie: {
       httpOnly: true,
-      secure: false,
+
+      // false locally, true on Vercel/production
+      secure: process.env.NODE_ENV === 'production',
+
       maxAge: 24 * 60 * 60 * 1000,
+
       sameSite: 'lax'
     }
   })
@@ -88,3 +95,15 @@ app.use(notFound);
 app.use(errorHandler);
 
 module.exports = app;
+
+// 5. Static File Hosting
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
+app.use(express.static(path.join(__dirname, '../frontend')));
+
+// Homepage
+app.get('/', (req, res) => {
+  res.sendFile(
+    path.join(__dirname, '../frontend/public/index.html')
+  );
+});
