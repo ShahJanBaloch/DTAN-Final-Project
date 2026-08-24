@@ -250,16 +250,32 @@ app.get('/about', (req, res) => {
     path.join(publicPath, 'about.html')
   );
 });
+app.get('/about.html', (req, res) => {
+  return res.sendFile(
+    path.join(publicPath, 'about.html')
+  );
+});
+
 
 // Products page
-app.get('/products', (req, res) => {
+app.get('/products.html', (req, res) => {
+  return res.sendFile(
+    path.join(publicPath, 'products.html')
+  );
+});
+app.get('/products-page', (req, res) => {
   return res.sendFile(
     path.join(publicPath, 'products.html')
   );
 });
 
 // Services page
-app.get('/services', (req, res) => {
+app.get('/services-page', (req, res) => {
+  return res.sendFile(
+    path.join(publicPath, 'services.html')
+  );
+});
+app.get('/services.html', (req, res) => {
   return res.sendFile(
     path.join(publicPath, 'services.html')
   );
@@ -271,6 +287,12 @@ app.get('/contact', (req, res) => {
     path.join(publicPath, 'contact.html')
   );
 });
+app.get('/contact.html', (req, res) => {
+  return res.sendFile(
+    path.join(publicPath, 'contact.html')
+  );
+});
+
 
 // ====================================================
 // 9. ADMIN ROUTES
