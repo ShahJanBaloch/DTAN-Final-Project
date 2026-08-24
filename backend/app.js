@@ -121,20 +121,45 @@ app.use(
   express.static(path.join(__dirname, '../frontend'))
 );
 
+
+
 /*
 ====================================================
 6. HOMEPAGE
-====================================================
-*/
+====================================================*/
 
+// Homepage
 app.get('/', (req, res) => {
-  res.sendFile(
-    path.join(
-      __dirname,
-      '../frontend/public/index.html'
-    )
-  );
+  res.sendFile(path.join(__dirname, '../frontend/public/index.html'));
 });
+
+// Public pages
+app.get('/about', (req, res) => {
+  res.sendFile(path.join(__dirname, '../frontend/public/about.html'));
+});
+
+app.get('/products', (req, res) => {
+  res.sendFile(path.join(__dirname, '../frontend/public/products.html'));
+});
+
+app.get('/services', (req, res) => {
+  res.sendFile(path.join(__dirname, '../frontend/public/services.html'));
+});
+
+app.get('/contact', (req, res) => {
+  res.sendFile(path.join(__dirname, '../frontend/public/contact.html'));
+});
+
+// Admin login
+app.get('/admin', (req, res) => {
+  res.sendFile(path.join(__dirname, '../frontend/admin/login.html'));
+});
+
+
+// Error Handlers
+app.use(notFound);
+app.use(errorHandler);
+
 
 /*
 ====================================================
