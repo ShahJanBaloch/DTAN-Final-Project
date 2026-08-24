@@ -5,21 +5,35 @@ const cors = require('cors');
 const helmet = require('helmet');
 const session = require('express-session');
 
-// Load environment variables FIRST
+// ====================================================
+// LOAD ENVIRONMENT VARIABLES
+// ====================================================
+
+// This loads .env locally.
+// On Vercel, environment variables come from Vercel settings.
 dotenv.config({
   path: path.join(__dirname, '../.env')
 });
 
-// Database
+// ====================================================
+// IMPORT DATABASE
+// ====================================================
+
 const { testConnection } = require('./config/db');
 
-// Error middleware
+// ====================================================
+// IMPORT ERROR MIDDLEWARE
+// ====================================================
+
 const {
   notFound,
   errorHandler
 } = require('./middleware/errorMiddleware');
 
-// Route Handlers
+// ====================================================
+// IMPORT ROUTES
+// ====================================================
+
 const authRoutes = require('./routes/authRoutes');
 const artisanRoutes = require('./routes/artisanRoutes');
 const categoryRoutes = require('./routes/categoryRoutes');
@@ -30,17 +44,33 @@ const messageRoutes = require('./routes/messageRoutes');
 const aiRoutes = require('./routes/aiRoutes');
 const orderRoutes = require('./routes/orderRoutes');
 
-// Create Express application
+// ====================================================
+// CREATE EXPRESS APP
+// ====================================================
+
 const app = express();
 
-// Trust Vercel/reverse proxy for HTTPS
+// Trust Vercel's reverse proxy
 app.set('trust proxy', 1);
 
-/*
-====================================================
-1. SECURITY HEADERS
-====================================================
-*/
+// ====================================================
+// DEFINE FRONTEND PATHS
+// ====================================================
+
+const frontendPath = path.join(__dirname, '../frontend');
+
+const publicPath = path.join(frontendPath, 'public');
+
+const adminPath = path.join(frontendPath, 'admin');
+
+const cssPath = path.join(frontendPath, 'css');
+
+const jsPath = path.join(frontendPath, 'js');
+
+// ====================================================
+// 1. SECURITY HEADERS
+// ====================================================
+
 app.use(
   helmet({
     crossOriginResourcePolicy: {
@@ -50,11 +80,10 @@ app.use(
   })
 );
 
-/*
-====================================================
-2. CORS
-====================================================
-*/
+// ====================================================
+// 2. CORS
+// ====================================================
+
 app.use(
   cors({
     origin: true,
@@ -62,12 +91,13 @@ app.use(
   })
 );
 
-/*
-====================================================
-3. BODY PARSERS
-====================================================
-*/
-app.use(express.json({ limit: '10mb' }));
+// ====================================================
+// 3. BODY PARSERS
+// ====================================================
+
+app.use(express.json({
+  limit: '10mb'
+}));
 
 app.use(
   express.urlencoded({
@@ -76,16 +106,15 @@ app.use(
   })
 );
 
-/*
-====================================================
-4. SESSION CONFIGURATION
-====================================================
-*/
+// ====================================================
+// 4. SESSION CONFIGURATION
+// ====================================================
+
 app.use(
   session({
     name: 'balochhunar.sid',
 
-    secret: process.env.SESSION_SECRET,
+    secret: process.env.SESSION_SECRET || 'change-this-secret',
 
     resave: false,
 
@@ -94,7 +123,7 @@ app.use(
     cookie: {
       httpOnly: true,
 
-      // HTTP locally, HTTPS on Vercel production
+      // false locally, true in production/Vercel
       secure: process.env.NODE_ENV === 'production',
 
       sameSite: 'lax',
@@ -104,11 +133,9 @@ app.use(
   })
 );
 
-/*
-====================================================
-5. STATIC FILES
-====================================================
-*/
+// ====================================================
+// 5. STATIC FILES
+// ====================================================
 
 // Uploaded images
 app.use(
@@ -116,56 +143,36 @@ app.use(
   express.static(path.join(__dirname, 'uploads'))
 );
 
-// Frontend CSS, JS, public files, admin files
+// CSS files
 app.use(
-  express.static(path.join(__dirname, '../frontend'))
+  '/css',
+  express.static(cssPath)
 );
 
+// JavaScript files
+app.use(
+  '/js',
+  express.static(jsPath)
+);
 
+// Public frontend files
+// This makes /public/index.html available if needed
+app.use(
+  '/public',
+  express.static(publicPath)
+);
 
-/*
-====================================================
-6. HOMEPAGE
-====================================================*/
+// Admin frontend files
+// This makes /admin/dashboard.html, etc. available
+app.use(
+  '/admin',
+  express.static(adminPath)
+);
 
-// Homepage
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '../frontend/public/index.html'));
-});
-
-// Public pages
-app.get('/about', (req, res) => {
-  res.sendFile(path.join(__dirname, '../frontend/public/about.html'));
-});
-
-app.get('/products', (req, res) => {
-  res.sendFile(path.join(__dirname, '../frontend/public/products.html'));
-});
-
-app.get('/services', (req, res) => {
-  res.sendFile(path.join(__dirname, '../frontend/public/services.html'));
-});
-
-app.get('/contact', (req, res) => {
-  res.sendFile(path.join(__dirname, '../frontend/public/contact.html'));
-});
-
-// Admin login
-app.get('/admin', (req, res) => {
-  res.sendFile(path.join(__dirname, '../frontend/admin/login.html'));
-});
-
-
-// Error Handlers
-app.use(notFound);
-app.use(errorHandler);
-
-
-/*
-====================================================
-7. HEALTH CHECK
-====================================================
-*/
+// ====================================================
+// 6. HEALTH CHECK
+// IMPORTANT: BEFORE ERROR HANDLERS
+// ====================================================
 
 app.get('/api/health', async (req, res) => {
   try {
@@ -191,11 +198,10 @@ app.get('/api/health', async (req, res) => {
   }
 });
 
-/*
-====================================================
-8. API ROUTES
-====================================================
-*/
+// ====================================================
+// 7. API ROUTES
+// IMPORTANT: BEFORE FRONTEND ERROR HANDLERS
+// ====================================================
 
 app.use('/api/auth', authRoutes);
 
@@ -215,11 +221,48 @@ app.use('/api/ai', aiRoutes);
 
 app.use('/api/orders', orderRoutes);
 
-/*
-====================================================
-9. ERROR HANDLERS
-====================================================
-*/
+// ====================================================
+// 8. PUBLIC WEBSITE ROUTES
+// ====================================================
+
+// Homepage
+app.get('/', (req, res) => {
+  res.sendFile(path.join(publicPath, 'index.html'));
+});
+
+// About page
+app.get('/about', (req, res) => {
+  res.sendFile(path.join(publicPath, 'about.html'));
+});
+
+// Products page
+app.get('/products', (req, res) => {
+  res.sendFile(path.join(publicPath, 'products.html'));
+});
+
+// Services page
+app.get('/services', (req, res) => {
+  res.sendFile(path.join(publicPath, 'services.html'));
+});
+
+// Contact page
+app.get('/contact', (req, res) => {
+  res.sendFile(path.join(publicPath, 'contact.html'));
+});
+
+// ====================================================
+// 9. ADMIN ROUTES
+// ====================================================
+
+// Admin login page
+app.get('/admin', (req, res) => {
+  res.sendFile(path.join(adminPath, 'login.html'));
+});
+
+// ====================================================
+// 10. ERROR HANDLERS
+// IMPORTANT: ALWAYS LAST
+// ====================================================
 
 // 404 handler
 app.use(notFound);
@@ -227,10 +270,8 @@ app.use(notFound);
 // Global error handler
 app.use(errorHandler);
 
-/*
-====================================================
-EXPORT EXPRESS APP
-====================================================
-*/
+// ====================================================
+// EXPORT EXPRESS APP
+// ====================================================
 
 module.exports = app;
