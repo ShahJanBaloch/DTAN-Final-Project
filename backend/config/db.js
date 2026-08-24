@@ -1,24 +1,26 @@
 const mysql = require('mysql2/promise');
 
-// Create a connection pool for Aiven MySQL
+const useTls = process.env.DB_SSL !== 'false';
+
+// A pooled connection is reused across Vercel invocations when the instance stays warm.
 const pool = mysql.createPool({
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_NAME,
-  port: Number(process.env.DB_PORT),
+  host: process.env.DB_HOST || 'localhost',
+  user: process.env.DB_USER || 'root',
+  password: process.env.DB_PASSWORD || '',
+  database: process.env.DB_NAME || 'balochhunar_db',
+  port: Number(process.env.DB_PORT) || 3306,
 
   waitForConnections: true,
-  connectionLimit: 10,
+  connectionLimit: Number(process.env.DB_CONNECTION_LIMIT) || 5,
   queueLimit: 0,
+  connectTimeout: Number(process.env.DB_CONNECT_TIMEOUT) || 10000,
 
   enableKeepAlive: true,
   keepAliveInitialDelay: 0,
 
-  // Aiven MySQL uses TLS/SSL
-  ssl: {
-    rejectUnauthorized: false
-  }
+  ssl: useTls
+    ? { rejectUnauthorized: process.env.DB_SSL_REJECT_UNAUTHORIZED === 'true' }
+    : undefined
 });
 
 /**

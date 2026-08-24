@@ -1,10 +1,23 @@
 const express = require('express');
 const path = require('path');
+const dotenv = require('dotenv');
 const cors = require('cors');
 const helmet = require('helmet');
 const session = require('express-session');
+
+// Load environment variables FIRST
+dotenv.config({
+  path: path.join(__dirname, '../.env')
+});
+
+// Database
 const { testConnection } = require('./config/db');
-const { notFound, errorHandler } = require('./middleware/errorMiddleware');
+
+// Error middleware
+const {
+  notFound,
+  errorHandler
+} = require('./middleware/errorMiddleware');
 
 // Route Handlers
 const authRoutes = require('./routes/authRoutes');
@@ -17,19 +30,31 @@ const messageRoutes = require('./routes/messageRoutes');
 const aiRoutes = require('./routes/aiRoutes');
 const orderRoutes = require('./routes/orderRoutes');
 
+// Create Express application
 const app = express();
-// Trust Vercel's HTTPS proxy
+
+// Trust Vercel/reverse proxy for HTTPS
 app.set('trust proxy', 1);
 
-// 1. Security HTTP Headers
+/*
+====================================================
+1. SECURITY HEADERS
+====================================================
+*/
 app.use(
   helmet({
-    crossOriginResourcePolicy: { policy: 'cross-origin' },
+    crossOriginResourcePolicy: {
+      policy: 'cross-origin'
+    },
     contentSecurityPolicy: false
   })
 );
 
-// 2. Cross-Origin Resource Sharing
+/*
+====================================================
+2. CORS
+====================================================
+*/
 app.use(
   cors({
     origin: true,
@@ -37,75 +62,150 @@ app.use(
   })
 );
 
-// 3. Body Parsers
+/*
+====================================================
+3. BODY PARSERS
+====================================================
+*/
 app.use(express.json({ limit: '10mb' }));
-app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
-// 4. Session Configuration
+app.use(
+  express.urlencoded({
+    extended: true,
+    limit: '10mb'
+  })
+);
+
+/*
+====================================================
+4. SESSION CONFIGURATION
+====================================================
+*/
 app.use(
   session({
     name: 'balochhunar.sid',
+
     secret: process.env.SESSION_SECRET,
+
     resave: false,
+
     saveUninitialized: false,
 
     cookie: {
       httpOnly: true,
 
-      // false locally, true on Vercel/production
+      // HTTP locally, HTTPS on Vercel production
       secure: process.env.NODE_ENV === 'production',
 
-      maxAge: 24 * 60 * 60 * 1000,
+      sameSite: 'lax',
 
-      sameSite: 'lax'
+      maxAge: 24 * 60 * 60 * 1000
     }
   })
 );
 
-// 5. Static File Hosting
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
-app.use(express.static(path.join(__dirname, '../frontend')));
+/*
+====================================================
+5. STATIC FILES
+====================================================
+*/
 
-// 6. Health Route
-app.get('/api/health', async (req, res) => {
-  const dbStatus = await testConnection();
-  res.status(200).json({
-    success: true,
-    message: 'BalochHunar API is running',
-    timestamp: new Date().toISOString(),
-    environment: process.env.NODE_ENV || 'development',
-    database: dbStatus.connected ? 'connected' : 'disconnected',
-    databaseDetail: dbStatus.message
-  });
-});
+// Uploaded images
+app.use(
+  '/uploads',
+  express.static(path.join(__dirname, 'uploads'))
+);
 
-// 7. Core Business & AI API Routes
-app.use('/api/auth', authRoutes);
-app.use('/api/artisans', artisanRoutes);
-app.use('/api/categories', categoryRoutes);
-app.use('/api/products', productRoutes);
-app.use('/api/services', serviceRoutes);
-app.use('/api/gallery', galleryRoutes);
-app.use('/api/messages', messageRoutes);
-app.use('/api/ai', aiRoutes);
-app.use('/api/orders', orderRoutes);
+// Frontend CSS, JS, public files, admin files
+app.use(
+  express.static(path.join(__dirname, '../frontend'))
+);
 
-// 8. Global Error Handlers
-app.use(notFound);
-app.use(errorHandler);
+/*
+====================================================
+6. HOMEPAGE
+====================================================
+*/
 
-module.exports = app;
-
-// 5. Static File Hosting
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
-
-app.use(express.static(path.join(__dirname, '../frontend')));
-
-// Homepage
 app.get('/', (req, res) => {
   res.sendFile(
-    path.join(__dirname, '../frontend/public/index.html')
+    path.join(
+      __dirname,
+      '../frontend/public/index.html'
+    )
   );
 });
 
-app.set('trust proxy', 1);
+/*
+====================================================
+7. HEALTH CHECK
+====================================================
+*/
+
+app.get('/api/health', async (req, res) => {
+  try {
+    const dbStatus = await testConnection();
+
+    res.status(200).json({
+      success: true,
+      message: 'BalochHunar API is running',
+      timestamp: new Date().toISOString(),
+      environment: process.env.NODE_ENV || 'development',
+      database: dbStatus.connected
+        ? 'connected'
+        : 'disconnected',
+      databaseDetail: dbStatus.message
+    });
+
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: 'Health check failed',
+      error: error.message
+    });
+  }
+});
+
+/*
+====================================================
+8. API ROUTES
+====================================================
+*/
+
+app.use('/api/auth', authRoutes);
+
+app.use('/api/artisans', artisanRoutes);
+
+app.use('/api/categories', categoryRoutes);
+
+app.use('/api/products', productRoutes);
+
+app.use('/api/services', serviceRoutes);
+
+app.use('/api/gallery', galleryRoutes);
+
+app.use('/api/messages', messageRoutes);
+
+app.use('/api/ai', aiRoutes);
+
+app.use('/api/orders', orderRoutes);
+
+/*
+====================================================
+9. ERROR HANDLERS
+====================================================
+*/
+
+// 404 handler
+app.use(notFound);
+
+// Global error handler
+app.use(errorHandler);
+
+/*
+====================================================
+EXPORT EXPRESS APP
+====================================================
+*/
+
+module.exports = app;
