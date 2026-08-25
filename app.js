@@ -176,6 +176,11 @@ app.use(
   express.static(adminPath)
 );
 
+// Root-relative public assets used by pages served through clean URLs.
+app.use(
+  express.static(publicPath)
+);
+
 // ====================================================
 // 6. HEALTH CHECK
 // ====================================================
@@ -243,6 +248,16 @@ app.get('/', (req, res) => {
     path.join(publicPath, 'index.html')
   );
 });
+app.get('/index', (req, res) => {
+  return res.sendFile(
+    path.join(publicPath, 'index.html')
+  );
+});
+app.get('/index.html', (req, res) => {
+  return res.sendFile(
+    path.join(publicPath, 'index.html')
+  );
+});
 
 // About page
 app.get('/about', (req, res) => {
@@ -258,6 +273,11 @@ app.get('/about.html', (req, res) => {
 
 
 // Products page
+app.get('/products', (req, res) => {
+  return res.sendFile(
+    path.join(publicPath, 'products.html')
+  );
+});
 app.get('/products.html', (req, res) => {
   return res.sendFile(
     path.join(publicPath, 'products.html')
@@ -270,6 +290,11 @@ app.get('/products-page', (req, res) => {
 });
 
 // Services page
+app.get('/services', (req, res) => {
+  return res.sendFile(
+    path.join(publicPath, 'services.html')
+  );
+});
 app.get('/services-page', (req, res) => {
   return res.sendFile(
     path.join(publicPath, 'services.html')
@@ -293,6 +318,28 @@ app.get('/contact.html', (req, res) => {
   );
 });
 
+// Order and tracking pages
+app.get('/order', (req, res) => {
+  return res.sendFile(
+    path.join(publicPath, 'order.html')
+  );
+});
+app.get('/order.html', (req, res) => {
+  return res.sendFile(
+    path.join(publicPath, 'order.html')
+  );
+});
+app.get('/track-order', (req, res) => {
+  return res.sendFile(
+    path.join(publicPath, 'track-order.html')
+  );
+});
+app.get('/track-order.html', (req, res) => {
+  return res.sendFile(
+    path.join(publicPath, 'track-order.html')
+  );
+});
+
 
 // ====================================================
 // 9. ADMIN ROUTES
@@ -302,6 +349,16 @@ app.get('/contact.html', (req, res) => {
 app.get('/admin-login', (req, res) => {
   return res.sendFile(
     path.join(adminPath, 'login.html')
+  );
+});
+app.get('/admin/login', (req, res) => {
+  return res.sendFile(
+    path.join(adminPath, 'login.html')
+  );
+});
+app.get('/admin/index.html', (req, res) => {
+  return res.sendFile(
+    path.join(adminPath, 'dashboard.html')
   );
 });
 

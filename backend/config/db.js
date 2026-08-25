@@ -1,6 +1,9 @@
 const mysql = require('mysql2/promise');
 
 const useTls = process.env.DB_SSL !== 'false';
+const sslCa = process.env.DB_SSL_CA
+  ? process.env.DB_SSL_CA.replace(/\\n/g, '\n')
+  : undefined;
 
 // A pooled connection is reused across Vercel invocations when the instance stays warm.
 const pool = mysql.createPool({
@@ -19,7 +22,10 @@ const pool = mysql.createPool({
   keepAliveInitialDelay: 0,
 
   ssl: useTls
-    ? { rejectUnauthorized: process.env.DB_SSL_REJECT_UNAUTHORIZED === 'true' }
+    ? {
+        rejectUnauthorized: process.env.DB_SSL_REJECT_UNAUTHORIZED === 'true',
+        ...(sslCa ? { ca: sslCa } : {})
+      }
     : undefined
 });
 
