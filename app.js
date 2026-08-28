@@ -18,7 +18,79 @@ dotenv.config({
 // IMPORT DATABASE
 // ====================================================
 
-const { testConnection } = require('./backend/config/db');
+const { pool, testConnection } = require('./backend/config/db');
+
+class MySqlSessionStore extends session.Store {
+  constructor(databasePool) {
+    super();
+    this.pool = databasePool;
+  }
+
+  async get(sessionId, callback) {
+    try {
+      const [rows] = await this.pool.query(
+        'SELECT data, expires FROM sessions WHERE session_id = ? LIMIT 1',
+        [sessionId]
+      );
+      if (!rows.length || (rows[0].expires && rows[0].expires <= Date.now())) {
+        return callback(null, null);
+      }
+      return callback(null, JSON.parse(rows[0].data));
+    } catch (error) {
+      return callback(error);
+    }
+  }
+
+  async set(sessionId, sessionData, callback) {
+    try {
+      const expires = sessionData.cookie?.expires
+        ? new Date(sessionData.cookie.expires).getTime()
+        : Date.now() + 24 * 60 * 60 * 1000;
+      await this.pool.query(
+        `INSERT INTO sessions (session_id, expires, data)
+         VALUES (?, ?, ?)
+         ON DUPLICATE KEY UPDATE expires = VALUES(expires), data = VALUES(data)`,
+        [sessionId, expires, JSON.stringify(sessionData)]
+      );
+      return callback(null);
+    } catch (error) {
+      return callback(error);
+    }
+  }
+
+  async destroy(sessionId, callback) {
+    try {
+      await this.pool.query('DELETE FROM sessions WHERE session_id = ?', [sessionId]);
+      return callback(null);
+    } catch (error) {
+      return callback(error);
+    }
+  }
+
+  async touch(sessionId, sessionData, callback) {
+    try {
+      const expires = sessionData.cookie?.expires
+        ? new Date(sessionData.cookie.expires).getTime()
+        : Date.now() + 24 * 60 * 60 * 1000;
+      await this.pool.query(
+        'UPDATE sessions SET expires = ? WHERE session_id = ?',
+        [expires, sessionId]
+      );
+      return callback(null);
+    } catch (error) {
+      return callback(error);
+    }
+  }
+}
+
+const sessionTableReady = pool.query(`
+  CREATE TABLE IF NOT EXISTS sessions (
+    session_id VARCHAR(128) PRIMARY KEY,
+    expires BIGINT UNSIGNED NOT NULL,
+    data MEDIUMTEXT NOT NULL,
+    INDEX idx_sessions_expires (expires)
+  ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
+`);
 
 // ====================================================
 // IMPORT ERROR MIDDLEWARE
@@ -117,9 +189,20 @@ app.use(
 // 4. SESSION CONFIGURATION
 // ====================================================
 
+app.use(async (req, res, next) => {
+  try {
+    await sessionTableReady;
+    next();
+  } catch (error) {
+    next(error);
+  }
+});
+
 app.use(
   session({
     name: 'balochhunar.sid',
+
+    store: new MySqlSessionStore(pool),
 
     secret:
       process.env.SESSION_SECRET ||

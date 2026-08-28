@@ -20,6 +20,7 @@ DROP TABLE IF EXISTS `order_artisan_assignments`;
 DROP TABLE IF EXISTS `order_items`;
 DROP TABLE IF EXISTS `orders`;
 DROP TABLE IF EXISTS `contact_messages`;
+DROP TABLE IF EXISTS `sessions`;
 DROP TABLE IF EXISTS `gallery`;
 DROP TABLE IF EXISTS `services`;
 DROP TABLE IF EXISTS `products`;
@@ -42,8 +43,16 @@ CREATE TABLE `users` (
   `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+-- 3. TABLE: sessions (Persistent Express Authentication Sessions)
+CREATE TABLE `sessions` (
+  `session_id` VARCHAR(128) PRIMARY KEY,
+  `expires` BIGINT UNSIGNED NOT NULL,
+  `data` MEDIUMTEXT NOT NULL,
+  INDEX `idx_sessions_expires` (`expires`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
 -- ======================================================================
--- 3. TABLE: categories (Craft & Product Classifications)
+-- 4. TABLE: categories (Craft & Product Classifications)
 -- ======================================================================
 CREATE TABLE `categories` (
   `id` INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
