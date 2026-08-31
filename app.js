@@ -26,16 +26,51 @@ class MySqlSessionStore extends session.Store {
     this.pool = databasePool;
   }
 
+  normalizeSessionData(sessionData) {
+    if (!sessionData || typeof sessionData !== 'object') {
+      return sessionData;
+    }
+
+    const maxAge = Number(sessionData.cookie?.maxAge || sessionData.cookie?.originalMaxAge || 24 * 60 * 60 * 1000);
+    const expiresAt = new Date(Date.now() + maxAge);
+
+    sessionData.cookie = {
+      ...(sessionData.cookie || {}),
+      path: sessionData.cookie?.path || '/',
+      httpOnly: sessionData.cookie?.httpOnly !== false,
+      sameSite: sessionData.cookie?.sameSite || 'lax',
+      secure: Boolean(sessionData.cookie?.secure),
+      maxAge,
+      originalMaxAge: maxAge,
+      expires: expiresAt
+    };
+
+    return sessionData;
+  }
+
   async get(sessionId, callback) {
     try {
       const [rows] = await this.pool.query(
         'SELECT data, expires FROM sessions WHERE session_id = ? LIMIT 1',
         [sessionId]
       );
-      if (!rows.length || (rows[0].expires && rows[0].expires <= Date.now())) {
+
+      if (!rows.length) {
         return callback(null, null);
       }
-      return callback(null, JSON.parse(rows[0].data));
+
+      const storedSession = JSON.parse(rows[0].data);
+      const cookie = storedSession?.cookie || {};
+      const expiresAt = cookie.expires
+        ? new Date(cookie.expires).getTime()
+        : Number(rows[0].expires || 0);
+
+      if (!storedSession || Number.isNaN(expiresAt) || expiresAt <= Date.now()) {
+        await this.pool.query('DELETE FROM sessions WHERE session_id = ?', [sessionId]);
+        return callback(null, null);
+      }
+
+      return callback(null, storedSession);
     } catch (error) {
       return callback(error);
     }
@@ -43,14 +78,17 @@ class MySqlSessionStore extends session.Store {
 
   async set(sessionId, sessionData, callback) {
     try {
-      const expires = sessionData.cookie?.expires
-        ? new Date(sessionData.cookie.expires).getTime()
-        : Date.now() + 24 * 60 * 60 * 1000;
+      const normalizedSession = this.normalizeSessionData(sessionData);
+      const cookie = normalizedSession.cookie || {};
+      const expires = cookie.expires
+        ? new Date(cookie.expires).getTime()
+        : Date.now() + (Number(cookie.maxAge) || 24 * 60 * 60 * 1000);
+
       await this.pool.query(
         `INSERT INTO sessions (session_id, expires, data)
          VALUES (?, ?, ?)
          ON DUPLICATE KEY UPDATE expires = VALUES(expires), data = VALUES(data)`,
-        [sessionId, expires, JSON.stringify(sessionData)]
+        [sessionId, expires, JSON.stringify(normalizedSession)]
       );
       return callback(null);
     } catch (error) {
@@ -69,12 +107,15 @@ class MySqlSessionStore extends session.Store {
 
   async touch(sessionId, sessionData, callback) {
     try {
-      const expires = sessionData.cookie?.expires
-        ? new Date(sessionData.cookie.expires).getTime()
-        : Date.now() + 24 * 60 * 60 * 1000;
+      const normalizedSession = this.normalizeSessionData(sessionData);
+      const cookie = normalizedSession.cookie || {};
+      const expires = cookie.expires
+        ? new Date(cookie.expires).getTime()
+        : Date.now() + (Number(cookie.maxAge) || 24 * 60 * 60 * 1000);
+
       await this.pool.query(
-        'UPDATE sessions SET expires = ? WHERE session_id = ?',
-        [expires, sessionId]
+        'UPDATE sessions SET expires = ?, data = ? WHERE session_id = ?',
+        [expires, JSON.stringify(normalizedSession), sessionId]
       );
       return callback(null);
     } catch (error) {
@@ -212,7 +253,10 @@ app.use(
 
     saveUninitialized: false,
 
+    rolling: true,
+
     cookie: {
+      path: '/',
       httpOnly: true,
 
       // HTTP locally, HTTPS on Vercel production
@@ -220,7 +264,7 @@ app.use(
 
       sameSite: 'lax',
 
-      maxAge: 24 * 60 * 60 * 1000
+      maxAge: 8 * 60 * 60 * 1000
     }
   })
 );
