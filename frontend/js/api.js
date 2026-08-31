@@ -130,3 +130,40 @@ const API = {
     });
   }
 };
+
+// Shared mobile navigation for all authenticated admin pages.
+document.addEventListener('DOMContentLoaded', () => {
+  const sidebar = document.querySelector('.admin-sidebar');
+  const menuButton = document.getElementById('mobile-menu-btn');
+  if (!sidebar || !menuButton) return;
+
+  const backdrop = document.createElement('div');
+  backdrop.className = 'admin-sidebar-backdrop hidden';
+  document.body.appendChild(backdrop);
+
+  const closeSidebar = () => {
+    sidebar.classList.remove('is-open');
+    backdrop.classList.add('hidden');
+    menuButton.setAttribute('aria-expanded', 'false');
+  };
+
+  const openSidebar = () => {
+    sidebar.classList.add('is-open');
+    backdrop.classList.remove('hidden');
+    menuButton.setAttribute('aria-expanded', 'true');
+  };
+
+  menuButton.setAttribute('aria-controls', 'admin-sidebar');
+  menuButton.setAttribute('aria-expanded', 'false');
+  menuButton.addEventListener('click', () => {
+    if (sidebar.classList.contains('is-open')) closeSidebar();
+    else openSidebar();
+  });
+  backdrop.addEventListener('click', closeSidebar);
+  sidebar.addEventListener('click', (event) => {
+    if (event.target.closest('a')) closeSidebar();
+  });
+  window.addEventListener('resize', () => {
+    if (window.innerWidth >= 768) closeSidebar();
+  });
+});

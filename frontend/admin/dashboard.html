@@ -1,321 +1,516 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin Dashboard — BalochHunar</title>
-  <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <!-- FontAwesome 6 -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  <!-- Custom Styles -->
-  <link rel="stylesheet" href="../css/style.css">
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            terracotta: { 
-              DEFAULT: '#B85042', 
-              dark: '#963B2F', 
-              light: '#F7EDE2' 
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard — BalochHunar</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome 6 -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="../css/style.css" />
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              terracotta: {
+                DEFAULT: "#B85042",
+                dark: "#963B2F",
+                light: "#F7EDE2",
+              },
+              sandstone: {
+                DEFAULT: "#F59E0B",
+                light: "#FFFBEB",
+                dark: "#B45309",
+              },
+              indigo: {
+                DEFAULT: "#1E1B4B",
+                dark: "#0D0B2F",
+              },
             },
-            sandstone: {
-              DEFAULT: '#F59E0B',
-              light: '#FFFBEB',
-              dark: '#B45309'
-            },
-            indigo: {
-              DEFAULT: '#1E1B4B',
-              dark: '#0D0B2F'
-            }
-          }
-        }
-      }
-    }
-  </script>
-</head>
-<body class="bg-[#F8F7FF] min-h-screen flex flex-col">
-
-  <!-- Main Container -->
-  <div class="flex-1 flex overflow-hidden">
-    
-    <!-- Sidebar Navigation -->
-    <aside class="w-64 bg-indigo-dark text-white flex flex-col flex-shrink-0 border-r border-indigo-900/50 hidden md:flex">
-      <!-- Sidebar Header -->
-       <!-- logo  -->
-      <div class="p-6 border-b border-white/10 flex items-center gap-3">
-        <a href="index.html" class="flex items-center gap-3 group">
-            <img src="./Balochhunar logo1.png" alt="balochhunar logo" height="50px" width="70px" class="rounded-2xl shadow-md group-hover:scale-105 transition">
+          },
+        },
+      };
+    </script>
+  </head>
+  <body class="bg-[#F8F7FF] min-h-screen flex flex-col">
+    <!-- Main Container -->
+    <div class="flex-1 flex overflow-hidden">
+      <!-- Sidebar Navigation -->
+      <aside
+        id="admin-sidebar"
+        class="admin-sidebar w-64 bg-indigo-dark text-white flex flex-col flex-shrink-0 border-r border-indigo-900/50 md:static md:translate-x-0"
+      >
+        <!-- Sidebar Header -->
+        <!-- logo  -->
+        <div class="p-6 border-b border-white/10 flex items-center gap-3">
+          <a href="index.html" class="flex items-center gap-3 group">
+            <img
+              src="./Balochhunar logo1.png"
+              alt="balochhunar logo"
+              height="50px"
+              width="70px"
+              class="rounded-2xl shadow-md group-hover:scale-105 transition"
+            />
             <!-- <span class="font-serif font-bold text-2xl text-gray-900 tracking-tight block leading-none">Baloch <span class="text-terracotta">Hunar</span></span> -->
-        </a>
-        <div>
-          <h2 class="font-serif font-bold text-lg leading-none">Baloch <span class="text-terracotta">Hunar</span></h2>
-          <span class="text-[11px] text-sandstone font-medium uppercase tracking-wider">Admin Console</span>
-        </div>
-      </div>
-
-      <!-- Navigation Links -->
-      <nav class="flex-1 px-4 py-6 space-y-1.5 overflow-y-auto">
-        <a href="dashboard.html" class="flex items-center gap-3 px-3.5 py-3 rounded-xl bg-terracotta text-white font-medium text-sm shadow-sm">
-          <i class="fas fa-chart-pie w-5 text-center"></i>
-          <span>Dashboard</span>
-        </a>
-        <a href="artisans.html" class="flex items-center gap-3 px-3.5 py-3 rounded-xl text-gray-300 hover:bg-white/5 hover:text-white font-medium text-sm transition">
-          <i class="fas fa-users-cog w-5 text-center text-sandstone"></i>
-          <span>Master Artisans</span>
-        </a>
-        <a href="categories.html" class="flex items-center gap-3 px-3.5 py-3 rounded-xl text-gray-300 hover:bg-white/5 hover:text-white font-medium text-sm transition">
-          <i class="fas fa-folder-tree w-5 text-center text-sandstone"></i>
-          <span>Categories</span>
-        </a>
-        <a href="products.html" class="flex items-center gap-3 px-3.5 py-3 rounded-xl text-gray-300 hover:bg-white/5 hover:text-white font-medium text-sm transition">
-          <i class="fas fa-box-open w-5 text-center text-sandstone"></i>
-          <span>Products Catalog</span>
-        </a>
-        <a href="orders.html" class="flex items-center gap-3 px-3.5 py-3 rounded-xl text-gray-300 hover:bg-white/5 hover:text-white font-medium text-sm transition">
-          <i class="fas fa-receipt w-5 text-center text-sandstone"></i>
-          <span>Order Management</span>
-        </a>
-        <a href="services.html" class="flex items-center gap-3 px-3.5 py-3 rounded-xl text-gray-300 hover:bg-white/5 hover:text-white font-medium text-sm transition">
-          <i class="fas fa-hand-holding-heart w-5 text-center text-sandstone"></i>
-          <span>Bespoke Services</span>
-        </a>
-        <a href="gallery.html" class="flex items-center gap-3 px-3.5 py-3 rounded-xl text-gray-300 hover:bg-white/5 hover:text-white font-medium text-sm transition">
-          <i class="fas fa-images w-5 text-center text-sandstone"></i>
-          <span>Heritage Gallery</span>
-        </a>
-        <a href="messages.html" class="flex items-center justify-between px-3.5 py-3 rounded-xl text-gray-300 hover:bg-white/5 hover:text-white font-medium text-sm transition">
-          <div class="flex items-center gap-3">
-            <i class="fas fa-envelope w-5 text-center text-sandstone"></i>
-            <span>Customer Inquiries</span>
-          </div>
-          <span id="sidebar-msg-badge" class="hidden px-2 py-0.5 text-[11px] font-bold bg-terracotta text-white rounded-full">0</span>
-        </a>
-      </nav>
-
-      <!-- Sidebar Footer -->
-      <div class="p-4 border-t border-white/10 bg-black/20">
-        <a href="../public/index.html" target="_blank" class="flex items-center justify-center gap-2 w-full py-2.5 px-3 rounded-lg bg-white/10 hover:bg-white/20 text-xs font-semibold text-white transition">
-          <i class="fas fa-external-link-alt"></i> View Public Website
-        </a>
-      </div>
-    </aside>
-
-    <!-- Main Content Area -->
-    <div class="flex-1 flex flex-col min-w-0 overflow-y-auto">
-      
-      <!-- Top Navbar -->
-      <header class="bg-white border-b border-[#E8E2D9] px-6 py-4 flex items-center justify-between sticky top-0 z-30 shadow-sm">
-        <div class="flex items-center gap-4">
-          <button id="mobile-menu-btn" class="md:hidden text-gray-600 hover:text-gray-900 text-xl focus:outline-none">
-            <i class="fas fa-bars"></i>
-          </button>
+          </a>
           <div>
-            <h1 class="text-xl font-bold text-gray-900 font-serif">Executive Overview</h1>
-            <p class="text-xs text-gray-500">Real-time artisan metrics & operational status</p>
+            <h2 class="font-serif font-bold text-lg leading-none">
+              Baloch <span class="text-terracotta">Hunar</span>
+            </h2>
+            <span
+              class="text-[11px] text-sandstone font-medium uppercase tracking-wider"
+              >Admin Console</span
+            >
           </div>
         </div>
 
-        <!-- User Profile & Logout -->
-        <div class="flex items-center gap-4">
-          <div class="flex items-center gap-3 px-3.5 py-1.5 rounded-full bg-gray-50 border border-gray-200">
-            <div class="w-7 h-7 rounded-full bg-terracotta text-white flex items-center justify-center text-xs font-bold">
-              <i class="fas fa-user-shield"></i>
-            </div>
-            <div class="text-left hidden sm:block">
-              <span id="user-name" class="block text-xs font-bold text-gray-800 leading-none">Admin</span>
-              <span id="user-role" class="text-[10px] text-terracotta font-semibold uppercase">Administrator</span>
-            </div>
-          </div>
-
-          <button 
-            id="logout-btn" 
-            class="px-3 py-1.5 rounded-lg border border-red-200 text-red-600 hover:bg-red-50 text-xs font-semibold transition flex items-center gap-1.5 cursor-pointer"
-            title="Sign out of admin session"
+        <!-- Navigation Links -->
+        <nav class="flex-1 px-4 py-6 space-y-1.5 overflow-y-auto">
+          <a
+            href="dashboard.html"
+            class="flex items-center gap-3 px-3.5 py-3 rounded-xl bg-terracotta text-white font-medium text-sm shadow-sm"
           >
-            <i class="fas fa-sign-out-alt"></i>
-            <span class="hidden sm:inline">Logout</span>
-          </button>
+            <i class="fas fa-chart-pie w-5 text-center"></i>
+            <span>Dashboard</span>
+          </a>
+          <a
+            href="artisans.html"
+            class="flex items-center gap-3 px-3.5 py-3 rounded-xl text-gray-300 hover:bg-white/5 hover:text-white font-medium text-sm transition"
+          >
+            <i class="fas fa-users-cog w-5 text-center text-sandstone"></i>
+            <span>Master Artisans</span>
+          </a>
+          <a
+            href="categories.html"
+            class="flex items-center gap-3 px-3.5 py-3 rounded-xl text-gray-300 hover:bg-white/5 hover:text-white font-medium text-sm transition"
+          >
+            <i class="fas fa-folder-tree w-5 text-center text-sandstone"></i>
+            <span>Categories</span>
+          </a>
+          <a
+            href="products.html"
+            class="flex items-center gap-3 px-3.5 py-3 rounded-xl text-gray-300 hover:bg-white/5 hover:text-white font-medium text-sm transition"
+          >
+            <i class="fas fa-box-open w-5 text-center text-sandstone"></i>
+            <span>Products Catalog</span>
+          </a>
+          <a
+            href="orders.html"
+            class="flex items-center gap-3 px-3.5 py-3 rounded-xl text-gray-300 hover:bg-white/5 hover:text-white font-medium text-sm transition"
+          >
+            <i class="fas fa-receipt w-5 text-center text-sandstone"></i>
+            <span>Order Management</span>
+          </a>
+          <a
+            href="services.html"
+            class="flex items-center gap-3 px-3.5 py-3 rounded-xl text-gray-300 hover:bg-white/5 hover:text-white font-medium text-sm transition"
+          >
+            <i
+              class="fas fa-hand-holding-heart w-5 text-center text-sandstone"
+            ></i>
+            <span>Bespoke Services</span>
+          </a>
+          <a
+            href="gallery.html"
+            class="flex items-center gap-3 px-3.5 py-3 rounded-xl text-gray-300 hover:bg-white/5 hover:text-white font-medium text-sm transition"
+          >
+            <i class="fas fa-images w-5 text-center text-sandstone"></i>
+            <span>Heritage Gallery</span>
+          </a>
+          <a
+            href="messages.html"
+            class="flex items-center justify-between px-3.5 py-3 rounded-xl text-gray-300 hover:bg-white/5 hover:text-white font-medium text-sm transition"
+          >
+            <div class="flex items-center gap-3">
+              <i class="fas fa-envelope w-5 text-center text-sandstone"></i>
+              <span>Customer Inquiries</span>
+            </div>
+            <span
+              id="sidebar-msg-badge"
+              class="hidden px-2 py-0.5 text-[11px] font-bold bg-terracotta text-white rounded-full"
+              >0</span
+            >
+          </a>
+        </nav>
+
+        <!-- Sidebar Footer -->
+        <div class="p-4 border-t border-white/10 bg-black/20">
+          <a
+            href="../public/index.html"
+            target="_blank"
+            class="flex items-center justify-center gap-2 w-full py-2.5 px-3 rounded-lg bg-white/10 hover:bg-white/20 text-xs font-semibold text-white transition"
+          >
+            <i class="fas fa-external-link-alt"></i> View Public Website
+          </a>
         </div>
-      </header>
+      </aside>
 
-      <!-- Dashboard Body -->
-      <main class="p-6 max-w-7xl w-full mx-auto space-y-6">
-        
-        <!-- Welcome Hero Banner -->
-        <div class="bg-gradient-to-r from-indigo-dark to-slate-800 rounded-2xl p-6 text-white shadow-lg relative overflow-hidden flex flex-col md:flex-row md:items-center justify-between gap-4">
-          <div class="relative z-10">
-            <span class="px-3 py-1 rounded-full bg-sandstone/20 text-sandstone text-xs font-semibold uppercase tracking-wider inline-block mb-2">
-              <i class="fas fa-gem mr-1"></i> DTAN Course Final Project
-            </span>
-            <h2 class="text-2xl font-bold font-serif">Welcome back, <span id="hero-admin-name">Administrator</span>!</h2>
-            <p class="text-gray-300 text-sm mt-1 max-w-2xl">
-              Manage traditional handicraft inventory, celebrate regional master artisans, generate AI-powered product storytelling, and respond to incoming customer inquiries.
-            </p>
-          </div>
-          <div class="relative z-10 flex flex-wrap gap-2.5">
-            <a href="products.html" class="px-4 py-2.5 rounded-xl bg-terracotta hover:bg-terracotta-dark text-white text-xs font-bold shadow-md transition flex items-center gap-2">
-              <i class="fas fa-plus"></i> Add Product
-            </a>
-            <a href="artisans.html" class="px-4 py-2.5 rounded-xl bg-sandstone hover:bg-sandstone-dark text-white text-xs font-bold shadow-md transition flex items-center gap-2">
-              <i class="fas fa-user-plus"></i> Register Artisan
-            </a>
-          </div>
-        </div>
-
-        <!-- 6 KPI Metric Cards Grid -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
-          
-          <!-- Products KPI -->
-          <div class="bg-white rounded-2xl p-5 border border-[#E8E2D9] shadow-sm card-hover flex flex-col justify-between">
-            <div class="flex items-center justify-between">
-              <span class="text-xs font-semibold text-gray-500 uppercase tracking-wider">Products</span>
-              <div class="w-9 h-9 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center text-sm">
-                <i class="fas fa-box"></i>
-              </div>
-            </div>
-            <div class="mt-4">
-              <span id="stat-products" class="text-2xl font-extrabold text-gray-900 font-serif">--</span>
-              <p class="text-[11px] text-gray-500 mt-0.5">Active Catalog Items</p>
-            </div>
-            <a href="products.html" class="mt-3 text-xs text-terracotta font-semibold hover:underline flex items-center gap-1">
-              Manage Catalog <i class="fas fa-chevron-right text-[10px]"></i>
-            </a>
-          </div>
-
-          <!-- Artisans KPI -->
-          <div class="bg-white rounded-2xl p-5 border border-[#E8E2D9] shadow-sm card-hover flex flex-col justify-between">
-            <div class="flex items-center justify-between">
-              <span class="text-xs font-semibold text-gray-500 uppercase tracking-wider">Artisans</span>
-              <div class="w-9 h-9 rounded-xl bg-rose-50 text-rose-600 flex items-center justify-center text-sm">
-                <i class="fas fa-users"></i>
-              </div>
-            </div>
-            <div class="mt-4">
-              <span id="stat-artisans" class="text-2xl font-extrabold text-gray-900 font-serif">--</span>
-              <p class="text-[11px] text-gray-500 mt-0.5">Master Craftsmen</p>
-            </div>
-            <a href="artisans.html" class="mt-3 text-xs text-terracotta font-semibold hover:underline flex items-center gap-1">
-              View Profiles <i class="fas fa-chevron-right text-[10px]"></i>
-            </a>
-          </div>
-
-          <!-- Categories KPI -->
-          <div class="bg-white rounded-2xl p-5 border border-[#E8E2D9] shadow-sm card-hover flex flex-col justify-between">
-            <div class="flex items-center justify-between">
-              <span class="text-xs font-semibold text-gray-500 uppercase tracking-wider">Categories</span>
-              <div class="w-9 h-9 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center text-sm">
-                <i class="fas fa-tags"></i>
-              </div>
-            </div>
-            <div class="mt-4">
-              <span id="stat-categories" class="text-2xl font-extrabold text-gray-900 font-serif">--</span>
-              <p class="text-[11px] text-gray-500 mt-0.5">Craft Classifications</p>
-            </div>
-            <a href="categories.html" class="mt-3 text-xs text-terracotta font-semibold hover:underline flex items-center gap-1">
-              Edit Categories <i class="fas fa-chevron-right text-[10px]"></i>
-            </a>
-          </div>
-
-          <!-- Services KPI -->
-          <div class="bg-white rounded-2xl p-5 border border-[#E8E2D9] shadow-sm card-hover flex flex-col justify-between">
-            <div class="flex items-center justify-between">
-              <span class="text-xs font-semibold text-gray-500 uppercase tracking-wider">Services</span>
-              <div class="w-9 h-9 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center text-sm">
-                <i class="fas fa-hands-helping"></i>
-              </div>
-            </div>
-            <div class="mt-4">
-              <span id="stat-services" class="text-2xl font-extrabold text-gray-900 font-serif">--</span>
-              <p class="text-[11px] text-gray-500 mt-0.5">Bespoke Offerings</p>
-            </div>
-            <a href="services.html" class="mt-3 text-xs text-terracotta font-semibold hover:underline flex items-center gap-1">
-              Manage Services <i class="fas fa-chevron-right text-[10px]"></i>
-            </a>
-          </div>
-
-          <!-- Gallery KPI -->
-          <div class="bg-white rounded-2xl p-5 border border-[#E8E2D9] shadow-sm card-hover flex flex-col justify-between">
-            <div class="flex items-center justify-between">
-              <span class="text-xs font-semibold text-gray-500 uppercase tracking-wider">Gallery</span>
-              <div class="w-9 h-9 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-sm">
-                <i class="fas fa-photo-video"></i>
-              </div>
-            </div>
-            <div class="mt-4">
-              <span id="stat-gallery" class="text-2xl font-extrabold text-gray-900 font-serif">--</span>
-              <p class="text-[11px] text-gray-500 mt-0.5">Heritage Media</p>
-            </div>
-            <a href="gallery.html" class="mt-3 text-xs text-terracotta font-semibold hover:underline flex items-center gap-1">
-              Curate Gallery <i class="fas fa-chevron-right text-[10px]"></i>
-            </a>
-          </div>
-
-          <!-- Messages KPI -->
-          <div class="bg-white rounded-2xl p-5 border border-[#E8E2D9] shadow-sm card-hover flex flex-col justify-between">
-            <div class="flex items-center justify-between">
-              <span class="text-xs font-semibold text-gray-500 uppercase tracking-wider">Inquiries</span>
-              <div class="w-9 h-9 rounded-xl bg-red-50 text-red-600 flex items-center justify-center text-sm">
-                <i class="fas fa-envelope-open-text"></i>
-              </div>
-            </div>
-            <div class="mt-4">
-              <div class="flex items-center gap-2">
-                <span id="stat-messages-unread" class="text-2xl font-extrabold text-red-600 font-serif">--</span>
-                <span class="text-xs text-gray-400 font-medium">/ <span id="stat-messages-total">--</span></span>
-              </div>
-              <p class="text-[11px] text-gray-500 mt-0.5">Unread Inquiries</p>
-            </div>
-            <a href="messages.html" class="mt-3 text-xs text-terracotta font-semibold hover:underline flex items-center gap-1">
-              Read Inbox <i class="fas fa-chevron-right text-[10px]"></i>
-            </a>
-          </div>
-
-        </div>
-
-        <!-- Recent Customer Inquiries Section -->
-        <div class="bg-white rounded-2xl border border-[#E8E2D9] shadow-sm overflow-hidden">
-          <div class="p-6 border-b border-gray-100 flex items-center justify-between">
+      <!-- Main Content Area -->
+      <div class="flex-1 flex flex-col min-w-0 overflow-y-auto">
+        <!-- Top Navbar -->
+        <header
+          class="bg-white border-b border-[#E8E2D9] px-6 py-4 flex items-center justify-between sticky top-0 z-30 shadow-sm"
+        >
+          <div class="flex items-center gap-4">
+            <button
+              id="mobile-menu-btn"
+              type="button"
+              class="md:hidden text-gray-600 hover:text-gray-900 text-xl focus:outline-none"
+              aria-label="Open admin navigation"
+            >
+              <i class="fas fa-bars"></i>
+            </button>
             <div>
-              <h3 class="text-lg font-bold text-gray-900 font-serif">Recent Customer Inquiries</h3>
-              <p class="text-xs text-gray-500">Latest messages submitted via the public contact form</p>
+              <h1 class="text-xl font-bold text-gray-900 font-serif">
+                Executive Overview
+              </h1>
+              <p class="text-xs text-gray-500">
+                Real-time artisan metrics & operational status
+              </p>
             </div>
-            <a href="messages.html" class="px-3 py-1.5 rounded-lg bg-gray-100 hover:bg-gray-200 text-xs font-semibold text-gray-700 transition">
-              View All Inquiries
-            </a>
           </div>
 
-          <!-- Table -->
-          <div class="overflow-x-auto">
-            <table class="w-full text-left text-sm text-gray-600">
-              <thead class="bg-[#FAF8F5] text-[11px] uppercase font-bold text-gray-500 border-b border-gray-100">
-                <tr>
-                  <th class="px-6 py-3.5">Customer Name</th>
-                  <th class="px-6 py-3.5">Email</th>
-                  <th class="px-6 py-3.5">Subject</th>
-                  <th class="px-6 py-3.5">Date</th>
-                  <th class="px-6 py-3.5">Status</th>
-                  <th class="px-6 py-3.5 text-right">Action</th>
-                </tr>
-              </thead>
-              <tbody id="recent-messages-tbody" class="divide-y divide-gray-100">
-                <tr>
-                  <td colspan="6" class="px-6 py-8 text-center text-gray-400 text-sm">
-                    <i class="fas fa-spinner fa-spin mr-2"></i> Loading operational data...
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
+          <!-- User Profile & Logout -->
+          <div class="flex items-center gap-4">
+            <div
+              class="flex items-center gap-3 px-3.5 py-1.5 rounded-full bg-gray-50 border border-gray-200"
+            >
+              <div
+                class="w-7 h-7 rounded-full bg-terracotta text-white flex items-center justify-center text-xs font-bold"
+              >
+                <i class="fas fa-user-shield"></i>
+              </div>
+              <div class="text-left hidden sm:block">
+                <span
+                  id="user-name"
+                  class="block text-xs font-bold text-gray-800 leading-none"
+                  >Admin</span
+                >
+                <span
+                  id="user-role"
+                  class="text-[10px] text-terracotta font-semibold uppercase"
+                  >Administrator</span
+                >
+              </div>
+            </div>
 
-      </main>
+            <button
+              id="logout-btn"
+              class="px-3 py-1.5 rounded-lg border border-red-200 text-red-600 hover:bg-red-50 text-xs font-semibold transition flex items-center gap-1.5 cursor-pointer"
+              title="Sign out of admin session"
+            >
+              <i class="fas fa-sign-out-alt"></i>
+              <span class="hidden sm:inline">Logout</span>
+            </button>
+          </div>
+        </header>
+
+        <!-- Dashboard Body -->
+        <main class="p-6 max-w-7xl w-full mx-auto space-y-6">
+          <!-- Welcome Hero Banner -->
+          <div
+            class="bg-gradient-to-r from-indigo-dark to-slate-800 rounded-2xl p-6 text-white shadow-lg relative overflow-hidden flex flex-col md:flex-row md:items-center justify-between gap-4"
+          >
+            <div class="relative z-10">
+              <span
+                class="px-3 py-1 rounded-full bg-sandstone/20 text-sandstone text-xs font-semibold uppercase tracking-wider inline-block mb-2"
+              >
+                <i class="fas fa-gem mr-1"></i> DTAN Course Final Project
+              </span>
+              <h2 class="text-2xl font-bold font-serif">
+                Welcome back, <span id="hero-admin-name">Administrator</span>!
+              </h2>
+              <p class="text-gray-300 text-sm mt-1 max-w-2xl">
+                Manage traditional handicraft inventory, celebrate regional
+                master artisans, generate AI-powered product storytelling, and
+                respond to incoming customer inquiries.
+              </p>
+            </div>
+            <div class="relative z-10 flex flex-wrap gap-2.5">
+              <a
+                href="products.html"
+                class="px-4 py-2.5 rounded-xl bg-terracotta hover:bg-terracotta-dark text-white text-xs font-bold shadow-md transition flex items-center gap-2"
+              >
+                <i class="fas fa-plus"></i> Add Product
+              </a>
+              <a
+                href="artisans.html"
+                class="px-4 py-2.5 rounded-xl bg-sandstone hover:bg-sandstone-dark text-white text-xs font-bold shadow-md transition flex items-center gap-2"
+              >
+                <i class="fas fa-user-plus"></i> Register Artisan
+              </a>
+            </div>
+          </div>
+
+          <!-- 6 KPI Metric Cards Grid -->
+          <div
+            class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4"
+          >
+            <!-- Products KPI -->
+            <div
+              class="bg-white rounded-2xl p-5 border border-[#E8E2D9] shadow-sm card-hover flex flex-col justify-between"
+            >
+              <div class="flex items-center justify-between">
+                <span
+                  class="text-xs font-semibold text-gray-500 uppercase tracking-wider"
+                  >Products</span
+                >
+                <div
+                  class="w-9 h-9 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center text-sm"
+                >
+                  <i class="fas fa-box"></i>
+                </div>
+              </div>
+              <div class="mt-4">
+                <span
+                  id="stat-products"
+                  class="text-2xl font-extrabold text-gray-900 font-serif"
+                  >--</span
+                >
+                <p class="text-[11px] text-gray-500 mt-0.5">
+                  Active Catalog Items
+                </p>
+              </div>
+              <a
+                href="products.html"
+                class="mt-3 text-xs text-terracotta font-semibold hover:underline flex items-center gap-1"
+              >
+                Manage Catalog <i class="fas fa-chevron-right text-[10px]"></i>
+              </a>
+            </div>
+
+            <!-- Artisans KPI -->
+            <div
+              class="bg-white rounded-2xl p-5 border border-[#E8E2D9] shadow-sm card-hover flex flex-col justify-between"
+            >
+              <div class="flex items-center justify-between">
+                <span
+                  class="text-xs font-semibold text-gray-500 uppercase tracking-wider"
+                  >Artisans</span
+                >
+                <div
+                  class="w-9 h-9 rounded-xl bg-rose-50 text-rose-600 flex items-center justify-center text-sm"
+                >
+                  <i class="fas fa-users"></i>
+                </div>
+              </div>
+              <div class="mt-4">
+                <span
+                  id="stat-artisans"
+                  class="text-2xl font-extrabold text-gray-900 font-serif"
+                  >--</span
+                >
+                <p class="text-[11px] text-gray-500 mt-0.5">Master Craftsmen</p>
+              </div>
+              <a
+                href="artisans.html"
+                class="mt-3 text-xs text-terracotta font-semibold hover:underline flex items-center gap-1"
+              >
+                View Profiles <i class="fas fa-chevron-right text-[10px]"></i>
+              </a>
+            </div>
+
+            <!-- Categories KPI -->
+            <div
+              class="bg-white rounded-2xl p-5 border border-[#E8E2D9] shadow-sm card-hover flex flex-col justify-between"
+            >
+              <div class="flex items-center justify-between">
+                <span
+                  class="text-xs font-semibold text-gray-500 uppercase tracking-wider"
+                  >Categories</span
+                >
+                <div
+                  class="w-9 h-9 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center text-sm"
+                >
+                  <i class="fas fa-tags"></i>
+                </div>
+              </div>
+              <div class="mt-4">
+                <span
+                  id="stat-categories"
+                  class="text-2xl font-extrabold text-gray-900 font-serif"
+                  >--</span
+                >
+                <p class="text-[11px] text-gray-500 mt-0.5">
+                  Craft Classifications
+                </p>
+              </div>
+              <a
+                href="categories.html"
+                class="mt-3 text-xs text-terracotta font-semibold hover:underline flex items-center gap-1"
+              >
+                Edit Categories <i class="fas fa-chevron-right text-[10px]"></i>
+              </a>
+            </div>
+
+            <!-- Services KPI -->
+            <div
+              class="bg-white rounded-2xl p-5 border border-[#E8E2D9] shadow-sm card-hover flex flex-col justify-between"
+            >
+              <div class="flex items-center justify-between">
+                <span
+                  class="text-xs font-semibold text-gray-500 uppercase tracking-wider"
+                  >Services</span
+                >
+                <div
+                  class="w-9 h-9 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center text-sm"
+                >
+                  <i class="fas fa-hands-helping"></i>
+                </div>
+              </div>
+              <div class="mt-4">
+                <span
+                  id="stat-services"
+                  class="text-2xl font-extrabold text-gray-900 font-serif"
+                  >--</span
+                >
+                <p class="text-[11px] text-gray-500 mt-0.5">
+                  Bespoke Offerings
+                </p>
+              </div>
+              <a
+                href="services.html"
+                class="mt-3 text-xs text-terracotta font-semibold hover:underline flex items-center gap-1"
+              >
+                Manage Services <i class="fas fa-chevron-right text-[10px]"></i>
+              </a>
+            </div>
+
+            <!-- Gallery KPI -->
+            <div
+              class="bg-white rounded-2xl p-5 border border-[#E8E2D9] shadow-sm card-hover flex flex-col justify-between"
+            >
+              <div class="flex items-center justify-between">
+                <span
+                  class="text-xs font-semibold text-gray-500 uppercase tracking-wider"
+                  >Gallery</span
+                >
+                <div
+                  class="w-9 h-9 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-sm"
+                >
+                  <i class="fas fa-photo-video"></i>
+                </div>
+              </div>
+              <div class="mt-4">
+                <span
+                  id="stat-gallery"
+                  class="text-2xl font-extrabold text-gray-900 font-serif"
+                  >--</span
+                >
+                <p class="text-[11px] text-gray-500 mt-0.5">Heritage Media</p>
+              </div>
+              <a
+                href="gallery.html"
+                class="mt-3 text-xs text-terracotta font-semibold hover:underline flex items-center gap-1"
+              >
+                Curate Gallery <i class="fas fa-chevron-right text-[10px]"></i>
+              </a>
+            </div>
+
+            <!-- Messages KPI -->
+            <div
+              class="bg-white rounded-2xl p-5 border border-[#E8E2D9] shadow-sm card-hover flex flex-col justify-between"
+            >
+              <div class="flex items-center justify-between">
+                <span
+                  class="text-xs font-semibold text-gray-500 uppercase tracking-wider"
+                  >Inquiries</span
+                >
+                <div
+                  class="w-9 h-9 rounded-xl bg-red-50 text-red-600 flex items-center justify-center text-sm"
+                >
+                  <i class="fas fa-envelope-open-text"></i>
+                </div>
+              </div>
+              <div class="mt-4">
+                <div class="flex items-center gap-2">
+                  <span
+                    id="stat-messages-unread"
+                    class="text-2xl font-extrabold text-red-600 font-serif"
+                    >--</span
+                  >
+                  <span class="text-xs text-gray-400 font-medium"
+                    >/ <span id="stat-messages-total">--</span></span
+                  >
+                </div>
+                <p class="text-[11px] text-gray-500 mt-0.5">Unread Inquiries</p>
+              </div>
+              <a
+                href="messages.html"
+                class="mt-3 text-xs text-terracotta font-semibold hover:underline flex items-center gap-1"
+              >
+                Read Inbox <i class="fas fa-chevron-right text-[10px]"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Recent Customer Inquiries Section -->
+          <div
+            class="bg-white rounded-2xl border border-[#E8E2D9] shadow-sm overflow-hidden"
+          >
+            <div
+              class="p-6 border-b border-gray-100 flex items-center justify-between"
+            >
+              <div>
+                <h3 class="text-lg font-bold text-gray-900 font-serif">
+                  Recent Customer Inquiries
+                </h3>
+                <p class="text-xs text-gray-500">
+                  Latest messages submitted via the public contact form
+                </p>
+              </div>
+              <a
+                href="messages.html"
+                class="px-3 py-1.5 rounded-lg bg-gray-100 hover:bg-gray-200 text-xs font-semibold text-gray-700 transition"
+              >
+                View All Inquiries
+              </a>
+            </div>
+
+            <!-- Table -->
+            <div class="overflow-x-auto">
+              <table class="w-full text-left text-sm text-gray-600">
+                <thead
+                  class="bg-[#FAF8F5] text-[11px] uppercase font-bold text-gray-500 border-b border-gray-100"
+                >
+                  <tr>
+                    <th class="px-6 py-3.5">Customer Name</th>
+                    <th class="px-6 py-3.5">Email</th>
+                    <th class="px-6 py-3.5">Subject</th>
+                    <th class="px-6 py-3.5">Date</th>
+                    <th class="px-6 py-3.5">Status</th>
+                    <th class="px-6 py-3.5 text-right">Action</th>
+                  </tr>
+                </thead>
+                <tbody
+                  id="recent-messages-tbody"
+                  class="divide-y divide-gray-100"
+                >
+                  <tr>
+                    <td
+                      colspan="6"
+                      class="px-6 py-8 text-center text-gray-400 text-sm"
+                    >
+                      <i class="fas fa-spinner fa-spin mr-2"></i> Loading
+                      operational data...
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </main>
+      </div>
     </div>
-  </div>
 
-  <!-- Scripts -->
-  <script src="../js/api.js"></script>
-  <script src="../js/admin/dashboard.js"></script>
-</body>
+    <!-- Scripts -->
+    <script src="../js/api.js"></script>
+    <script src="../js/admin/dashboard.js"></script>
+  </body>
 </html>

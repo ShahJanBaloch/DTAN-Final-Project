@@ -1,171 +1,313 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bespoke Artisan Services — BalochHunar</title>
-  <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <!-- FontAwesome 6 -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  <!-- Custom Styles -->
-  <link rel="stylesheet" href="../css/style.css">
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            terracotta: { DEFAULT: '#B85042', dark: '#963B2F', light: '#F7EDE2' },
-            sandstone: { DEFAULT: '#E7AA58', light: '#FBF6EF', dark: '#C68837' },
-            indigo: { DEFAULT: '#1E293B', dark: '#0F172A' }
-          }
-        }
-      }
-    }
-  </script>
-</head>
-<body class="bg-[#FAF8F5] min-h-screen flex flex-col">
-
-  <div class="flex-1 flex overflow-hidden">
-    <!-- Sidebar -->
-    <aside class="w-64 bg-indigo-dark text-white flex flex-col flex-shrink-0 border-r border-indigo-900/50 hidden md:flex">
-      <!-- logo  -->
-       <div class="p-6 border-b border-white/10 flex items-center gap-3">
-        <a href="index.html" class="flex items-center gap-3 group">
-            <img src="./Balochhunar logo1.png" alt="balochhunar logo" height="50px" width="70px" class="rounded-2xl shadow-md group-hover:scale-105 transition">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bespoke Artisan Services — BalochHunar</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome 6 -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="../css/style.css" />
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              terracotta: {
+                DEFAULT: "#B85042",
+                dark: "#963B2F",
+                light: "#F7EDE2",
+              },
+              sandstone: {
+                DEFAULT: "#E7AA58",
+                light: "#FBF6EF",
+                dark: "#C68837",
+              },
+              indigo: { DEFAULT: "#1E293B", dark: "#0F172A" },
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body class="bg-[#FAF8F5] min-h-screen flex flex-col">
+    <div class="flex-1 flex overflow-hidden">
+      <!-- Sidebar -->
+      <aside
+        id="admin-sidebar"
+        class="admin-sidebar w-64 bg-indigo-dark text-white flex flex-col flex-shrink-0 border-r border-indigo-900/50 md:static md:translate-x-0"
+      >
+        <!-- logo  -->
+        <div class="p-6 border-b border-white/10 flex items-center gap-3">
+          <a href="index.html" class="flex items-center gap-3 group">
+            <img
+              src="./Balochhunar logo1.png"
+              alt="balochhunar logo"
+              height="50px"
+              width="70px"
+              class="rounded-2xl shadow-md group-hover:scale-105 transition"
+            />
             <!-- <span class="font-serif font-bold text-2xl text-gray-900 tracking-tight block leading-none">Baloch <span class="text-terracotta">Hunar</span></span> -->
-        </a>
-        <div>
-          <h2 class="font-serif font-bold text-lg leading-none">Baloch <span class="text-terracotta">Hunar</span></h2>
-          <span class="text-[11px] text-sandstone font-medium uppercase tracking-wider">Admin Console</span>
-        </div>
-      </div>
-      
-      <nav class="flex-1 px-4 py-6 space-y-1.5 overflow-y-auto">
-        <a href="dashboard.html" class="flex items-center gap-3 px-3.5 py-3 rounded-xl text-gray-300 hover:bg-white/5 hover:text-white font-medium text-sm transition">
-          <i class="fas fa-chart-pie w-5 text-center text-sandstone"></i>
-          <span>Dashboard</span>
-        </a>
-        <a href="artisans.html" class="flex items-center gap-3 px-3.5 py-3 rounded-xl text-gray-300 hover:bg-white/5 hover:text-white font-medium text-sm transition">
-          <i class="fas fa-users-cog w-5 text-center text-sandstone"></i>
-          <span>Master Artisans</span>
-        </a>
-        <a href="categories.html" class="flex items-center gap-3 px-3.5 py-3 rounded-xl text-gray-300 hover:bg-white/5 hover:text-white font-medium text-sm transition">
-          <i class="fas fa-folder-tree w-5 text-center text-sandstone"></i>
-          <span>Categories</span>
-        </a>
-        <a href="products.html" class="flex items-center gap-3 px-3.5 py-3 rounded-xl text-gray-300 hover:bg-white/5 hover:text-white font-medium text-sm transition">
-          <i class="fas fa-box-open w-5 text-center text-sandstone"></i>
-          <span>Products Catalog</span>
-        </a>
-        <a href="services.html" class="flex items-center gap-3 px-3.5 py-3 rounded-xl bg-terracotta text-white font-medium text-sm shadow-sm">
-          <i class="fas fa-hand-holding-heart w-5 text-center"></i>
-          <span>Bespoke Services</span>
-        </a>
-        <a href="gallery.html" class="flex items-center gap-3 px-3.5 py-3 rounded-xl text-gray-300 hover:bg-white/5 hover:text-white font-medium text-sm transition">
-          <i class="fas fa-images w-5 text-center text-sandstone"></i>
-          <span>Heritage Gallery</span>
-        </a>
-        <a href="messages.html" class="flex items-center justify-between px-3.5 py-3 rounded-xl text-gray-300 hover:bg-white/5 hover:text-white font-medium text-sm transition">
-          <div class="flex items-center gap-3">
-            <i class="fas fa-envelope w-5 text-center text-sandstone"></i>
-            <span>Customer Inquiries</span>
+          </a>
+          <div>
+            <h2 class="font-serif font-bold text-lg leading-none">
+              Baloch <span class="text-terracotta">Hunar</span>
+            </h2>
+            <span
+              class="text-[11px] text-sandstone font-medium uppercase tracking-wider"
+              >Admin Console</span
+            >
           </div>
-        </a>
-      </nav>
-      <div class="p-4 border-t border-white/10 bg-black/20">
-        <a href="../public/index.html" target="_blank" class="flex items-center justify-center gap-2 w-full py-2.5 px-3 rounded-lg bg-white/10 hover:bg-white/20 text-xs font-semibold text-white transition">
-          <i class="fas fa-external-link-alt"></i> View Public Website
-        </a>
-      </div>
-    </aside>
+        </div>
 
-    <!-- Content -->
-    <div class="flex-1 flex flex-col min-w-0 overflow-y-auto">
-      <header class="bg-white border-b border-[#E8E2D9] px-6 py-4 flex items-center justify-between sticky top-0 z-30 shadow-sm">
-        <h1 class="text-xl font-bold text-gray-900 font-serif">Bespoke Artisan Services</h1>
-        <button id="open-add-modal-btn" class="px-4 py-2 bg-terracotta hover:bg-terracotta-dark text-white rounded-xl font-semibold text-xs shadow transition flex items-center gap-2">
-          <i class="fas fa-plus"></i> Add New Service
+        <nav class="flex-1 px-4 py-6 space-y-1.5 overflow-y-auto">
+          <a
+            href="dashboard.html"
+            class="flex items-center gap-3 px-3.5 py-3 rounded-xl text-gray-300 hover:bg-white/5 hover:text-white font-medium text-sm transition"
+          >
+            <i class="fas fa-chart-pie w-5 text-center text-sandstone"></i>
+            <span>Dashboard</span>
+          </a>
+          <a
+            href="artisans.html"
+            class="flex items-center gap-3 px-3.5 py-3 rounded-xl text-gray-300 hover:bg-white/5 hover:text-white font-medium text-sm transition"
+          >
+            <i class="fas fa-users-cog w-5 text-center text-sandstone"></i>
+            <span>Master Artisans</span>
+          </a>
+          <a
+            href="categories.html"
+            class="flex items-center gap-3 px-3.5 py-3 rounded-xl text-gray-300 hover:bg-white/5 hover:text-white font-medium text-sm transition"
+          >
+            <i class="fas fa-folder-tree w-5 text-center text-sandstone"></i>
+            <span>Categories</span>
+          </a>
+          <a
+            href="products.html"
+            class="flex items-center gap-3 px-3.5 py-3 rounded-xl text-gray-300 hover:bg-white/5 hover:text-white font-medium text-sm transition"
+          >
+            <i class="fas fa-box-open w-5 text-center text-sandstone"></i>
+            <span>Products Catalog</span>
+          </a>
+          <a
+            href="services.html"
+            class="flex items-center gap-3 px-3.5 py-3 rounded-xl bg-terracotta text-white font-medium text-sm shadow-sm"
+          >
+            <i class="fas fa-hand-holding-heart w-5 text-center"></i>
+            <span>Bespoke Services</span>
+          </a>
+          <a
+            href="gallery.html"
+            class="flex items-center gap-3 px-3.5 py-3 rounded-xl text-gray-300 hover:bg-white/5 hover:text-white font-medium text-sm transition"
+          >
+            <i class="fas fa-images w-5 text-center text-sandstone"></i>
+            <span>Heritage Gallery</span>
+          </a>
+          <a
+            href="messages.html"
+            class="flex items-center justify-between px-3.5 py-3 rounded-xl text-gray-300 hover:bg-white/5 hover:text-white font-medium text-sm transition"
+          >
+            <div class="flex items-center gap-3">
+              <i class="fas fa-envelope w-5 text-center text-sandstone"></i>
+              <span>Customer Inquiries</span>
+            </div>
+          </a>
+        </nav>
+        <div class="p-4 border-t border-white/10 bg-black/20">
+          <a
+            href="../public/index.html"
+            target="_blank"
+            class="flex items-center justify-center gap-2 w-full py-2.5 px-3 rounded-lg bg-white/10 hover:bg-white/20 text-xs font-semibold text-white transition"
+          >
+            <i class="fas fa-external-link-alt"></i> View Public Website
+          </a>
+        </div>
+      </aside>
+
+      <!-- Content -->
+      <div class="flex-1 flex flex-col min-w-0 overflow-y-auto">
+        <header
+          class="bg-white border-b border-[#E8E2D9] px-6 py-4 flex items-center justify-between sticky top-0 z-30 shadow-sm"
+        >
+          <button
+            id="mobile-menu-btn"
+            type="button"
+            class="md:hidden text-gray-600 hover:text-gray-900 text-xl focus:outline-none"
+            aria-label="Open admin navigation"
+          >
+            <i class="fas fa-bars"></i>
+          </button>
+          <h1 class="text-xl font-bold text-gray-900 font-serif">
+            Bespoke Artisan Services
+          </h1>
+          <button
+            id="open-add-modal-btn"
+            class="px-4 py-2 bg-terracotta hover:bg-terracotta-dark text-white rounded-xl font-semibold text-xs shadow transition flex items-center gap-2"
+          >
+            <i class="fas fa-plus"></i> Add New Service
+          </button>
+        </header>
+
+        <main class="p-6 max-w-7xl w-full mx-auto space-y-6">
+          <div
+            class="bg-white rounded-2xl border border-[#E8E2D9] shadow-sm overflow-hidden"
+          >
+            <div
+              class="p-4 border-b border-gray-100 flex justify-between items-center"
+            >
+              <span
+                class="text-xs text-gray-500 font-medium"
+                id="service-count-badge"
+                >Loading services...</span
+              >
+            </div>
+
+            <div class="overflow-x-auto">
+              <table class="w-full text-left text-sm text-gray-600">
+                <thead
+                  class="bg-[#FAF8F5] text-[11px] uppercase font-bold text-gray-500 border-b border-gray-100"
+                >
+                  <tr>
+                    <th class="px-6 py-3.5">Service Offering</th>
+                    <th class="px-6 py-3.5">Estimated Duration</th>
+                    <th class="px-6 py-3.5">Starting Price</th>
+                    <th class="px-6 py-3.5">Description</th>
+                    <th class="px-6 py-3.5 text-right">Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="services-tbody" class="divide-y divide-gray-100">
+                  <tr>
+                    <td colspan="5" class="px-6 py-8 text-center text-gray-400">
+                      <i class="fas fa-spinner fa-spin mr-2"></i> Loading
+                      services...
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <!-- Add/Edit Service Modal -->
+    <div
+      id="service-modal"
+      class="fixed inset-0 bg-black/50 z-50 hidden flex items-center justify-center p-4"
+    >
+      <div class="bg-white rounded-2xl max-w-md w-full shadow-2xl p-6 relative">
+        <button
+          id="close-modal-btn"
+          class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 text-lg"
+        >
+          <i class="fas fa-times"></i>
         </button>
-      </header>
+        <h3
+          id="modal-title"
+          class="font-serif text-xl font-bold text-gray-900 mb-4"
+        >
+          Add Artisan Service
+        </h3>
 
-      <main class="p-6 max-w-7xl w-full mx-auto space-y-6">
-        <div class="bg-white rounded-2xl border border-[#E8E2D9] shadow-sm overflow-hidden">
-          <div class="p-4 border-b border-gray-100 flex justify-between items-center">
-            <span class="text-xs text-gray-500 font-medium" id="service-count-badge">Loading services...</span>
-          </div>
+        <form id="service-form" class="space-y-4">
+          <input type="hidden" id="service-id" />
 
-          <div class="overflow-x-auto">
-            <table class="w-full text-left text-sm text-gray-600">
-              <thead class="bg-[#FAF8F5] text-[11px] uppercase font-bold text-gray-500 border-b border-gray-100">
-                <tr>
-                  <th class="px-6 py-3.5">Service Offering</th>
-                  <th class="px-6 py-3.5">Estimated Duration</th>
-                  <th class="px-6 py-3.5">Starting Price</th>
-                  <th class="px-6 py-3.5">Description</th>
-                  <th class="px-6 py-3.5 text-right">Actions</th>
-                </tr>
-              </thead>
-              <tbody id="services-tbody" class="divide-y divide-gray-100">
-                <tr>
-                  <td colspan="5" class="px-6 py-8 text-center text-gray-400">
-                    <i class="fas fa-spinner fa-spin mr-2"></i> Loading services...
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </main>
-    </div>
-  </div>
-
-  <!-- Add/Edit Service Modal -->
-  <div id="service-modal" class="fixed inset-0 bg-black/50 z-50 hidden flex items-center justify-center p-4">
-    <div class="bg-white rounded-2xl max-w-md w-full shadow-2xl p-6 relative">
-      <button id="close-modal-btn" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 text-lg">
-        <i class="fas fa-times"></i>
-      </button>
-      <h3 id="modal-title" class="font-serif text-xl font-bold text-gray-900 mb-4">Add Artisan Service</h3>
-      
-      <form id="service-form" class="space-y-4">
-        <input type="hidden" id="service-id">
-
-        <div>
-          <label class="block text-xs font-bold uppercase tracking-wider text-gray-700 mb-1">Service Title *</label>
-          <input type="text" id="service-title" required placeholder="e.g. Bespoke Bridal Embroidery" class="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-1 focus:ring-terracotta">
-        </div>
-
-        <div class="grid grid-cols-2 gap-4">
           <div>
-            <label class="block text-xs font-bold uppercase tracking-wider text-gray-700 mb-1">Starting Price (PKR)</label>
-            <input type="number" id="service-price" step="0.01" min="0" placeholder="25000.00" class="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-1 focus:ring-terracotta">
+            <label
+              class="block text-xs font-bold uppercase tracking-wider text-gray-700 mb-1"
+              >Service Title *</label
+            >
+            <input
+              type="text"
+              id="service-title"
+              required
+              placeholder="e.g. Bespoke Bridal Embroidery"
+              class="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-1 focus:ring-terracotta"
+            />
           </div>
+
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <label
+                class="block text-xs font-bold uppercase tracking-wider text-gray-700 mb-1"
+                >Starting Price (PKR)</label
+              >
+              <input
+                type="number"
+                id="service-price"
+                step="0.01"
+                min="0"
+                placeholder="25000.00"
+                class="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-1 focus:ring-terracotta"
+              />
+            </div>
+            <div>
+              <label
+                class="block text-xs font-bold uppercase tracking-wider text-gray-700 mb-1"
+                >Duration</label
+              >
+              <input
+                type="text"
+                id="service-duration"
+                placeholder="e.g. 14-21 days"
+                class="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-1 focus:ring-terracotta"
+              />
+            </div>
+          </div>
+
           <div>
-            <label class="block text-xs font-bold uppercase tracking-wider text-gray-700 mb-1">Duration</label>
-            <input type="text" id="service-duration" placeholder="e.g. 14-21 days" class="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-1 focus:ring-terracotta">
+            <label
+              class="block text-xs font-bold uppercase tracking-wider text-gray-700 mb-1"
+              >Icon (FontAwesome Class)</label
+            >
+            <input
+              type="text"
+              id="service-icon"
+              placeholder="fas fa-gem"
+              value="fas fa-gem"
+              class="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-1 focus:ring-terracotta"
+            />
           </div>
-        </div>
 
-        <div>
-          <label class="block text-xs font-bold uppercase tracking-wider text-gray-700 mb-1">Icon (FontAwesome Class)</label>
-          <input type="text" id="service-icon" placeholder="fas fa-gem" value="fas fa-gem" class="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-1 focus:ring-terracotta">
-        </div>
+          <div>
+            <label
+              class="block text-xs font-bold uppercase tracking-wider text-gray-700 mb-1"
+              >Description *</label
+            >
+            <textarea
+              id="service-description"
+              required
+              rows="3"
+              placeholder="Explain the consultation, customization, and delivery process..."
+              class="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-1 focus:ring-terracotta"
+            ></textarea>
+          </div>
 
-        <div>
-          <label class="block text-xs font-bold uppercase tracking-wider text-gray-700 mb-1">Description *</label>
-          <textarea id="service-description" required rows="3" placeholder="Explain the consultation, customization, and delivery process..." class="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-1 focus:ring-terracotta"></textarea>
-        </div>
-
-        <div class="flex justify-end gap-3 pt-4 border-t border-gray-100">
-          <button type="button" id="cancel-modal-btn" class="px-4 py-2 rounded-lg border border-gray-200 text-xs font-semibold text-gray-600 hover:bg-gray-50">Cancel</button>
-          <button type="submit" class="px-5 py-2 bg-terracotta hover:bg-terracotta-dark text-white rounded-lg text-xs font-bold shadow">Save Service</button>
-        </div>
-      </form>
+          <div class="flex justify-end gap-3 pt-4 border-t border-gray-100">
+            <button
+              type="button"
+              id="cancel-modal-btn"
+              class="px-4 py-2 rounded-lg border border-gray-200 text-xs font-semibold text-gray-600 hover:bg-gray-50"
+            >
+              Cancel
+            </button>
+            <button
+              type="submit"
+              class="px-5 py-2 bg-terracotta hover:bg-terracotta-dark text-white rounded-lg text-xs font-bold shadow"
+            >
+              Save Service
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
-  </div>
 
-  <script src="../js/api.js"></script>
-  <script src="../js/admin/services.js"></script>
-</body>
+    <script src="../js/api.js"></script>
+    <script src="../js/admin/services.js"></script>
+  </body>
 </html>
