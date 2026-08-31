@@ -7,9 +7,9 @@ let allGallery = [];
 document.addEventListener('DOMContentLoaded', async () => {
   try {
     const auth = await API.get('/auth/me');
-    if (!auth.success) window.location.href = 'login.html';
+    if (!auth.success) window.location.href = '/admin/login.html';
   } catch (e) {
-    window.location.href = 'login.html';
+    if (e.status === 401 || e.status === 403) window.location.href = '/admin/login.html';
     return;
   }
 

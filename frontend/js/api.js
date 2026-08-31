@@ -34,10 +34,13 @@ const API = {
 
       if (!response.ok) {
         // If unauthorized on an admin page, redirect to login
-        if (response.status === 401 && window.location.pathname.includes('/admin/') && !window.location.pathname.includes('login.html')) {
+        const isAdminPage = window.location.pathname.startsWith('/admin/') || window.location.pathname === '/admin-login';
+        if (response.status === 401 && isAdminPage && !window.location.pathname.endsWith('/login.html')) {
           window.location.href = '/admin/login.html';
         }
-        throw new Error(data.message || `HTTP Error ${response.status}`);
+        const error = new Error(data.message || `HTTP Error ${response.status}`);
+        error.status = response.status;
+        throw error;
       }
 
       return data;

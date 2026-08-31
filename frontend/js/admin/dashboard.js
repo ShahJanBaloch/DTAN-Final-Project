@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   try {
     const authRes = await API.get('/auth/me');
     if (!authRes.success || !authRes.user) {
-      window.location.href = 'login.html';
+      window.location.href = '/admin/login.html';
       return;
     }
     currentUser = authRes.user;
@@ -22,7 +22,12 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (heroNameEl) heroNameEl.textContent = currentUser.name.split(' ')[0];
     if (userRoleEl) userRoleEl.textContent = currentUser.role;
   } catch (error) {
-    window.location.href = 'login.html';
+    if (error.status === 401 || error.status === 403) {
+      window.location.href = '/admin/login.html';
+    } else {
+      console.error('Could not verify the admin session:', error);
+      API.showToast('Could not connect to the server. Please refresh and try again.', 'error');
+    }
     return;
   }
 
@@ -37,10 +42,10 @@ document.addEventListener('DOMContentLoaded', async () => {
         await API.post('/auth/logout');
         API.showToast('Logged out successfully', 'info');
         setTimeout(() => {
-          window.location.href = 'login.html';
+          window.location.href = '/admin/login.html';
         }, 500);
       } catch (err) {
-        window.location.href = 'login.html';
+        window.location.href = '/admin/login.html';
       }
     });
   }
