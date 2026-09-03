@@ -1,51 +1,315 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Secure Order Checkout — BalochHunar</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  <link rel="stylesheet" href="../css/style.css">
-  <link rel="icon" type="image/png" href="./Balochhunar logo1.png">
-  <script>tailwind.config={theme:{extend:{colors:{terracotta:{DEFAULT:'#B85042',dark:'#963B2F',light:'#F7EDE2'},sandstone:{DEFAULT:'#E7AA58',light:'#FBF6EF',dark:'#C68837'},indigo:{DEFAULT:'#1E293B',dark:'#0F172A'}}}}}</script>
-</head>
-<body class="bg-[#FAF8F5] text-gray-800 min-h-screen">
-  <header class="bg-white border-b border-[#E8E2D9] shadow-sm">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-5 flex items-center justify-between">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Secure Order Checkout — BalochHunar</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="icon" type="image/png" href="./Balochhunar logo1.png" />
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              terracotta: {
+                DEFAULT: "#B85042",
+                dark: "#963B2F",
+                light: "#F7EDE2",
+              },
+              sandstone: {
+                DEFAULT: "#E7AA58",
+                light: "#FBF6EF",
+                dark: "#C68837",
+              },
+              indigo: { DEFAULT: "#1E293B", dark: "#0F172A" },
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body class="bg-[#FAF8F5] text-gray-800 min-h-screen">
+    <header class="bg-white border-b border-[#E8E2D9] shadow-sm">
+      <div
+        class="max-w-6xl mx-auto px-4 sm:px-6 py-5 flex items-center justify-between"
+      >
         <a href="/products" class="flex items-center gap-3 group">
-            <img src="./Balochhunar logo1.png" alt="balochhunar logo" height="50px" width="70px" class="rounded-2xl shadow-md group-hover:scale-105 transition">
-            <span class="font-serif font-bold text-2xl text-gray-900 tracking-tight block leading-none">Baloch <span class="text-terracotta">Hunar</span></span>
+          <img
+            src="./Balochhunar logo1.png"
+            alt="balochhunar logo"
+            height="50px"
+            width="70px"
+            class="rounded-2xl shadow-md group-hover:scale-105 transition"
+          />
+          <span
+            class="font-serif font-bold text-2xl text-gray-900 tracking-tight block leading-none"
+            >Baloch <span class="text-terracotta">Hunar</span></span
+          >
         </a>
-      <a href="/products" class="text-xs font-semibold text-gray-600 hover:text-terracotta"><i class="fas fa-arrow-left mr-1"></i> Catalog</a>
-    </div>
-  </header>
-  <main class="max-w-6xl mx-auto px-4 sm:px-6 py-10">
-    <div class="mb-8"><span class="text-xs text-terracotta font-bold uppercase tracking-widest">Platform-managed checkout</span><h1 class="font-serif text-3xl font-bold text-gray-900 mt-1">Place Your Product Order</h1><p class="text-sm text-gray-500 mt-2">Your payment is made to BalochHunar. Our admin team verifies it, coordinates with the artisan, and manages delivery.</p></div>
-    <div id="checkout-error" class="hidden mb-6 p-4 bg-red-50 border border-red-200 text-red-700 rounded-xl text-sm"></div>
-    <div id="order-success" class="hidden mb-6 p-6 bg-emerald-50 border border-emerald-200 rounded-2xl text-emerald-900">
-      <h2 class="font-serif text-xl font-bold"><i class="fas fa-check-circle mr-2"></i>Order received</h2>
-      <p id="success-message" class="text-sm mt-2"></p>
-      <a id="track-link" class="inline-flex mt-4 px-4 py-2 bg-emerald-700 text-white rounded-lg text-xs font-bold" href="track-order.html">Track this order</a>
-      <div id="proof-panel" class="hidden mt-6 pt-5 border-t border-emerald-200"><h3 class="font-bold text-sm">Submit payment proof</h3><p class="text-xs mt-1 mb-3">This only sends proof to BalochHunar for manual verification.</p><form id="proof-form" class="space-y-3"><input id="proof-reference" placeholder="Transaction / reference ID" class="w-full px-3 py-2 bg-white border border-emerald-200 rounded-lg text-sm"><input id="proof-file" type="file" accept="image/jpeg,image/png,image/webp" required class="w-full text-xs"><button class="px-4 py-2 bg-emerald-700 text-white rounded-lg text-xs font-bold">Submit Proof</button></form></div>
-    </div>
-    <form id="order-form" class="grid grid-cols-1 lg:grid-cols-12 gap-8">
-      <section class="lg:col-span-7 bg-white border border-[#E8E2D9] rounded-2xl p-6 sm:p-8 shadow-sm space-y-5">
-        <h2 class="font-serif text-xl font-bold text-gray-900">Customer and delivery details</h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4"><label class="text-xs font-semibold">Full Name *<input name="customer_name" required class="field"></label><label class="text-xs font-semibold">Email Address *<input name="customer_email" type="email" required class="field"></label><label class="text-xs font-semibold">Mobile / WhatsApp *<input name="customer_phone" required class="field"></label><label class="text-xs font-semibold">Alternative Phone<input name="alternative_phone" class="field"></label></div>
-        <label class="text-xs font-semibold">Full Address *<textarea name="full_address" required rows="2" class="field"></textarea></label>
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4"><label class="text-xs font-semibold">House / Street / Area *<input name="area" required class="field"></label><label class="text-xs font-semibold">Village / Town<input name="village_town" class="field"></label><label class="text-xs font-semibold">City / District *<input name="city" required class="field"></label><label class="text-xs font-semibold">District<input name="district" class="field"></label><label class="text-xs font-semibold">Province *<input name="province" required value="Balochistan" class="field"></label><label class="text-xs font-semibold">Postal Code<input name="postal_code" class="field"></label><label class="text-xs font-semibold">Country<input name="country" value="Pakistan" required class="field"></label></div>
-        <label class="text-xs font-semibold">Customer Notes<textarea name="customer_notes" rows="3" class="field" placeholder="Special instructions or preferred delivery information"></textarea></label>
-        <h2 class="font-serif text-xl font-bold text-gray-900 pt-3 border-t">Payment to BalochHunar</h2>
-        <label class="text-xs font-semibold">Payment Method *<select id="payment-method" name="payment_method" required class="field"><option value="">Select method</option><option>Bank Transfer</option><option>JazzCash</option><option>EasyPaisa</option><option>Cash on Delivery</option><option>Other</option></select></label>
-        <div id="payment-instructions" class="p-4 bg-sandstone-light border border-sandstone/40 rounded-xl text-xs text-gray-700"><strong>Payment instructions</strong><p class="mt-1">Select a method to view the platform account details. Manual payments remain pending until BalochHunar verifies them.</p></div>
-        <button id="submit-order" class="w-full py-3.5 bg-terracotta hover:bg-terracotta-dark text-white rounded-xl font-bold text-sm"><i class="fas fa-lock mr-2"></i>Place Secure Order</button>
-      </section>
-      <aside class="lg:col-span-5"><div class="bg-white border border-[#E8E2D9] rounded-2xl p-6 shadow-sm sticky top-6"><h2 class="font-serif text-xl font-bold text-gray-900 mb-5">Order summary</h2><div id="product-summary" class="flex gap-4 pb-5 border-b"><div class="w-24 h-24 bg-gray-100 rounded-xl overflow-hidden"><img id="product-image" class="w-full h-full object-cover" alt=""></div><div><h3 id="product-name" class="font-bold text-sm">Loading product...</h3><p id="product-price" class="text-terracotta font-bold mt-2"></p><label class="text-xs text-gray-500 block mt-3">Quantity<input id="quantity" type="number" min="1" max="99" value="1" class="field w-24"></label></div></div><div class="space-y-3 text-sm mt-5"><div class="flex justify-between"><span>Subtotal</span><strong id="subtotal">PKR 0.00</strong></div><div class="flex justify-between"><span>Delivery charges</span><strong id="delivery">PKR 300.00</strong></div><div class="flex justify-between border-t pt-3 text-base"><span class="font-bold">Total</span><strong id="total" class="text-terracotta">PKR 0.00</strong></div></div><p class="text-[11px] text-gray-500 mt-5"><i class="fas fa-shield-halved mr-1 text-emerald-600"></i> Product price is loaded from the BalochHunar catalog and cannot be changed by the customer.</p></div></aside>
-    </form>
-  </main>
-  <style>.field{display:block;width:100%;margin-top:.4rem;padding:.65rem .75rem;background:#fafafa;border:1px solid #e5e7eb;border-radius:.65rem;font-weight:400;outline:none}.field:focus{box-shadow:0 0 0 2px #B85042}.field:disabled{opacity:.7}</style>
-  <script src="../js/api.js"></script>
-  <script src="../js/order.js"></script>
-</body>
+        <a
+          href="/products"
+          class="text-xs font-semibold text-gray-600 hover:text-terracotta"
+          ><i class="fas fa-arrow-left mr-1"></i> Catalog</a
+        >
+      </div>
+    </header>
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 py-10">
+      <div class="mb-8">
+        <span
+          class="text-xs text-terracotta font-bold uppercase tracking-widest"
+          >Platform-managed checkout</span
+        >
+        <h1 class="font-serif text-3xl font-bold text-gray-900 mt-1">
+          Place Your Product Order
+        </h1>
+        <p class="text-sm text-gray-500 mt-2">
+          Your payment is made to BalochHunar. Our admin team verifies it,
+          coordinates with the artisan, and manages delivery.
+        </p>
+      </div>
+      <div
+        id="checkout-error"
+        class="hidden mb-6 p-4 bg-red-50 border border-red-200 text-red-700 rounded-xl text-sm"
+      ></div>
+      <div
+        id="order-success"
+        class="hidden mb-6 p-6 bg-emerald-50 border border-emerald-200 rounded-2xl text-emerald-900"
+      >
+        <h2 class="font-serif text-xl font-bold">
+          <i class="fas fa-check-circle mr-2"></i>Order received
+        </h2>
+        <p id="success-message" class="text-sm mt-2"></p>
+        <a
+          id="track-link"
+          class="inline-flex mt-4 px-4 py-2 bg-emerald-700 text-white rounded-lg text-xs font-bold"
+          href="track-order.html"
+          >Track this order</a
+        >
+        <div
+          id="proof-panel"
+          class="hidden mt-6 pt-5 border-t border-emerald-200"
+        >
+          <h3 class="font-bold text-sm">Submit payment proof</h3>
+          <p class="text-xs mt-1 mb-3">
+            This only sends proof to BalochHunar for manual verification.
+          </p>
+          <form id="proof-form" class="space-y-3">
+            <input
+              id="proof-reference"
+              placeholder="Transaction / reference ID"
+              class="w-full px-3 py-2 bg-white border border-emerald-200 rounded-lg text-sm"
+            /><input
+              id="proof-file"
+              type="file"
+              accept="image/jpeg,image/png,image/webp"
+              required
+              class="w-full text-xs"
+            /><button
+              class="px-4 py-2 bg-emerald-700 text-white rounded-lg text-xs font-bold"
+            >
+              Submit Proof
+            </button>
+          </form>
+        </div>
+      </div>
+      <form id="order-form" class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        <section
+          class="order-details-panel lg:col-span-7 bg-white border border-[#E8E2D9] rounded-2xl p-6 sm:p-8 shadow-sm space-y-5"
+        >
+          <h2 class="font-serif text-xl font-bold text-gray-900">
+            Customer and delivery details
+          </h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <label class="text-xs font-semibold"
+              >Full Name *<input
+                name="customer_name"
+                required
+                class="field" /></label
+            ><label class="text-xs font-semibold"
+              >Email Address *<input
+                name="customer_email"
+                type="email"
+                required
+                class="field" /></label
+            ><label class="text-xs font-semibold"
+              >Mobile / WhatsApp *<input
+                name="customer_phone"
+                required
+                class="field" /></label
+            ><label class="text-xs font-semibold"
+              >Alternative Phone<input name="alternative_phone" class="field"
+            /></label>
+          </div>
+          <label class="text-xs font-semibold"
+            >Full Address *<textarea
+              name="full_address"
+              required
+              rows="2"
+              class="field"
+            ></textarea>
+          </label>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <label class="text-xs font-semibold"
+              >House / Street / Area *<input
+                name="area"
+                required
+                class="field" /></label
+            ><label class="text-xs font-semibold"
+              >Village / Town<input name="village_town" class="field" /></label
+            ><label class="text-xs font-semibold"
+              >City / District *<input
+                name="city"
+                required
+                class="field" /></label
+            ><label class="text-xs font-semibold"
+              >District<input name="district" class="field" /></label
+            ><label class="text-xs font-semibold"
+              >Province *<input
+                name="province"
+                required
+                value="Balochistan"
+                class="field" /></label
+            ><label class="text-xs font-semibold"
+              >Postal Code<input name="postal_code" class="field" /></label
+            ><label class="text-xs font-semibold"
+              >Country<input
+                name="country"
+                value="Pakistan"
+                required
+                class="field"
+            /></label>
+          </div>
+          <label class="text-xs font-semibold"
+            >Customer Notes<textarea
+              name="customer_notes"
+              rows="3"
+              class="field"
+              placeholder="Special instructions or preferred delivery information"
+            ></textarea>
+          </label>
+          <h2 class="font-serif text-xl font-bold text-gray-900 pt-3 border-t">
+            Payment to BalochHunar
+          </h2>
+          <label class="text-xs font-semibold"
+            >Payment Method *<select
+              id="payment-method"
+              name="payment_method"
+              required
+              class="field"
+            >
+              <option value="">Select method</option>
+              <option>Bank Transfer</option>
+              <option>JazzCash</option>
+              <option>EasyPaisa</option>
+              <option>Cash on Delivery</option>
+              <option>Other</option>
+            </select></label
+          >
+          <div
+            id="payment-instructions"
+            class="p-4 bg-sandstone-light border border-sandstone/40 rounded-xl text-xs text-gray-700"
+          >
+            <strong>Payment instructions</strong>
+            <p class="mt-1">
+              Select a method to view the platform account details. Manual
+              payments remain pending until BalochHunar verifies them.
+            </p>
+          </div>
+          <button
+            id="submit-order"
+            class="w-full py-3.5 bg-terracotta hover:bg-terracotta-dark text-white rounded-xl font-bold text-sm"
+          >
+            <i class="fas fa-lock mr-2"></i>Place Secure Order
+          </button>
+        </section>
+        <aside class="lg:col-span-5">
+          <div
+            class="bg-white border border-[#E8E2D9] rounded-2xl p-6 shadow-sm sticky top-6"
+          >
+            <h2 class="font-serif text-xl font-bold text-gray-900 mb-5">
+              Order summary
+            </h2>
+            <div id="product-summary" class="flex gap-4 pb-5 border-b">
+              <div class="w-24 h-24 bg-gray-100 rounded-xl overflow-hidden">
+                <img
+                  id="product-image"
+                  class="w-full h-full object-cover"
+                  alt=""
+                />
+              </div>
+              <div>
+                <h3 id="product-name" class="font-bold text-sm">
+                  Loading product...
+                </h3>
+                <p
+                  id="product-price"
+                  class="text-terracotta font-bold mt-2"
+                ></p>
+                <label class="text-xs text-gray-500 block mt-3"
+                  >Quantity<input
+                    id="quantity"
+                    type="number"
+                    min="1"
+                    max="99"
+                    value="1"
+                    class="field w-24"
+                /></label>
+              </div>
+            </div>
+            <div class="space-y-3 text-sm mt-5">
+              <div class="flex justify-between">
+                <span>Subtotal</span><strong id="subtotal">PKR 0.00</strong>
+              </div>
+              <div class="flex justify-between">
+                <span>Delivery charges</span
+                ><strong id="delivery">PKR 300.00</strong>
+              </div>
+              <div class="flex justify-between border-t pt-3 text-base">
+                <span class="font-bold">Total</span
+                ><strong id="total" class="text-terracotta">PKR 0.00</strong>
+              </div>
+            </div>
+            <p class="text-[11px] text-gray-500 mt-5">
+              <i class="fas fa-shield-halved mr-1 text-emerald-600"></i> Product
+              price is loaded from the BalochHunar catalog and cannot be changed
+              by the customer.
+            </p>
+          </div>
+        </aside>
+      </form>
+    </main>
+    <style>
+      .field {
+        display: block;
+        width: 100%;
+        margin-top: 0.4rem;
+        padding: 0.65rem 0.75rem;
+        background: #fafafa;
+        border: 1px solid #e5e7eb;
+        border-radius: 0.65rem;
+        font-weight: 400;
+        outline: none;
+      }
+      .field:focus {
+        box-shadow: 0 0 0 2px #b85042;
+      }
+      .field:disabled {
+        opacity: 0.7;
+      }
+      @media (max-width: 1023px) {
+        .order-details-panel {
+          max-height: calc(100dvh - 2rem);
+          overflow-y: auto;
+          -webkit-overflow-scrolling: touch;
+        }
+      }
+    </style>
+    <script src="../js/api.js"></script>
+    <script src="../js/order.js"></script>
+  </body>
 </html>

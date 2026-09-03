@@ -1,186 +1,340 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Handicrafts Catalog — BalochHunar</title>
-  <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <!-- FontAwesome 6 -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  <!-- Custom Styles -->
-  <link rel="stylesheet" href="../css/style.css">
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            terracotta: { DEFAULT: '#B85042', dark: '#963B2F', light: '#F7EDE2' },
-            sandstone: { DEFAULT: '#E7AA58', light: '#FBF6EF', dark: '#C68837' },
-            indigo: { DEFAULT: '#1E293B', dark: '#0F172A' }
-          }
-        }
-      }
-    }
-  </script>
-</head>
-<body class="bg-[#FAF8F5] text-gray-800 flex flex-col min-h-screen">
-
-  <!-- Navigation Bar -->
-  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-[#E8E2D9] shadow-sm">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-center justify-between h-20">
-        <a href="index.html" class="flex items-center gap-3">
-          <img src="./Balochhunar logo1.png" alt="balochhunar logo" height="50px" width="70px" class="rounded-2xl shadow-md group-hover:scale-105 transition">
-          <span class="font-serif font-bold text-2xl text-gray-900 tracking-tight block leading-none">Baloch <span class="text-terracotta">Hunar</span></span>
-        </a>
-
-        <nav class="hidden md:flex items-center space-x-8">
-          <a href="/index" class="nav-link text-sm font-medium text-gray-700 hover:text-terracotta transition">Home</a>
-          <a href="/about" class="nav-link text-sm font-medium text-gray-700 hover:text-terracotta transition">About Us</a>
-          <a href="/products" class="nav-link text-sm font-semibold text-terracotta transition">Handicrafts</a>
-          <a href="/services" class="nav-link text-sm font-medium text-gray-700 hover:text-terracotta transition">Bespoke Services</a>
-          <a href="/contact" class="nav-link text-sm font-medium text-gray-700 hover:text-terracotta transition">Contact</a>
-        </nav>
-
-        <div class="hidden md:flex items-center gap-4">
-          <a href="../admin/login.html" class="px-3.5 py-2 border border-gray-200 text-gray-600 hover:text-terracotta rounded-xl text-xs font-semibold transition flex items-center gap-1.5">
-            <i class="fas fa-user-shield"></i> Admin
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Handicrafts Catalog — BalochHunar</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome 6 -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="../css/style.css" />
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              terracotta: {
+                DEFAULT: "#B85042",
+                dark: "#963B2F",
+                light: "#F7EDE2",
+              },
+              sandstone: {
+                DEFAULT: "#E7AA58",
+                light: "#FBF6EF",
+                dark: "#C68837",
+              },
+              indigo: { DEFAULT: "#1E293B", dark: "#0F172A" },
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body class="bg-[#FAF8F5] text-gray-800 flex flex-col min-h-screen">
+    <!-- Navigation Bar -->
+    <header
+      class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-[#E8E2D9] shadow-sm"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-20">
+          <a href="index.html" class="flex items-center gap-3">
+            <img
+              src="./Balochhunar logo1.png"
+              alt="balochhunar logo"
+              height="50px"
+              width="70px"
+              class="rounded-2xl shadow-md group-hover:scale-105 transition"
+            />
+            <span
+              class="font-serif font-bold text-2xl text-gray-900 tracking-tight block leading-none"
+              >Baloch <span class="text-terracotta">Hunar</span></span
+            >
           </a>
-        </div>
 
-        <button id="mobile-menu-toggle" class="md:hidden p-2 text-gray-600 focus:outline-none">
-          <i class="fas fa-bars text-xl"></i>
-        </button>
-      </div>
-    </div>
+          <nav class="hidden md:flex items-center space-x-8">
+            <a
+              href="/index"
+              class="nav-link text-sm font-medium text-gray-700 hover:text-terracotta transition"
+              >Home</a
+            >
+            <a
+              href="/about"
+              class="nav-link text-sm font-medium text-gray-700 hover:text-terracotta transition"
+              >About Us</a
+            >
+            <a
+              href="/products"
+              class="nav-link text-sm font-semibold text-terracotta transition"
+              >Handicrafts</a
+            >
+            <a
+              href="/services"
+              class="nav-link text-sm font-medium text-gray-700 hover:text-terracotta transition"
+              >Bespoke Services</a
+            >
+            <a
+              href="/contact"
+              class="nav-link text-sm font-medium text-gray-700 hover:text-terracotta transition"
+              >Contact</a
+            >
+          </nav>
 
-    <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-gray-200 px-6 py-4 space-y-3">
-      <a href="/index" class="block text-sm font-medium text-gray-700">Home</a>
-      <a href="/about" class="block text-sm font-medium text-gray-700">About Us</a>
-      <a href="/products" class="block text-sm font-bold text-terracotta">Handicrafts</a>
-      <a href="/services" class="block text-sm font-medium text-gray-700">Bespoke Services</a>
-      <a href="/contact" class="block text-sm font-medium text-gray-700">Contact</a>
-    </div>
-  </header>
-
-  <!-- Page Header -->
-  <section class="bg-gradient-to-b from-sandstone-light/70 to-[#FAF8F5] py-12 border-b border-[#E8E2D9]">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center sm:text-left flex flex-col sm:flex-row items-center justify-between gap-4">
-      <div>
-        <span class="text-xs text-terracotta font-bold uppercase tracking-widest">Generational Catalog</span>
-        <h1 class="font-serif text-3xl sm:text-4xl font-bold text-gray-900 mt-1">Handmade Masterpieces</h1>
-        <p class="text-sm text-gray-500 mt-1">Explore authentic traditional crafts directly from master artisans.</p>
-      </div>
-      <span id="catalog-count-badge" class="px-3.5 py-1.5 bg-white border border-gray-200 rounded-full text-xs font-semibold text-gray-700 shadow-sm">
-        Loading...
-      </span>
-    </div>
-  </section>
-
-  <!-- Filter & Search Toolbar -->
-  <section class="py-6 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-    <div class="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4">
-      
-      <!-- Search Input -->
-      <div class="relative w-full md:w-80">
-        <input 
-          type="text" 
-          id="public-search" 
-          placeholder="Search by craft, artisan, or keyword..." 
-          class="w-full pl-10 pr-4 py-3 bg-white border border-gray-200 rounded-xl text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-terracotta"
-        >
-        <i class="fas fa-search absolute left-3.5 top-3.5 text-gray-400 text-sm"></i>
-      </div>
-
-      <!-- Category Filter Pills Container -->
-      <div id="category-pills" class="flex flex-wrap items-center gap-2 overflow-x-auto pb-1">
-        <button class="cat-pill active px-4 py-2 rounded-xl text-xs font-bold bg-terracotta text-white shadow-sm transition" data-category="">
-          All Crafts
-        </button>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- Catalog Grid -->
-  <section class="pb-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex-1">
-    <div id="products-catalog-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-      <div class="col-span-full py-16 text-center text-gray-400">
-        <i class="fas fa-spinner fa-spin text-2xl mr-2 text-terracotta"></i> Loading handicraft catalog...
-      </div>
-    </div>
-  </section>
-
-  <!-- Quick View Product Details Modal -->
-  <div id="quick-view-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-    <div class="bg-white rounded-3xl max-w-3xl w-full max-h-[90vh] overflow-y-auto shadow-2xl relative">
-      <button id="close-modal-btn" class="absolute top-4 right-4 z-10 w-9 h-9 rounded-full bg-white/80 hover:bg-white text-gray-700 flex items-center justify-center shadow transition">
-        <i class="fas fa-times"></i>
-      </button>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 p-6 sm:p-8">
-        <!-- Modal Image -->
-        <div class="rounded-2xl overflow-hidden bg-gray-100 h-72 md:h-full min-h-[260px] shadow-sm">
-          <img id="modal-image" src="" alt="Product" class="w-full h-full object-cover">
-        </div>
-
-        <!-- Modal Info -->
-        <div class="flex flex-col justify-between space-y-4">
-          <div>
-            <span id="modal-category" class="inline-block px-3 py-1 rounded-full text-xs font-bold bg-sandstone-light text-sandstone-dark mb-2">
-              Category
-            </span>
-            <h2 id="modal-title" class="font-serif text-2xl font-bold text-gray-900 leading-tight">Product Title</h2>
-            <div class="mt-2 text-xl font-extrabold text-gray-900 font-serif" id="modal-price">PKR 0.00</div>
-
-            <!-- Artisan Badge -->
-            <div class="mt-4 p-3 bg-gray-50 rounded-xl border border-gray-100 flex items-center gap-3">
-              <img id="modal-artisan-img" src="" alt="Artisan" class="w-10 h-10 rounded-full object-cover border border-sandstone shadow-sm">
-              <div>
-                <span class="text-[11px] text-gray-400 font-semibold uppercase block">Master Artisan</span>
-                <span id="modal-artisan-name" class="text-xs font-bold text-gray-900 block">Artisan Name</span>
-                <span id="modal-artisan-loc" class="text-[11px] text-gray-500">Location</span>
-              </div>
-            </div>
-
-            <!-- Description -->
-            <div class="mt-4">
-              <h4 class="text-xs font-bold uppercase tracking-wider text-gray-700 mb-1">Craft Narrative & Details</h4>
-              <p id="modal-description" class="text-xs text-gray-600 leading-relaxed max-h-36 overflow-y-auto pr-1">
-                Description goes here...
-              </p>
-            </div>
-
-            <!-- Tags -->
-            <div id="modal-tags-container" class="mt-3 flex flex-wrap gap-1.5">
-            </div>
-          </div>
-
-          <!-- Action Button -->
-          <div class="pt-4 border-t border-gray-100">
-            <a id="modal-inquire-btn" href="order.html" class="w-full py-3 bg-terracotta hover:bg-terracotta-dark text-white rounded-xl text-xs font-bold shadow transition flex items-center justify-center gap-2">
-              <i class="fas fa-bag-shopping"></i> Order Now
+          <div class="hidden md:flex items-center gap-4">
+            <a
+              href="../admin/login.html"
+              class="px-3.5 py-2 border border-gray-200 text-gray-600 hover:text-terracotta rounded-xl text-xs font-semibold transition flex items-center gap-1.5"
+            >
+              <i class="fas fa-user-shield"></i> Admin
             </a>
           </div>
+
+          <button
+            id="mobile-menu-toggle"
+            class="md:hidden p-2 text-gray-600 focus:outline-none"
+          >
+            <i class="fas fa-bars text-xl"></i>
+          </button>
+        </div>
+      </div>
+
+      <div
+        id="mobile-menu"
+        class="hidden md:hidden bg-white border-b border-gray-200 px-6 py-4 space-y-3"
+      >
+        <a href="/index" class="block text-sm font-medium text-gray-700"
+          >Home</a
+        >
+        <a href="/about" class="block text-sm font-medium text-gray-700"
+          >About Us</a
+        >
+        <a href="/products" class="block text-sm font-bold text-terracotta"
+          >Handicrafts</a
+        >
+        <a href="/services" class="block text-sm font-medium text-gray-700"
+          >Bespoke Services</a
+        >
+        <a href="/contact" class="block text-sm font-medium text-gray-700"
+          >Contact</a
+        >
+      </div>
+    </header>
+
+    <!-- Page Header -->
+    <section
+      class="bg-gradient-to-b from-sandstone-light/70 to-[#FAF8F5] py-12 border-b border-[#E8E2D9]"
+    >
+      <div
+        class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center sm:text-left flex flex-col sm:flex-row items-center justify-between gap-4"
+      >
+        <div>
+          <span
+            class="text-xs text-terracotta font-bold uppercase tracking-widest"
+            >Generational Catalog</span
+          >
+          <h1
+            class="font-serif text-3xl sm:text-4xl font-bold text-gray-900 mt-1"
+          >
+            Handmade Masterpieces
+          </h1>
+          <p class="text-sm text-gray-500 mt-1">
+            Explore authentic traditional crafts directly from master artisans.
+          </p>
+        </div>
+        <span
+          id="catalog-count-badge"
+          class="px-3.5 py-1.5 bg-white border border-gray-200 rounded-full text-xs font-semibold text-gray-700 shadow-sm"
+        >
+          Loading...
+        </span>
+      </div>
+    </section>
+
+    <!-- Filter & Search Toolbar -->
+    <section class="py-6 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+      <div
+        class="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4"
+      >
+        <!-- Search Input -->
+        <div class="relative w-full md:w-80">
+          <input
+            type="text"
+            id="public-search"
+            placeholder="Search by craft, artisan, or keyword..."
+            class="w-full pl-10 pr-4 py-3 bg-white border border-gray-200 rounded-xl text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-terracotta"
+          />
+          <i
+            class="fas fa-search absolute left-3.5 top-3.5 text-gray-400 text-sm"
+          ></i>
+        </div>
+
+        <!-- Category Filter Pills Container -->
+        <div
+          id="category-pills"
+          class="flex flex-wrap items-center gap-2 overflow-x-auto pb-1"
+        >
+          <button
+            class="cat-pill active px-4 py-2 rounded-xl text-xs font-bold bg-terracotta text-white shadow-sm transition"
+            data-category=""
+          >
+            All Crafts
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Catalog Grid -->
+    <section class="pb-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex-1">
+      <div
+        id="products-catalog-grid"
+        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
+      >
+        <div class="col-span-full py-16 text-center text-gray-400">
+          <i class="fas fa-spinner fa-spin text-2xl mr-2 text-terracotta"></i>
+          Loading handicraft catalog...
+        </div>
+      </div>
+    </section>
+
+    <!-- Quick View Product Details Modal -->
+    <div
+      id="quick-view-modal"
+      class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-start sm:items-center justify-center overflow-y-auto p-2 sm:p-4"
+    >
+      <div
+        class="product-detail-panel bg-white rounded-3xl max-w-3xl w-full max-h-[calc(100dvh-1rem)] sm:max-h-[90vh] overflow-y-auto shadow-2xl relative"
+      >
+        <button
+          id="close-modal-btn"
+          class="absolute top-4 right-4 z-10 w-9 h-9 rounded-full bg-white/80 hover:bg-white text-gray-700 flex items-center justify-center shadow transition"
+        >
+          <i class="fas fa-times"></i>
+        </button>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 p-6 sm:p-8">
+          <!-- Modal Image -->
+          <div
+            class="rounded-2xl overflow-hidden bg-gray-100 h-72 md:h-full min-h-[260px] shadow-sm"
+          >
+            <img
+              id="modal-image"
+              src=""
+              alt="Product"
+              class="w-full h-full object-cover"
+            />
+          </div>
+
+          <!-- Modal Info -->
+          <div class="flex flex-col justify-between space-y-4">
+            <div>
+              <span
+                id="modal-category"
+                class="inline-block px-3 py-1 rounded-full text-xs font-bold bg-sandstone-light text-sandstone-dark mb-2"
+              >
+                Category
+              </span>
+              <h2
+                id="modal-title"
+                class="font-serif text-2xl font-bold text-gray-900 leading-tight"
+              >
+                Product Title
+              </h2>
+              <div
+                class="mt-2 text-xl font-extrabold text-gray-900 font-serif"
+                id="modal-price"
+              >
+                PKR 0.00
+              </div>
+
+              <!-- Artisan Badge -->
+              <div
+                class="mt-4 p-3 bg-gray-50 rounded-xl border border-gray-100 flex items-center gap-3"
+              >
+                <img
+                  id="modal-artisan-img"
+                  src=""
+                  alt="Artisan"
+                  class="w-10 h-10 rounded-full object-cover border border-sandstone shadow-sm"
+                />
+                <div>
+                  <span
+                    class="text-[11px] text-gray-400 font-semibold uppercase block"
+                    >Master Artisan</span
+                  >
+                  <span
+                    id="modal-artisan-name"
+                    class="text-xs font-bold text-gray-900 block"
+                    >Artisan Name</span
+                  >
+                  <span id="modal-artisan-loc" class="text-[11px] text-gray-500"
+                    >Location</span
+                  >
+                </div>
+              </div>
+
+              <!-- Description -->
+              <div class="mt-4">
+                <h4
+                  class="text-xs font-bold uppercase tracking-wider text-gray-700 mb-1"
+                >
+                  Craft Narrative & Details
+                </h4>
+                <p
+                  id="modal-description"
+                  class="text-xs text-gray-600 leading-relaxed max-h-36 overflow-y-auto pr-1"
+                >
+                  Description goes here...
+                </p>
+              </div>
+
+              <!-- Tags -->
+              <div
+                id="modal-tags-container"
+                class="mt-3 flex flex-wrap gap-1.5"
+              ></div>
+            </div>
+
+            <!-- Action Button -->
+            <div class="pt-4 border-t border-gray-100">
+              <a
+                id="modal-inquire-btn"
+                href="order.html"
+                class="w-full py-3 bg-terracotta hover:bg-terracotta-dark text-white rounded-xl text-xs font-bold shadow transition flex items-center justify-center gap-2"
+              >
+                <i class="fas fa-bag-shopping"></i> Order Now
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <!-- Footer -->
-  <footer class="bg-indigo-dark text-gray-300 pt-16 pb-8 border-t border-indigo-900/50 mt-auto">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex flex-col sm:flex-row items-center justify-between text-xs text-gray-500 gap-4">
-        <p>&copy; 2026 BalochHunar — Digital Artisan Platform. All rights reserved.</p>
-        <a href="../admin/login.html" class="hover:text-sandstone transition">Admin Sign In</a>
+    <!-- Footer -->
+    <footer
+      class="bg-indigo-dark text-gray-300 pt-16 pb-8 border-t border-indigo-900/50 mt-auto"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div
+          class="flex flex-col sm:flex-row items-center justify-between text-xs text-gray-500 gap-4"
+        >
+          <p>
+            &copy; 2026 BalochHunar — Digital Artisan Platform. All rights
+            reserved.
+          </p>
+          <a href="../admin/login.html" class="hover:text-sandstone transition"
+            >Admin Sign In</a
+          >
+        </div>
       </div>
-    </div>
-  </footer>
+    </footer>
 
-  <!-- Scripts -->
-  <script src="../js/api.js"></script>
-  <script src="../js/main.js"></script>
-  <script src="../js/products.js"></script>
-</body>
+    <!-- Scripts -->
+    <script src="../js/api.js"></script>
+    <script src="../js/main.js"></script>
+    <script src="../js/products.js"></script>
+  </body>
 </html>
