@@ -1,7 +1,7 @@
 const express = require('express');
 const rateLimit = require('express-rate-limit');
 const messageController = require('../controllers/messageController');
-const { requireAuth } = require('../middleware/authMiddleware');
+const { requireAuth, requireAdmin } = require('../middleware/authMiddleware');
 const { validateIdParam, validateMessageInput } = require('../middleware/validationMiddleware');
 
 const router = express.Router();
@@ -20,8 +20,8 @@ const contactLimiter = rateLimit({
 router.post('/', contactLimiter, validateMessageInput, messageController.createMessage);
 
 // Admin Protected Endpoints
-router.get('/', requireAuth, messageController.getAllMessages);
-router.put('/:id/read', requireAuth, validateIdParam, messageController.markAsRead);
-router.delete('/:id', requireAuth, validateIdParam, messageController.deleteMessage);
+router.get('/', requireAuth, requireAdmin, messageController.getAllMessages);
+router.put('/:id/read', requireAuth, requireAdmin, validateIdParam, messageController.markAsRead);
+router.delete('/:id', requireAuth, requireAdmin, validateIdParam, messageController.deleteMessage);
 
 module.exports = router;

@@ -8,7 +8,10 @@ let currentOpenMessageId = null;
 document.addEventListener('DOMContentLoaded', async () => {
   try {
     const auth = await API.get('/auth/me');
-    if (!auth.success) window.location.href = '/admin/login.html';
+    if (!auth.success || auth.user?.role !== 'admin') {
+      window.location.href = '/admin/login.html';
+      return;
+    }
   } catch (e) {
     if (e.status === 401 || e.status === 403) window.location.href = '/admin/login.html';
     return;
@@ -48,12 +51,24 @@ document.addEventListener('DOMContentLoaded', async () => {
 async function loadMessages() {
   try {
     const res = await API.get('/messages');
-    if (res.success) {
-      allMessages = res.data;
-      renderMessagesTable(allMessages);
+    if (!res.success || !Array.isArray(res.data)) {
+      throw new Error(res.message || 'The server returned an invalid inquiries response.');
     }
+    allMessages = res.data;
+    renderMessagesTable(allMessages);
   } catch (error) {
-    API.showToast('Could not load customer inquiries', 'error');
+    console.error('Failed to load customer inquiries:', error);
+    const tbody = document.getElementById('messages-tbody');
+    if (tbody) {
+      tbody.innerHTML = `
+        <tr>
+          <td colspan="6" class="px-6 py-8 text-center text-red-500 text-sm">
+            Could not load customer inquiries: ${escapeHtml(error.message)}
+          </td>
+        </tr>
+      `;
+    }
+    API.showToast(`Could not load customer inquiries: ${error.message}`, 'error');
   }
 }
 

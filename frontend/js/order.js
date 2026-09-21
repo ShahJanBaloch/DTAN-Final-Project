@@ -20,6 +20,9 @@ async function loadProduct() {
 
 async function loadPaymentMethods() {
   const response = await API.get('/orders/payment-methods');
+  if (!response.success || !Array.isArray(response.data)) {
+    throw new Error(response.message || 'Payment methods could not be loaded.');
+  }
   paymentMethods = response.data || [];
   document.getElementById('payment-method').addEventListener('change', renderPaymentInstructions);
 }
@@ -57,6 +60,7 @@ async function submitOrder(event) {
       product_id: selectedProduct.id,
       quantity: Number(document.getElementById('quantity').value)
     });
+    if (!response.success || !response.data) throw new Error(response.message || 'Could not place order.');
     createdOrder = response.data;
     document.getElementById('success-message').textContent = `Order ${createdOrder.orderNumber} is ${createdOrder.orderStatus}. Total: ${money(createdOrder.totalAmount)}. Save your tracking link; payment verification is handled by BalochHunar administration.`;
     document.getElementById('track-link').href = `track-order.html?order_number=${encodeURIComponent(createdOrder.orderNumber)}&token=${encodeURIComponent(createdOrder.trackingToken)}`;

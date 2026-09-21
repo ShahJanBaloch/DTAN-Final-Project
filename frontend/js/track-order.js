@@ -6,7 +6,9 @@ async function loadTrackedOrder() {
   const token = params.get('token');
   if (!orderNumber || !token) throw new Error('This private tracking link is incomplete.');
   const response = await API.get(`/orders/track/${encodeURIComponent(orderNumber)}?token=${encodeURIComponent(token)}`);
+  if (!response.success || !response.data) throw new Error(response.message || 'Order could not be loaded.');
   const order = response.data;
+  if (!Array.isArray(order.items) || !Array.isArray(order.history)) throw new Error('The order response is incomplete.');
   document.getElementById('order-number').textContent = order.order_number;
   document.getElementById('order-date').textContent = `Placed ${new Date(order.created_at).toLocaleString()}`;
   document.getElementById('order-status').textContent = order.order_status;

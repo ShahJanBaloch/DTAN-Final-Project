@@ -60,15 +60,18 @@ class MySqlSessionStore extends session.Store {
       }
 
       const storedSession = JSON.parse(rows[0].data);
-      const cookie = storedSession?.cookie || {};
-      const expiresAt = cookie.expires
-        ? new Date(cookie.expires).getTime()
-        : Number(rows[0].expires || 0);
+      const expiresAt = Number(rows[0].expires);
 
-      if (!storedSession || Number.isNaN(expiresAt) || expiresAt <= Date.now()) {
+      if (!storedSession || !Number.isFinite(expiresAt) || expiresAt <= Date.now()) {
         await this.pool.query('DELETE FROM sessions WHERE session_id = ?', [sessionId]);
         return callback(null, null);
       }
+
+      storedSession.cookie = {
+        ...(storedSession.cookie || {}),
+        expires: new Date(expiresAt),
+        maxAge: Math.max(expiresAt - Date.now(), 0)
+      };
 
       return callback(null, storedSession);
     } catch (error) {
@@ -114,8 +117,8 @@ class MySqlSessionStore extends session.Store {
         : Date.now() + (Number(cookie.maxAge) || 24 * 60 * 60 * 1000);
 
       await this.pool.query(
-        'UPDATE sessions SET expires = ?, data = ? WHERE session_id = ?',
-        [expires, JSON.stringify(normalizedSession), sessionId]
+        'UPDATE sessions SET expires = ? WHERE session_id = ?',
+        [expires, sessionId]
       );
       return callback(null);
     } catch (error) {
@@ -253,14 +256,16 @@ app.use(
 
     saveUninitialized: false,
 
-    rolling: true,
+    // The session already lasts for eight hours; avoid rewriting the cookie on
+    // every parallel admin request during page navigation.
+    rolling: false,
 
     cookie: {
       path: '/',
       httpOnly: true,
 
-      // HTTP locally, HTTPS on Vercel production
-      secure: process.env.NODE_ENV === 'production',
+      // Use HTTPS cookies in production while keeping local HTTP development working.
+      secure: 'auto',
 
       sameSite: 'lax',
 
@@ -290,12 +295,21 @@ app.use(
   '/js',
   express.static(jsPath)
 );
-
+        // The session already lasts for eight hours; avoid rewriting the cookie on
+        // every parallel admin request during page navigation.
 // Public HTML files
 app.use(
   '/public',
   express.static(publicPath)
 );
+
+// Always serve the data-heavy admin pages fresh so stale HTML cannot keep an
+// outdated API script or loading flow in the browser.
+app.get(['/admin/orders.html', '/admin/messages.html'], (req, res) => {
+  const page = req.path.endsWith('/orders.html') ? 'orders.html' : 'messages.html';
+  res.set('Cache-Control', 'no-store, max-age=0');
+  return res.sendFile(path.join(adminPath, page));
+});
 
 // Admin HTML files
 app.use(

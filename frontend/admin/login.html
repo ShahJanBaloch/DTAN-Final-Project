@@ -179,14 +179,14 @@
     </div>
 
     <!-- Scripts -->
-    <script src="../js/api.js"></script>
+    <script src="../js/api.js?v=20260918"></script>
     <script>
       // Auto-check if already logged in
       document.addEventListener("DOMContentLoaded", async () => {
         try {
           const res = await API.get("/auth/me");
           if (res.success && res.user) {
-            window.location.href = "/admin/dashboard.html";
+            window.location.href = "dashboard.html";
           }
         } catch (e) {
           // Not logged in, proceed to show login form
@@ -234,7 +234,7 @@
           if (response.success) {
             API.showToast("Login successful! Redirecting...", "success");
             setTimeout(() => {
-              window.location.href = "/admin/dashboard.html";
+              window.location.href = "dashboard.html";
             }, 600);
           }
         } catch (error) {

@@ -1,4 +1,5 @@
 const bcrypt = require('bcrypt');
+const signature = require('cookie-signature');
 const { pool } = require('../config/db');
 
 /**
@@ -51,16 +52,31 @@ async function login(req, res, next) {
       role: user.role
     };
 
+    req.session.cookie.path = '/';
+    req.session.cookie.httpOnly = true;
+    req.session.cookie.sameSite = 'lax';
+    req.session.cookie.secure = Boolean(req.secure || process.env.NODE_ENV === 'production');
+
     // 5. Return success (NEVER return password hash)
-    return res.status(200).json({
-      success: true,
-      message: 'Login successful',
-      user: {
-        id: user.id,
-        name: user.name,
-        email: user.email,
-        role: user.role
-      }
+    return req.session.save((sessionError) => {
+      if (sessionError) return next(sessionError);
+      const sessionSecret = process.env.SESSION_SECRET || 'change-this-development-secret';
+      const signedSessionId = `s:${signature.sign(req.sessionID, sessionSecret)}`;
+      const secureFlag = req.secure || process.env.NODE_ENV === 'production' ? '; Secure' : '';
+      res.setHeader(
+        'Set-Cookie',
+        `balochhunar.sid=${encodeURIComponent(signedSessionId)}; Path=/; HttpOnly; SameSite=Lax${secureFlag}`
+      );
+      return res.status(200).json({
+        success: true,
+        message: 'Login successful',
+        user: {
+          id: user.id,
+          name: user.name,
+          email: user.email,
+          role: user.role
+        }
+      });
     });
   } catch (error) {
     next(error);

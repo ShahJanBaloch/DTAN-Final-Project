@@ -3,7 +3,11 @@
  */
 
 const API = {
-  baseUrl: '/api',
+  baseUrl:
+    window.location.protocol === 'file:' ||
+    (['localhost', '127.0.0.1'].includes(window.location.hostname) && window.location.port !== '5000')
+      ? `http://${window.location.hostname || 'localhost'}:5000/api`
+      : '/api',
 
   /**
    * Generic Request Handler
@@ -26,18 +30,21 @@ const API = {
     };
 
     try {
-      const response = await fetch(url, config);
-      const data = await response.json().catch(() => ({
-        success: false,
-        message: 'Invalid response from server'
-      }));
+      let response;
+      let data;
+
+      for (let attempt = 0; attempt < 2; attempt += 1) {
+        response = await fetch(url, config);
+        data = await response.json().catch(() => ({
+          success: false,
+          message: 'Invalid response from server'
+        }));
+
+        if (response.status !== 401 || attempt === 1) break;
+        await new Promise(resolve => setTimeout(resolve, 150));
+      }
 
       if (!response.ok) {
-        // If unauthorized on an admin page, redirect to login
-        const isAdminPage = window.location.pathname.startsWith('/admin/') || window.location.pathname === '/admin-login';
-        if (response.status === 401 && isAdminPage && !window.location.pathname.endsWith('/login.html')) {
-          window.location.href = '/admin/login.html';
-        }
         const error = new Error(data.message || `HTTP Error ${response.status}`);
         error.status = response.status;
         throw error;
